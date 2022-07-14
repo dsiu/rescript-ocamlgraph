@@ -246,7 +246,7 @@ module type P = {
       (and all the edges going from [v] in [g]).
       Just return [g] if [v] is not in [g].
 
-      <b>Time complexity for ocamlgraph implementations:</b>
+      <b>Time complexity for ocaml2graph implementations:</b>
       O(|V|*ln(|V|)) for unlabeled graphs and
       O(|V|*max(ln(|V|),D)) for labeled graphs.
       D is the maximal degree of the graph. ")

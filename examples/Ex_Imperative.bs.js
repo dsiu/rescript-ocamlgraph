@@ -13,15 +13,22 @@ var compare = Caml_obj.caml_compare;
 
 var equal = Caml_obj.caml_equal;
 
-var G = Imperative$RescriptOcamlgraph.Digraph.ConcreteBidirectional({
+var G = Imperative$RescriptOcamlgraph.Graph.Concrete({
       compare: compare,
       hash: Hashtbl.hash,
       equal: equal
     });
 
-var g = Curry._2(G.create, undefined, undefined);
+Traverse$RescriptOcamlgraph.Dfs({
+      is_directed: G.is_directed,
+      V: G.V,
+      iter_vertex: G.iter_vertex,
+      fold_vertex: G.fold_vertex,
+      iter_succ: G.iter_succ,
+      fold_succ: G.fold_succ
+    });
 
-var temp = Curry._2(G.create, undefined, undefined);
+var g = Curry._2(G.create, undefined, undefined);
 
 Belt_List.forEach({
       hd: [
@@ -165,14 +172,6 @@ var Gv = Graphviz$RescriptOcamlgraph.Dot({
       default_edge_attributes: default_edge_attributes,
       edge_attributes: edge_attributes
     });
-
-Curry._3(G.add_edge, temp, "a", "b");
-
-Curry._3(G.add_edge, temp, "a", "c");
-
-Curry._3(G.add_edge, temp, "b", "e");
-
-Curry._3(G.add_edge, temp, "a", "a");
 
 Curry._2(Gv.fprint_graph, Format.str_formatter, g);
 

@@ -7,13 +7,18 @@ let () = {
     let compare = compare
     let equal = \"="
     let hash = Hashtbl.hash
+    let default = ""
   }
 
-  //  module G = Imperative.Graph.Concrete(Str)
-  module G = Imperative.Digraph.ConcreteBidirectional(Str)
+  module G = Imperative.Graph.Concrete(Str)
+  //  module G = Imperative.Graph.ConcreteLabeled(Str, Str)
+  //  module G = Imperative.Graph.ConcreteBidirectional(Str)
+  //  module G = Imperative.Digraph.Concrete(Str)
+  //  module G = Imperative.Digraph.ConcreteLabeled(Str, Str)
+  //  module G = Imperative.Digraph.ConcreteBidirectional(Str)
+  module Dfs = Traverse.Dfs(G)
 
   let g = G.create()
-  let temp = G.create()
 
   List.forEach(
     list{
@@ -42,18 +47,6 @@ let () = {
   "prefix: "->Js.log
   Dfs.prefix_component(pre, g, "w")
 
-  let rec visit = it => {
-    let v = Dfs.get(it)
-    Js.log(`visit ${G.V.label(v)}`)
-    visit(Dfs.step(it))
-  }
-
-  //  try {
-  //    visit(Dfs.start(g))
-  //  } catch {
-  //  | Exit => ()
-  //  }
-
   // output Graphvis DOT
   module Display = {
     include G
@@ -67,11 +60,6 @@ let () = {
   }
 
   module Gv = Graphviz.Dot(Display)
-
-  temp->G.add_edge("a", "b")
-  temp->G.add_edge("a", "c")
-  temp->G.add_edge("b", "e")
-  temp->G.add_edge("a", "a")
   //  let file_ch = open_out("DFS.dot")
   //  let () = Gv.output_graph(stdout, temp)
   let () = Gv.fprint_graph(Format.str_formatter, g)
