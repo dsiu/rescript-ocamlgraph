@@ -13,10 +13,19 @@ var compare = Caml_obj.caml_compare;
 
 var equal = Caml_obj.caml_equal;
 
-var G = Persistent$RescriptOcamlgraph.Graph.Concrete({
+var partial_arg = {
+  compare: compare,
+  hash: Hashtbl.hash,
+  equal: equal
+};
+
+var partial_arg$1 = Persistent$RescriptOcamlgraph.Digraph.ConcreteBidirectionalLabeled;
+
+var G = (function (param) {
+      return partial_arg$1(partial_arg, param);
+    })({
       compare: compare,
-      hash: Hashtbl.hash,
-      equal: equal
+      $$default: ""
     });
 
 Traverse$RescriptOcamlgraph.Dfs({

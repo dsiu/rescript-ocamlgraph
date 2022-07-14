@@ -10,10 +10,10 @@ let () = {
     let default = ""
   }
 
-  module G = Persistent.Graph.Concrete(Str)
+  //  module G = Persistent.Graph.Concrete(Str)
   //  module G = Persistent.Graph.ConcreteLabeled(Str, Str)
   //  module G = Persistent.Digraph.ConcreteBidirectional(Str)
-  //  module G = Persistent.Digraph.ConcreteBidirectionalLabeled(Str, Str)
+  module G = Persistent.Digraph.ConcreteBidirectionalLabeled(Str, Str)
   module Dfs = Traverse.Dfs(G)
 
   let g = List.reduce(
