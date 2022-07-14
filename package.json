@@ -1,0 +1,41 @@
+{
+  "name": "rescript-ocamlgraph",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "rescript",
+    "clean": "rescript clean -with-deps",
+    "start": "rescript build -w"
+  },
+  "keywords": [
+    "rescript",
+    "ocamlgraph"
+  ],
+  "author": "",
+  "license": "LGPL-2.1-or-later",
+  "devDependencies": {
+    "@glennsl/rescript-jest": "^0.9.1",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^28.1.2",
+    "rescript": "^9.1.4"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/**/**/*.test.(js|jsx|ts|tsx)",
+      "<rootDir>/**/*_Test.bs.js"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "esbuild-jest"
+    },
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!(rescript|@glennsl/rescript-jest|@ryyppy/rescript-promise|rationale)/)"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "mjs"
+    ]
+  },
+  "dependencies": {
+  }
+}

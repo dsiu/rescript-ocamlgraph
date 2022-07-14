@@ -1,3 +1,19 @@
+# platform
+.DS_Store
+
+# idea
+/.idea/sonarlint/issuestore/
+
+# rescript
+.merlin
+.bsb.lock
+/lib/bs/
+
+# node
+npm-debug.log
+/node_modules/
+
+# ocaml
 *.annot
 *.cmo
 *.cma

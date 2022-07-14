@@ -1,0 +1,3 @@
+[submodule "ocamlgraph"]
+	path = ocamlgraph
+	url = git@github.com:backtracking/ocamlgraph.git
