@@ -2,22 +2,29 @@
   "name": "rescript-ocamlgraph",
   "version": "0.0.1",
   "type": "module",
+  "engines": {
+    "node": ">14.0.0"
+  },
   "scripts": {
-    "build": "rescript",
     "clean": "rescript clean -with-deps",
+    "build": "rescript build -with-deps",
+    "watch": "rescript build -with-deps -w",
     "start": "rescript build -w"
   },
   "keywords": [
-    "rescript",
+    "ReScript",
     "ocamlgraph"
   ],
-  "author": "",
+  "author": "Danny Siu <danny.siu@gmail.com>",
   "license": "LGPL-2.1-or-later",
   "devDependencies": {
     "@glennsl/rescript-jest": "^0.9.1",
     "esbuild-jest": "^0.5.0",
     "jest": "^28.1.2",
     "rescript": "^9.1.4"
+  },
+  "peerDependencies": {
+    "rescript": "^9.0.0"
   },
   "jest": {
     "testMatch": [
