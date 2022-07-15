@@ -88,7 +88,7 @@ module type G = {
 module Make: (G: G) =>
 {
   @@ocaml.text(" Hash tables used to store the coloring ")
-  module H: Hashtbl.S
+  module H: Hashtbl.S with type key = G.V.t
 
   let coloring: (G.t, int) => H.t<int>
   @@ocaml.text(" [coloring g k] colors the graph [g] with [k] colors and returns the
