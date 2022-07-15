@@ -1,5 +1,5 @@
 open Belt
-@@warning("-3")
+@@warning("-3-32")
 
 let () = {
   module Str = {

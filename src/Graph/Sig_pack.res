@@ -433,11 +433,13 @@ module type S = {
       and returns when gv's window is closed ")
   let display_with_gv: t => unit
 
-  let parse_gml_file: string => t
-  let parse_dot_file: string => t
+  // todo: fix this
+  //  let parse_gml_file: string => t
+  //  let parse_dot_file: string => t
 
   @@warning("-3")
-  let print_gml: (Format.formatter, t) => unit
-  let print_gml_file: (t, string) => unit
+  // todo: fix this
+  //  let print_gml: (Format.formatter, t) => unit
+  //  let print_gml_file: (t, string) => unit
   /* val print_graphml : Format.formatter -> t -> unit */
 }

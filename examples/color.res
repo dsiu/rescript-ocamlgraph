@@ -17,7 +17,7 @@
 
 /* 4-coloring planar graphs */
 
-@@warning("-3")
+@@warning("-3-33")
 open Printf
 
 /* command line */
