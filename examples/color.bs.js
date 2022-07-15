@@ -8,9 +8,9 @@ import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Rand$RescriptOcamlgraph from "../src/Graph/Rand.bs.js";
-import * as Traverse$RescriptOcamlgraph from "../src/Graph/Traverse.bs.js";
-import * as Imperative$RescriptOcamlgraph from "../src/Graph/Imperative.bs.js";
+import * as Rand$RescriptOcamlgraph from "../src/rand.bs.js";
+import * as Traverse$RescriptOcamlgraph from "../src/traverse.bs.js";
+import * as Imperative$RescriptOcamlgraph from "../src/imperative.bs.js";
 
 var n_ = {
   contents: 30

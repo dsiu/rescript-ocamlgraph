@@ -12,7 +12,7 @@
       "subdirs": true
     },
     {
-      "dir": "__tests__",
+      "dir": "tests",
       "subdirs": true,
       "type": "dev"
     }
@@ -27,7 +27,8 @@
   "bs-dev-dependencies": [
   ],
   "warnings": {
-    "error": "+101"
+    "error": "+101",
+    "number": "-3-44"
   },
   "namespace": true,
   "refmt": 3

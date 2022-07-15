@@ -5,9 +5,9 @@ import * as Format from "rescript/lib/es6/format.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Belt_List from "rescript/lib/es6/belt_List.js";
-import * as Graphviz$RescriptOcamlgraph from "../src/Graph/Graphviz.bs.js";
-import * as Traverse$RescriptOcamlgraph from "../src/Graph/Traverse.bs.js";
-import * as Persistent$RescriptOcamlgraph from "../src/Graph/Persistent.bs.js";
+import * as Graphviz$RescriptOcamlgraph from "../src/graphviz.bs.js";
+import * as Traverse$RescriptOcamlgraph from "../src/traverse.bs.js";
+import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
