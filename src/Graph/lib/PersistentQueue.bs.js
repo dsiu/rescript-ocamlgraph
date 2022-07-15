@@ -27,8 +27,8 @@ function add(queue, elt) {
   }
 }
 
-function head(param) {
-  var match = param[0];
+function head(x) {
+  var match = x[0];
   if (match) {
     return match.hd;
   }
@@ -38,18 +38,18 @@ function head(param) {
       };
 }
 
-function tail(param) {
-  var match = param[0];
+function tail(x) {
+  var match = x[0];
   if (match) {
     var prefix = match.tl;
     if (prefix) {
       return [
               prefix,
-              param[1]
+              x[1]
             ];
     } else {
       return [
-              List.rev(param[1]),
+              List.rev(x[1]),
               /* [] */0
             ];
     }
