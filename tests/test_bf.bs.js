@@ -5,9 +5,9 @@ import * as $$Array from "rescript/lib/es6/array.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Printf from "rescript/lib/es6/printf.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
+import * as Pack$Graph from "../src/pack.bs.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Pack$RescriptOcamlgraph from "../src/pack.bs.js";
 
 function test(name, has_cycle, spec) {
   Curry._1(Printf.printf(/* Format */{
@@ -26,15 +26,15 @@ function test(name, has_cycle, spec) {
             },
             _1: "Running test with name: %s\n"
           }), name);
-  var v = $$Array.init(5, Pack$RescriptOcamlgraph.Digraph.V.create);
-  var g = Curry._2(Pack$RescriptOcamlgraph.Digraph.create, undefined, undefined);
-  $$Array.iter(Curry._1(Pack$RescriptOcamlgraph.Digraph.add_vertex, g), v);
+  var v = $$Array.init(5, Pack$Graph.Digraph.V.create);
+  var g = Curry._2(Pack$Graph.Digraph.create, undefined, undefined);
+  $$Array.iter(Curry._1(Pack$Graph.Digraph.add_vertex, g), v);
   var build = function (param) {
-    return Curry._2(Pack$RescriptOcamlgraph.Digraph.add_edge_e, g, Curry._3(Pack$RescriptOcamlgraph.Digraph.E.create, Caml_array.get(v, param[0]), param[1], Caml_array.get(v, param[2])));
+    return Curry._2(Pack$Graph.Digraph.add_edge_e, g, Curry._3(Pack$Graph.Digraph.E.create, Caml_array.get(v, param[0]), param[1], Caml_array.get(v, param[2])));
   };
   List.iter(build, spec);
   try {
-    var cycle = Curry._2(Pack$RescriptOcamlgraph.Digraph.bellman_ford, g, Caml_array.get(v, 1));
+    var cycle = Curry._2(Pack$Graph.Digraph.bellman_ford, g, Caml_array.get(v, 1));
     var print_edge = function (e) {
       return Curry._3(Printf.printf(/* Format */{
                       _0: {
@@ -69,7 +69,7 @@ function test(name, has_cycle, spec) {
                         }
                       },
                       _1: "%d --(%d)--> %d\n"
-                    }), Curry._1(Pack$RescriptOcamlgraph.Digraph.V.label, Curry._1(Pack$RescriptOcamlgraph.Digraph.E.src, e)), Curry._1(Pack$RescriptOcamlgraph.Digraph.E.label, e), Curry._1(Pack$RescriptOcamlgraph.Digraph.V.label, Curry._1(Pack$RescriptOcamlgraph.Digraph.E.dst, e)));
+                    }), Curry._1(Pack$Graph.Digraph.V.label, Curry._1(Pack$Graph.Digraph.E.src, e)), Curry._1(Pack$Graph.Digraph.E.label, e), Curry._1(Pack$Graph.Digraph.V.label, Curry._1(Pack$Graph.Digraph.E.dst, e)));
     };
     List.iter(print_edge, cycle);
     if (!has_cycle) {

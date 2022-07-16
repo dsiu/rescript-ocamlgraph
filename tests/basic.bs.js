@@ -5,9 +5,9 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
-import * as Path$RescriptOcamlgraph from "../src/path.bs.js";
-import * as Components$RescriptOcamlgraph from "../src/components.bs.js";
-import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
+import * as Path$Graph from "../src/path.bs.js";
+import * as Components$Graph from "../src/components.bs.js";
+import * as Persistent$Graph from "../src/persistent.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
@@ -20,7 +20,7 @@ var Int = {
   $$default: 0
 };
 
-var partial_arg = Persistent$RescriptOcamlgraph.Digraph.ConcreteLabeled;
+var partial_arg = Persistent$Graph.Digraph.ConcreteLabeled;
 
 var G = partial_arg(Int, {
       compare: compare,
@@ -105,7 +105,7 @@ var partial_arg$1 = {
   nb_vertex: partial_arg_nb_vertex
 };
 
-var partial_arg$2 = Path$RescriptOcamlgraph.Dijkstra;
+var partial_arg$2 = Path$Graph.Dijkstra;
 
 var Dij = (function (param) {
       return partial_arg$2(partial_arg$1, param);
@@ -160,7 +160,7 @@ Format.printf(/* Format */{
       _1: "@."
     });
 
-var Comp = Components$RescriptOcamlgraph.Make({
+var Comp = Components$Graph.Make({
       V: G.V,
       iter_vertex: G.iter_vertex,
       iter_succ: G.iter_succ

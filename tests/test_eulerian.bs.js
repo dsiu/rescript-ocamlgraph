@@ -4,8 +4,8 @@ import * as List from "rescript/lib/es6/list.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
+import * as Pack$Graph from "../src/pack.bs.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Pack$RescriptOcamlgraph from "../src/pack.bs.js";
 
 function print_vertex(fmt, v) {
   return Curry._1(Format.fprintf(fmt, /* Format */{
@@ -17,7 +17,7 @@ function print_vertex(fmt, v) {
                     _3: /* End_of_format */0
                   },
                   _1: "%d"
-                }), Curry._1(Pack$RescriptOcamlgraph.Graph.V.label, v));
+                }), Curry._1(Pack$Graph.Graph.V.label, v));
 }
 
 function print_edge(fmt, e) {
@@ -34,7 +34,7 @@ function print_edge(fmt, e) {
                     }
                   },
                   _1: "%a->%a"
-                }), print_vertex, Curry._1(Pack$RescriptOcamlgraph.Graph.E.src, e), print_vertex, Curry._1(Pack$RescriptOcamlgraph.Graph.E.dst, e));
+                }), print_vertex, Curry._1(Pack$Graph.Graph.E.src, e), print_vertex, Curry._1(Pack$Graph.Graph.E.dst, e));
 }
 
 function print_path(fmt, p) {
@@ -55,7 +55,7 @@ function print_path(fmt, p) {
 
 function exists_path(g) {
   try {
-    Curry._1(Pack$RescriptOcamlgraph.Graph.Eulerian.path, g);
+    Curry._1(Pack$Graph.Graph.Eulerian.path, g);
     return true;
   }
   catch (raw_exn){
@@ -69,7 +69,7 @@ function exists_path(g) {
 
 function exists_cycle(g) {
   try {
-    Curry._1(Pack$RescriptOcamlgraph.Graph.Eulerian.cycle, g);
+    Curry._1(Pack$Graph.Graph.Eulerian.cycle, g);
     return true;
   }
   catch (raw_exn){
@@ -81,16 +81,16 @@ function exists_cycle(g) {
   }
 }
 
-var g = Curry._2(Pack$RescriptOcamlgraph.Graph.create, undefined, undefined);
+var g = Curry._2(Pack$Graph.Graph.create, undefined, undefined);
 
 function add_vertex(i) {
-  var v = Curry._1(Pack$RescriptOcamlgraph.Graph.V.create, i);
-  Curry._2(Pack$RescriptOcamlgraph.Graph.add_vertex, g, v);
+  var v = Curry._1(Pack$Graph.Graph.V.create, i);
+  Curry._2(Pack$Graph.Graph.add_vertex, g, v);
   return v;
 }
 
 function path_length(g) {
-  var match = Curry._1(Pack$RescriptOcamlgraph.Graph.Eulerian.path, g);
+  var match = Curry._1(Pack$Graph.Graph.Eulerian.path, g);
   return List.length(match[0]);
 }
 
@@ -146,7 +146,7 @@ if (!exists_cycle(g)) {
       };
 }
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v0, v1);
+Curry._3(Pack$Graph.Graph.add_edge, g, v0, v1);
 
 if (!exists_path(g)) {
   throw {
@@ -186,7 +186,7 @@ if (path_length(g) !== 1) {
 
 var v2 = add_vertex(2);
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v1, v2);
+Curry._3(Pack$Graph.Graph.add_edge, g, v1, v2);
 
 if (!exists_path(g)) {
   throw {
@@ -224,7 +224,7 @@ if (path_length(g) !== 2) {
       };
 }
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v2, v0);
+Curry._3(Pack$Graph.Graph.add_edge, g, v2, v0);
 
 if (!exists_path(g)) {
   throw {
@@ -262,7 +262,7 @@ if (path_length(g) !== 3) {
       };
 }
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v0, v0);
+Curry._3(Pack$Graph.Graph.add_edge, g, v0, v0);
 
 if (!exists_cycle(g)) {
   throw {
@@ -278,7 +278,7 @@ if (!exists_cycle(g)) {
 
 var v3 = add_vertex(3);
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v2, v3);
+Curry._3(Pack$Graph.Graph.add_edge, g, v2, v3);
 
 if (!exists_path(g)) {
   throw {
@@ -318,9 +318,9 @@ if (path_length(g) !== 5) {
 
 var v4 = add_vertex(4);
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v3, v4);
+Curry._3(Pack$Graph.Graph.add_edge, g, v3, v4);
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v2, v4);
+Curry._3(Pack$Graph.Graph.add_edge, g, v2, v4);
 
 if (!exists_cycle(g)) {
   throw {
@@ -346,13 +346,13 @@ if (path_length(g) !== 7) {
       };
 }
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.remove_edge, g, v2, v4);
+Curry._3(Pack$Graph.Graph.remove_edge, g, v2, v4);
 
 var v5 = add_vertex(5);
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v4, v5);
+Curry._3(Pack$Graph.Graph.add_edge, g, v4, v5);
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.add_edge, g, v5, v3);
+Curry._3(Pack$Graph.Graph.add_edge, g, v5, v3);
 
 if (!exists_path(g)) {
   throw {
@@ -390,7 +390,7 @@ if (path_length(g) !== 8) {
       };
 }
 
-Curry._3(Pack$RescriptOcamlgraph.Graph.remove_edge, g, v2, v3);
+Curry._3(Pack$Graph.Graph.remove_edge, g, v2, v3);
 
 if (exists_path(g)) {
   throw {
@@ -405,7 +405,7 @@ if (exists_path(g)) {
 }
 
 for(var n = 2; n <= 5; ++n){
-  var g$1 = Curry._2(Pack$RescriptOcamlgraph.Graph.Classic.full, false, (n << 1));
+  var g$1 = Curry._2(Pack$Graph.Graph.Classic.full, false, (n << 1));
   if (exists_path(g$1)) {
     throw {
           RE_EXN_ID: "Assert_failure",
@@ -417,7 +417,7 @@ for(var n = 2; n <= 5; ++n){
           Error: new Error()
         };
   }
-  var g$2 = Curry._2(Pack$RescriptOcamlgraph.Graph.Classic.full, true, (n << 1));
+  var g$2 = Curry._2(Pack$Graph.Graph.Classic.full, true, (n << 1));
   if (exists_path(g$2)) {
     throw {
           RE_EXN_ID: "Assert_failure",
@@ -429,8 +429,8 @@ for(var n = 2; n <= 5; ++n){
           Error: new Error()
         };
   }
-  var g$3 = Curry._2(Pack$RescriptOcamlgraph.Graph.Classic.full, false, (n << 1) + 1 | 0);
-  var match = Curry._1(Pack$RescriptOcamlgraph.Graph.Eulerian.path, g$3);
+  var g$3 = Curry._2(Pack$Graph.Graph.Classic.full, false, (n << 1) + 1 | 0);
+  var match = Curry._1(Pack$Graph.Graph.Eulerian.path, g$3);
   if (!match[1]) {
     throw {
           RE_EXN_ID: "Assert_failure",
@@ -453,8 +453,8 @@ for(var n = 2; n <= 5; ++n){
           Error: new Error()
         };
   }
-  var g$4 = Curry._2(Pack$RescriptOcamlgraph.Graph.Classic.full, true, (n << 1) + 1 | 0);
-  var match$1 = Curry._1(Pack$RescriptOcamlgraph.Graph.Eulerian.path, g$4);
+  var g$4 = Curry._2(Pack$Graph.Graph.Classic.full, true, (n << 1) + 1 | 0);
+  var match$1 = Curry._1(Pack$Graph.Graph.Eulerian.path, g$4);
   if (!match$1[1]) {
     throw {
           RE_EXN_ID: "Assert_failure",
@@ -480,9 +480,9 @@ for(var n = 2; n <= 5; ++n){
   
 }
 
-var match$2 = Curry._2(Pack$RescriptOcamlgraph.Graph.Classic.grid, 2, 3);
+var match$2 = Curry._2(Pack$Graph.Graph.Classic.grid, 2, 3);
 
-var match$3 = Curry._1(Pack$RescriptOcamlgraph.Graph.Eulerian.path, match$2[0]);
+var match$3 = Curry._1(Pack$Graph.Graph.Eulerian.path, match$2[0]);
 
 if (match$3[1]) {
   throw {
@@ -510,7 +510,7 @@ if (List.length(match$3[0]) !== 7) {
 
 function exists_path$1(g) {
   try {
-    Curry._1(Pack$RescriptOcamlgraph.Digraph.Eulerian.path, g);
+    Curry._1(Pack$Graph.Digraph.Eulerian.path, g);
     return true;
   }
   catch (raw_exn){
@@ -524,7 +524,7 @@ function exists_path$1(g) {
 
 function exists_cycle$1(g) {
   try {
-    Curry._1(Pack$RescriptOcamlgraph.Digraph.Eulerian.cycle, g);
+    Curry._1(Pack$Graph.Digraph.Eulerian.cycle, g);
     return true;
   }
   catch (raw_exn){
@@ -537,10 +537,10 @@ function exists_cycle$1(g) {
 }
 
 for(var n$1 = 0; n$1 <= 4; ++n$1){
-  var match$4 = Curry._1(Pack$RescriptOcamlgraph.Digraph.Classic.cycle, n$1);
+  var match$4 = Curry._1(Pack$Graph.Digraph.Classic.cycle, n$1);
   var v = match$4[1];
   var g$5 = match$4[0];
-  var match$5 = Curry._1(Pack$RescriptOcamlgraph.Digraph.Eulerian.path, g$5);
+  var match$5 = Curry._1(Pack$Graph.Digraph.Eulerian.path, g$5);
   if (!match$5[1]) {
     throw {
           RE_EXN_ID: "Assert_failure",
@@ -564,8 +564,8 @@ for(var n$1 = 0; n$1 <= 4; ++n$1){
         };
   }
   if (n$1 > 1) {
-    Curry._3(Pack$RescriptOcamlgraph.Digraph.remove_edge, g$5, Caml_array.get(v, 0), Caml_array.get(v, 1));
-    var match$6 = Curry._1(Pack$RescriptOcamlgraph.Digraph.Eulerian.path, g$5);
+    Curry._3(Pack$Graph.Digraph.remove_edge, g$5, Caml_array.get(v, 0), Caml_array.get(v, 1));
+    var match$6 = Curry._1(Pack$Graph.Digraph.Eulerian.path, g$5);
     if (match$6[1]) {
       throw {
             RE_EXN_ID: "Assert_failure",
@@ -593,13 +593,13 @@ for(var n$1 = 0; n$1 <= 4; ++n$1){
   
 }
 
-var match$7 = Curry._1(Pack$RescriptOcamlgraph.Digraph.Classic.cycle, 5);
+var match$7 = Curry._1(Pack$Graph.Digraph.Classic.cycle, 5);
 
 var v$1 = match$7[1];
 
 var g$6 = match$7[0];
 
-Curry._3(Pack$RescriptOcamlgraph.Digraph.add_edge, g$6, Caml_array.get(v$1, 1), Caml_array.get(v$1, 4));
+Curry._3(Pack$Graph.Digraph.add_edge, g$6, Caml_array.get(v$1, 1), Caml_array.get(v$1, 4));
 
 if (exists_cycle$1(g$6)) {
   throw {
@@ -625,7 +625,7 @@ if (!exists_path$1(g$6)) {
       };
 }
 
-Curry._3(Pack$RescriptOcamlgraph.Digraph.add_edge, g$6, Caml_array.get(v$1, 4), Caml_array.get(v$1, 1));
+Curry._3(Pack$Graph.Digraph.add_edge, g$6, Caml_array.get(v$1, 4), Caml_array.get(v$1, 1));
 
 if (!exists_cycle$1(g$6)) {
   throw {
@@ -639,21 +639,21 @@ if (!exists_cycle$1(g$6)) {
       };
 }
 
-var match$8 = Curry._1(Pack$RescriptOcamlgraph.Digraph.Classic.cycle, 3);
+var match$8 = Curry._1(Pack$Graph.Digraph.Classic.cycle, 3);
 
 var v$2 = match$8[1];
 
 var g$7 = match$8[0];
 
-var v3$1 = Curry._1(Pack$RescriptOcamlgraph.Digraph.V.create, 3);
+var v3$1 = Curry._1(Pack$Graph.Digraph.V.create, 3);
 
-Curry._2(Pack$RescriptOcamlgraph.Digraph.add_vertex, g$7, v3$1);
+Curry._2(Pack$Graph.Digraph.add_vertex, g$7, v3$1);
 
-Curry._3(Pack$RescriptOcamlgraph.Digraph.add_edge, g$7, Caml_array.get(v$2, 1), v3$1);
+Curry._3(Pack$Graph.Digraph.add_edge, g$7, Caml_array.get(v$2, 1), v3$1);
 
-Curry._3(Pack$RescriptOcamlgraph.Digraph.add_edge, g$7, v3$1, Caml_array.get(v$2, 0));
+Curry._3(Pack$Graph.Digraph.add_edge, g$7, v3$1, Caml_array.get(v$2, 0));
 
-var match$9 = Curry._1(Pack$RescriptOcamlgraph.Digraph.Eulerian.path, g$7);
+var match$9 = Curry._1(Pack$Graph.Digraph.Eulerian.path, g$7);
 
 var c = match$9[1];
 

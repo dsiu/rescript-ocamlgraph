@@ -5,9 +5,9 @@ import * as Format from "rescript/lib/es6/format.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Belt_List from "rescript/lib/es6/belt_List.js";
-import * as Graphviz$RescriptOcamlgraph from "../src/graphviz.bs.js";
-import * as Traverse$RescriptOcamlgraph from "../src/traverse.bs.js";
-import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
+import * as Graphviz$Graph from "../src/graphviz.bs.js";
+import * as Traverse$Graph from "../src/traverse.bs.js";
+import * as Persistent$Graph from "../src/persistent.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
@@ -19,7 +19,7 @@ var partial_arg = {
   equal: equal
 };
 
-var partial_arg$1 = Persistent$RescriptOcamlgraph.Digraph.ConcreteBidirectionalLabeled;
+var partial_arg$1 = Persistent$Graph.Digraph.ConcreteBidirectionalLabeled;
 
 var G = (function (param) {
       return partial_arg$1(partial_arg, param);
@@ -28,7 +28,7 @@ var G = (function (param) {
       $$default: ""
     });
 
-Traverse$RescriptOcamlgraph.Dfs({
+Traverse$Graph.Dfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,
@@ -104,7 +104,7 @@ var g = Belt_List.reduce({
                     }));
       }));
 
-var Dfs = Traverse$RescriptOcamlgraph.Dfs({
+var Dfs = Traverse$Graph.Dfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,
@@ -163,7 +163,7 @@ function get_subgraph(param) {
   
 }
 
-var Gv = Graphviz$RescriptOcamlgraph.Dot({
+var Gv = Graphviz$Graph.Dot({
       V: {},
       E: {
         src: E.src,

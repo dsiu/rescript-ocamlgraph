@@ -4,8 +4,8 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
-import * as Dominator$RescriptOcamlgraph from "../src/dominator.bs.js";
-import * as Imperative$RescriptOcamlgraph from "../src/imperative.bs.js";
+import * as Dominator$Graph from "../src/dominator.bs.js";
+import * as Imperative$Graph from "../src/imperative.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
@@ -18,14 +18,14 @@ var Int = {
   $$default: 0
 };
 
-var partial_arg = Imperative$RescriptOcamlgraph.Digraph.ConcreteLabeled;
+var partial_arg = Imperative$Graph.Digraph.ConcreteLabeled;
 
 var G = partial_arg(Int, {
       compare: compare,
       $$default: 0
     });
 
-var Dominator = Dominator$RescriptOcamlgraph.Make({
+var Dominator = Dominator$Graph.Make({
       V: G.V,
       pred: G.pred,
       succ: G.succ,

@@ -5,25 +5,25 @@ import * as $$Array from "rescript/lib/es6/array.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
-import * as Pack$RescriptOcamlgraph from "../src/pack.bs.js";
+import * as Pack$Graph from "../src/pack.bs.js";
 
 function test(n, edges) {
-  var v = $$Array.init(n, Pack$RescriptOcamlgraph.Digraph.V.create);
-  var g = Curry._2(Pack$RescriptOcamlgraph.Digraph.create, undefined, undefined);
-  $$Array.iter(Curry._1(Pack$RescriptOcamlgraph.Digraph.add_vertex, g), v);
+  var v = $$Array.init(n, Pack$Graph.Digraph.V.create);
+  var g = Curry._2(Pack$Graph.Digraph.create, undefined, undefined);
+  $$Array.iter(Curry._1(Pack$Graph.Digraph.add_vertex, g), v);
   var build = function (param) {
-    return Curry._3(Pack$RescriptOcamlgraph.Digraph.add_edge, g, Caml_array.get(v, param[0]), Caml_array.get(v, param[1]));
+    return Curry._3(Pack$Graph.Digraph.add_edge, g, Caml_array.get(v, param[0]), Caml_array.get(v, param[1]));
   };
   List.iter(build, edges);
-  var path = Curry._1(Pack$RescriptOcamlgraph.Digraph.PathCheck.check_path, Curry._1(Pack$RescriptOcamlgraph.Digraph.PathCheck.create, g));
+  var path = Curry._1(Pack$Graph.Digraph.PathCheck.check_path, Curry._1(Pack$Graph.Digraph.PathCheck.create, g));
   for(var i = 0; i < n; ++i){
     var seen = Caml_array.make(n, false);
     var pre = (function(seen){
     return function pre(v) {
-      return Caml_array.set(seen, Curry._1(Pack$RescriptOcamlgraph.Digraph.V.label, v), true);
+      return Caml_array.set(seen, Curry._1(Pack$Graph.Digraph.V.label, v), true);
     }
     }(seen));
-    Curry._3(Pack$RescriptOcamlgraph.Digraph.Dfs.prefix_component, pre, g, Caml_array.get(v, i));
+    Curry._3(Pack$Graph.Digraph.Dfs.prefix_component, pre, g, Caml_array.get(v, i));
     for(var j = 0; j < n; ++j){
       if (Caml_array.get(seen, j) !== Curry._2(path, Caml_array.get(v, i), Caml_array.get(v, j))) {
         throw {

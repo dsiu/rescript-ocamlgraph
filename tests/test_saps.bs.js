@@ -5,10 +5,10 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
-import * as Builder$RescriptOcamlgraph from "../src/builder.bs.js";
-import * as Components$RescriptOcamlgraph from "../src/components.bs.js";
-import * as Imperative$RescriptOcamlgraph from "../src/imperative.bs.js";
-import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
+import * as Builder$Graph from "../src/builder.bs.js";
+import * as Components$Graph from "../src/components.bs.js";
+import * as Imperative$Graph from "../src/imperative.bs.js";
+import * as Persistent$Graph from "../src/persistent.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
@@ -32,13 +32,13 @@ var $$String = {
   $$default: "X"
 };
 
-var GI = Imperative$RescriptOcamlgraph.Digraph.Concrete(Int);
+var GI = Imperative$Graph.Digraph.Concrete(Int);
 
-var CI = Components$RescriptOcamlgraph.Connectivity(Builder$RescriptOcamlgraph.I(GI));
+var CI = Components$Graph.Connectivity(Builder$Graph.I(GI));
 
-var GS = Persistent$RescriptOcamlgraph.Digraph.ConcreteBidirectional($$String);
+var GS = Persistent$Graph.Digraph.ConcreteBidirectional($$String);
 
-var CS = Components$RescriptOcamlgraph.BiConnectivity(GS);
+var CS = Components$Graph.BiConnectivity(GS);
 
 var g1 = Curry._2(GI.create, undefined, undefined);
 

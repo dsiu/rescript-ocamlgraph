@@ -3,18 +3,18 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
 import * as Random from "rescript/lib/es6/random.js";
-import * as Pack$RescriptOcamlgraph from "../src/pack.bs.js";
-import * as Components$RescriptOcamlgraph from "../src/components.bs.js";
+import * as Pack$Graph from "../src/pack.bs.js";
+import * as Components$Graph from "../src/components.bs.js";
 
-var C = Components$RescriptOcamlgraph.Undirected({
-      V: Pack$RescriptOcamlgraph.Graph.V,
-      iter_vertex: Pack$RescriptOcamlgraph.Graph.iter_vertex,
-      iter_edges: Pack$RescriptOcamlgraph.Graph.iter_edges
+var C = Components$Graph.Undirected({
+      V: Pack$Graph.Graph.V,
+      iter_vertex: Pack$Graph.Graph.iter_vertex,
+      iter_edges: Pack$Graph.Graph.iter_edges
     });
 
 Random.init(42);
 
-var g = Curry._4(Pack$RescriptOcamlgraph.Graph.Rand.graph, undefined, 10, 3, undefined);
+var g = Curry._4(Pack$Graph.Graph.Rand.graph, undefined, 10, 3, undefined);
 
 var match = Curry._1(C.components, g);
 
@@ -39,7 +39,7 @@ Curry._1(Format.printf(/* Format */{
           _1: "%d components@."
         }), match[0]);
 
-Curry._2(Pack$RescriptOcamlgraph.Graph.iter_vertex, (function (v) {
+Curry._2(Pack$Graph.Graph.iter_vertex, (function (v) {
         return Curry._2(Format.printf(/* Format */{
                         _0: {
                           TAG: /* Int */4,
@@ -63,7 +63,7 @@ Curry._2(Pack$RescriptOcamlgraph.Graph.iter_vertex, (function (v) {
                           }
                         },
                         _1: "%d -> %d@."
-                      }), Curry._1(Pack$RescriptOcamlgraph.Graph.V.label, v), Curry._1(f, v));
+                      }), Curry._1(Pack$Graph.Graph.V.label, v), Curry._1(f, v));
       }), g);
 
 export {

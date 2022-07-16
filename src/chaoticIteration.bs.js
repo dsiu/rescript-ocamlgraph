@@ -3,7 +3,7 @@
 import * as $$Map from "rescript/lib/es6/map.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as WeakTopological$RescriptOcamlgraph from "./weakTopological.bs.js";
+import * as WeakTopological$Graph from "./weakTopological.bs.js";
 
 function Make(G, D) {
   var M = $$Map.Make(G.V);
@@ -48,7 +48,7 @@ function Make(G, D) {
       }
     };
     var analyze_elements = function (widening_steps, comp, data) {
-      return WeakTopological$RescriptOcamlgraph.fold_left((function (param, param$1) {
+      return WeakTopological$Graph.fold_left((function (param, param$1) {
                     if (param$1.TAG !== /* Vertex */0) {
                       var _can_stop = false;
                       var _widening_steps = widening_delay;

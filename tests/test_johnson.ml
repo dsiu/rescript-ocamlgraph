@@ -1,7 +1,7 @@
 
 (* Test file for Johnson *)
 
-(*open Graph*)
+open Graph
 
 module Int = struct
   type t = int

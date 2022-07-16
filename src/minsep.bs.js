@@ -3,14 +3,14 @@
 import * as $$Set from "rescript/lib/es6/set.js";
 import * as List from "rescript/lib/es6/list.js";
 import * as Curry from "rescript/lib/es6/curry.js";
+import * as Oper$Graph from "./oper.bs.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
-import * as Oper$RescriptOcamlgraph from "./oper.bs.js";
-import * as Components$RescriptOcamlgraph from "./components.bs.js";
+import * as Components$Graph from "./components.bs.js";
 
 function P(funarg) {
   var fold_vertex = funarg.fold_vertex;
   var remove_vertex = funarg.remove_vertex;
-  var CC = Components$RescriptOcamlgraph.Make({
+  var CC = Components$Graph.Make({
         V: funarg.V,
         iter_vertex: funarg.iter_vertex,
         iter_succ: funarg.iter_succ
@@ -18,7 +18,7 @@ function P(funarg) {
   var cc = function (g, l) {
     return Curry._1(CC.scc_list, List.fold_left(remove_vertex, g, l));
   };
-  var N = Oper$RescriptOcamlgraph.Neighbourhood({
+  var N = Oper$Graph.Neighbourhood({
         V: funarg.V,
         fold_succ: funarg.fold_succ,
         succ: funarg.succ
@@ -124,7 +124,7 @@ function I(funarg) {
                   
                 }));
   };
-  var CC = Components$RescriptOcamlgraph.Make({
+  var CC = Components$Graph.Make({
         V: funarg.V,
         iter_vertex: iter_vertex$1,
         iter_succ: funarg.iter_succ
@@ -136,7 +136,7 @@ function I(funarg) {
           }), l);
     return Curry._1(CC.scc_list, g);
   };
-  var N = Oper$RescriptOcamlgraph.Neighbourhood({
+  var N = Oper$Graph.Neighbourhood({
         V: funarg.V,
         fold_succ: funarg.fold_succ,
         succ: funarg.succ

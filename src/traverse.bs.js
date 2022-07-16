@@ -478,7 +478,7 @@ function Bfs(funarg) {
                   }), undefined, param, param$1);
     };
   };
-  var Empty = /* @__PURE__ */Caml_exceptions.create("Traverse-RescriptOcamlgraph.Bfs(G).Q.Empty");
+  var Empty = /* @__PURE__ */Caml_exceptions.create("Traverse-Graph.Bfs(G).Q.Empty");
   var is_empty = function (param) {
     if (param[0] || param[1]) {
       return false;

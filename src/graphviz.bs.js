@@ -2345,7 +2345,7 @@ function Dot(param) {
     command.contents = cmd;
     
   };
-  var $$Error = /* @__PURE__ */Caml_exceptions.create("Graphviz-RescriptOcamlgraph.MakeEngine(EN)(X).Error");
+  var $$Error = /* @__PURE__ */Caml_exceptions.create("Graphviz-Graph.MakeEngine(EN)(X).Error");
   var handle_error = function (f, arg) {
     try {
       return Curry._1(f, arg);
@@ -3029,7 +3029,7 @@ function Neato(param) {
     command.contents = cmd;
     
   };
-  var $$Error = /* @__PURE__ */Caml_exceptions.create("Graphviz-RescriptOcamlgraph.MakeEngine(EN)(X).Error");
+  var $$Error = /* @__PURE__ */Caml_exceptions.create("Graphviz-Graph.MakeEngine(EN)(X).Error");
   var handle_error = function (f, arg) {
     try {
       return Curry._1(f, arg);

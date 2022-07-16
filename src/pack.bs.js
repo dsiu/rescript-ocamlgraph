@@ -4,24 +4,24 @@ import * as Caml from "rescript/lib/es6/caml.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Caml_sys from "rescript/lib/es6/caml_sys.js";
 import * as Filename from "rescript/lib/es6/filename.js";
+import * as Flow$Graph from "./flow.bs.js";
+import * as Oper$Graph from "./oper.bs.js";
+import * as Path$Graph from "./path.bs.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Rand$Graph from "./rand.bs.js";
+import * as Builder$Graph from "./builder.bs.js";
+import * as Classic$Graph from "./classic.bs.js";
+import * as Kruskal$Graph from "./kruskal.bs.js";
+import * as Coloring$Graph from "./coloring.bs.js";
+import * as Eulerian$Graph from "./eulerian.bs.js";
+import * as Graphviz$Graph from "./graphviz.bs.js";
+import * as Traverse$Graph from "./traverse.bs.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
+import * as Components$Graph from "./components.bs.js";
+import * as Imperative$Graph from "./imperative.bs.js";
+import * as Topological$Graph from "./topological.bs.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
 import * as Caml_external_polyfill from "rescript/lib/es6/caml_external_polyfill.js";
-import * as Flow$RescriptOcamlgraph from "./flow.bs.js";
-import * as Oper$RescriptOcamlgraph from "./oper.bs.js";
-import * as Path$RescriptOcamlgraph from "./path.bs.js";
-import * as Rand$RescriptOcamlgraph from "./rand.bs.js";
-import * as Builder$RescriptOcamlgraph from "./builder.bs.js";
-import * as Classic$RescriptOcamlgraph from "./classic.bs.js";
-import * as Kruskal$RescriptOcamlgraph from "./kruskal.bs.js";
-import * as Coloring$RescriptOcamlgraph from "./coloring.bs.js";
-import * as Eulerian$RescriptOcamlgraph from "./eulerian.bs.js";
-import * as Graphviz$RescriptOcamlgraph from "./graphviz.bs.js";
-import * as Traverse$RescriptOcamlgraph from "./traverse.bs.js";
-import * as Components$RescriptOcamlgraph from "./components.bs.js";
-import * as Imperative$RescriptOcamlgraph from "./imperative.bs.js";
-import * as Topological$RescriptOcamlgraph from "./topological.bs.js";
 
 var compare = Caml.caml_int_compare;
 
@@ -32,7 +32,7 @@ var I = {
 
 var partial_arg = {};
 
-var partial_arg$1 = Imperative$RescriptOcamlgraph.Digraph.AbstractLabeled;
+var partial_arg$1 = Imperative$Graph.Digraph.AbstractLabeled;
 
 var G = (function (param) {
       return partial_arg$1(partial_arg, param);
@@ -44,7 +44,7 @@ var is_directed = G.is_directed;
 
 var iter_vertex = G.iter_vertex;
 
-var Found = /* @__PURE__ */Caml_exceptions.create("Pack-RescriptOcamlgraph.Generic(G).Found");
+var Found = /* @__PURE__ */Caml_exceptions.create("Pack-Graph.Generic(G).Found");
 
 function find_vertex(g, i) {
   try {
@@ -72,9 +72,9 @@ function find_vertex(g, i) {
   }
 }
 
-var Builder = Builder$RescriptOcamlgraph.I(G);
+var Builder = Builder$Graph.I(G);
 
-var Dfs = Traverse$RescriptOcamlgraph.Dfs({
+var Dfs = Traverse$Graph.Dfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,
@@ -83,7 +83,7 @@ var Dfs = Traverse$RescriptOcamlgraph.Dfs({
       fold_succ: G.fold_succ
     });
 
-var Bfs = Traverse$RescriptOcamlgraph.Bfs({
+var Bfs = Traverse$Graph.Bfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,
@@ -92,7 +92,7 @@ var Bfs = Traverse$RescriptOcamlgraph.Bfs({
       fold_succ: G.fold_succ
     });
 
-var Marking = Traverse$RescriptOcamlgraph.Mark({
+var Marking = Traverse$Graph.Mark({
       V: {},
       iter_vertex: G.iter_vertex,
       iter_succ: G.iter_succ,
@@ -101,7 +101,7 @@ var Marking = Traverse$RescriptOcamlgraph.Mark({
 
 var $$let = G.Mark;
 
-var Coloring = Coloring$RescriptOcamlgraph.Mark({
+var Coloring = Coloring$Graph.Mark({
       is_directed: G.is_directed,
       nb_vertex: G.nb_vertex,
       V: G.V,
@@ -116,11 +116,11 @@ var Coloring = Coloring$RescriptOcamlgraph.Mark({
       }
     });
 
-var Classic = Classic$RescriptOcamlgraph.I(G);
+var Classic = Classic$Graph.I(G);
 
-var Rand = Rand$RescriptOcamlgraph.I(G);
+var Rand = Rand$Graph.I(G);
 
-var Components = Components$RescriptOcamlgraph.Make({
+var Components = Components$Graph.Make({
       V: G.V,
       iter_vertex: G.iter_vertex,
       iter_succ: G.iter_succ
@@ -174,7 +174,7 @@ var partial_arg$2 = {
   nb_vertex: partial_arg_nb_vertex
 };
 
-var partial_arg$3 = Path$RescriptOcamlgraph.Dijkstra;
+var partial_arg$3 = Path$Graph.Dijkstra;
 
 var include = (function (param) {
       return partial_arg$3(partial_arg$2, param);
@@ -219,7 +219,7 @@ var partial_arg$4 = {
   nb_vertex: partial_arg_nb_vertex$1
 };
 
-var partial_arg$5 = Path$RescriptOcamlgraph.Johnson;
+var partial_arg$5 = Path$Graph.Johnson;
 
 ((function (param) {
         return partial_arg$5(partial_arg$4, param);
@@ -265,7 +265,7 @@ var partial_arg$6 = {
   nb_vertex: partial_arg_nb_vertex$2
 };
 
-var partial_arg$7 = Path$RescriptOcamlgraph.BellmanFord;
+var partial_arg$7 = Path$Graph.BellmanFord;
 
 var BF = (function (param) {
       return partial_arg$7(partial_arg$6, param);
@@ -324,7 +324,7 @@ var partial_arg$8 = {
   iter_pred_e: partial_arg_iter_pred_e
 };
 
-var partial_arg$9 = Flow$RescriptOcamlgraph.Ford_Fulkerson;
+var partial_arg$9 = Flow$Graph.Ford_Fulkerson;
 
 var FF = (function (param) {
       return partial_arg$9(partial_arg$8, param);
@@ -369,7 +369,7 @@ var partial_arg$10 = {
   fold_pred_e: partial_arg_fold_pred_e
 };
 
-var partial_arg$11 = Flow$RescriptOcamlgraph.Goldberg_Tarjan;
+var partial_arg$11 = Flow$Graph.Goldberg_Tarjan;
 
 var Goldberg = (function (param) {
       return partial_arg$11(partial_arg$10, param);
@@ -389,27 +389,27 @@ function goldberg_tarjan(g) {
   return Curry._1(Goldberg.maxflow, g);
 }
 
-var include$1 = Oper$RescriptOcamlgraph.Make(Builder);
+var include$1 = Oper$Graph.Make(Builder);
 
-var PathCheck = Path$RescriptOcamlgraph.Check({
+var PathCheck = Path$Graph.Check({
       V: G.V,
       iter_succ: G.iter_succ
     });
 
-var include$2 = Topological$RescriptOcamlgraph.Make({
+var include$2 = Topological$Graph.Make({
       V: G.V,
       iter_vertex: G.iter_vertex,
       iter_succ: G.iter_succ
     });
 
-var S = Topological$RescriptOcamlgraph.Make_stable({
+var S = Topological$Graph.Make_stable({
       V: G.V,
       iter_vertex: G.iter_vertex,
       iter_succ: G.iter_succ,
       in_degree: G.in_degree
     });
 
-var include$3 = Eulerian$RescriptOcamlgraph.Make({
+var include$3 = Eulerian$Graph.Make({
       is_directed: G.is_directed,
       V: G.V,
       E: G.E,
@@ -445,7 +445,7 @@ var partial_arg$12 = {
   iter_edges_e: partial_arg_iter_edges_e
 };
 
-var partial_arg$13 = Kruskal$RescriptOcamlgraph.Make;
+var partial_arg$13 = Kruskal$Graph.Make;
 
 var include$4 = (function (param) {
       return partial_arg$13(partial_arg$12, param);
@@ -493,7 +493,7 @@ function get_subgraph(param) {
   
 }
 
-var Dot_ = Graphviz$RescriptOcamlgraph.Dot({
+var Dot_ = Graphviz$Graph.Dot({
       V: {},
       E: {
         src: E.src,
@@ -510,7 +510,7 @@ var Dot_ = Graphviz$RescriptOcamlgraph.Dot({
       edge_attributes: edge_attributes
     });
 
-var Neato = Graphviz$RescriptOcamlgraph.Neato({
+var Neato = Graphviz$Graph.Neato({
       V: {},
       E: {
         src: E.src,
@@ -546,7 +546,7 @@ function display_with_gv(g) {
 
 var partial_arg$14 = {};
 
-var partial_arg$15 = Imperative$RescriptOcamlgraph.Graph.AbstractLabeled;
+var partial_arg$15 = Imperative$Graph.Graph.AbstractLabeled;
 
 var G$1 = (function (param) {
       return partial_arg$15(partial_arg$14, param);
@@ -558,7 +558,7 @@ var is_directed$1 = G$1.is_directed;
 
 var iter_vertex$2 = G$1.iter_vertex;
 
-var Found$1 = /* @__PURE__ */Caml_exceptions.create("Pack-RescriptOcamlgraph.Generic(G).Found");
+var Found$1 = /* @__PURE__ */Caml_exceptions.create("Pack-Graph.Generic(G).Found");
 
 function find_vertex$1(g, i) {
   try {
@@ -586,9 +586,9 @@ function find_vertex$1(g, i) {
   }
 }
 
-var Builder$1 = Builder$RescriptOcamlgraph.I(G$1);
+var Builder$1 = Builder$Graph.I(G$1);
 
-var Dfs$1 = Traverse$RescriptOcamlgraph.Dfs({
+var Dfs$1 = Traverse$Graph.Dfs({
       is_directed: G$1.is_directed,
       V: G$1.V,
       iter_vertex: G$1.iter_vertex,
@@ -597,7 +597,7 @@ var Dfs$1 = Traverse$RescriptOcamlgraph.Dfs({
       fold_succ: G$1.fold_succ
     });
 
-var Bfs$1 = Traverse$RescriptOcamlgraph.Bfs({
+var Bfs$1 = Traverse$Graph.Bfs({
       is_directed: G$1.is_directed,
       V: G$1.V,
       iter_vertex: G$1.iter_vertex,
@@ -606,7 +606,7 @@ var Bfs$1 = Traverse$RescriptOcamlgraph.Bfs({
       fold_succ: G$1.fold_succ
     });
 
-var Marking$1 = Traverse$RescriptOcamlgraph.Mark({
+var Marking$1 = Traverse$Graph.Mark({
       V: {},
       iter_vertex: G$1.iter_vertex,
       iter_succ: G$1.iter_succ,
@@ -615,7 +615,7 @@ var Marking$1 = Traverse$RescriptOcamlgraph.Mark({
 
 var $$let$7 = G$1.Mark;
 
-var Coloring$1 = Coloring$RescriptOcamlgraph.Mark({
+var Coloring$1 = Coloring$Graph.Mark({
       is_directed: G$1.is_directed,
       nb_vertex: G$1.nb_vertex,
       V: G$1.V,
@@ -630,11 +630,11 @@ var Coloring$1 = Coloring$RescriptOcamlgraph.Mark({
       }
     });
 
-var Classic$1 = Classic$RescriptOcamlgraph.I(G$1);
+var Classic$1 = Classic$Graph.I(G$1);
 
-var Rand$1 = Rand$RescriptOcamlgraph.I(G$1);
+var Rand$1 = Rand$Graph.I(G$1);
 
-var Components$1 = Components$RescriptOcamlgraph.Make({
+var Components$1 = Components$Graph.Make({
       V: G$1.V,
       iter_vertex: G$1.iter_vertex,
       iter_succ: G$1.iter_succ
@@ -688,7 +688,7 @@ var partial_arg$16 = {
   nb_vertex: partial_arg_nb_vertex$4
 };
 
-var partial_arg$17 = Path$RescriptOcamlgraph.Dijkstra;
+var partial_arg$17 = Path$Graph.Dijkstra;
 
 var include$5 = (function (param) {
       return partial_arg$17(partial_arg$16, param);
@@ -733,7 +733,7 @@ var partial_arg$18 = {
   nb_vertex: partial_arg_nb_vertex$5
 };
 
-var partial_arg$19 = Path$RescriptOcamlgraph.Johnson;
+var partial_arg$19 = Path$Graph.Johnson;
 
 ((function (param) {
         return partial_arg$19(partial_arg$18, param);
@@ -779,7 +779,7 @@ var partial_arg$20 = {
   nb_vertex: partial_arg_nb_vertex$6
 };
 
-var partial_arg$21 = Path$RescriptOcamlgraph.BellmanFord;
+var partial_arg$21 = Path$Graph.BellmanFord;
 
 var BF$1 = (function (param) {
       return partial_arg$21(partial_arg$20, param);
@@ -838,7 +838,7 @@ var partial_arg$22 = {
   iter_pred_e: partial_arg_iter_pred_e$1
 };
 
-var partial_arg$23 = Flow$RescriptOcamlgraph.Ford_Fulkerson;
+var partial_arg$23 = Flow$Graph.Ford_Fulkerson;
 
 var FF$1 = (function (param) {
       return partial_arg$23(partial_arg$22, param);
@@ -883,7 +883,7 @@ var partial_arg$24 = {
   fold_pred_e: partial_arg_fold_pred_e$1
 };
 
-var partial_arg$25 = Flow$RescriptOcamlgraph.Goldberg_Tarjan;
+var partial_arg$25 = Flow$Graph.Goldberg_Tarjan;
 
 var Goldberg$1 = (function (param) {
       return partial_arg$25(partial_arg$24, param);
@@ -903,27 +903,27 @@ function goldberg_tarjan$1(g) {
   return Curry._1(Goldberg$1.maxflow, g);
 }
 
-var include$6 = Oper$RescriptOcamlgraph.Make(Builder$1);
+var include$6 = Oper$Graph.Make(Builder$1);
 
-var PathCheck$1 = Path$RescriptOcamlgraph.Check({
+var PathCheck$1 = Path$Graph.Check({
       V: G$1.V,
       iter_succ: G$1.iter_succ
     });
 
-var include$7 = Topological$RescriptOcamlgraph.Make({
+var include$7 = Topological$Graph.Make({
       V: G$1.V,
       iter_vertex: G$1.iter_vertex,
       iter_succ: G$1.iter_succ
     });
 
-var S$1 = Topological$RescriptOcamlgraph.Make_stable({
+var S$1 = Topological$Graph.Make_stable({
       V: G$1.V,
       iter_vertex: G$1.iter_vertex,
       iter_succ: G$1.iter_succ,
       in_degree: G$1.in_degree
     });
 
-var include$8 = Eulerian$RescriptOcamlgraph.Make({
+var include$8 = Eulerian$Graph.Make({
       is_directed: G$1.is_directed,
       V: G$1.V,
       E: G$1.E,
@@ -959,7 +959,7 @@ var partial_arg$26 = {
   iter_edges_e: partial_arg_iter_edges_e$1
 };
 
-var partial_arg$27 = Kruskal$RescriptOcamlgraph.Make;
+var partial_arg$27 = Kruskal$Graph.Make;
 
 var include$9 = (function (param) {
       return partial_arg$27(partial_arg$26, param);
@@ -1007,7 +1007,7 @@ function get_subgraph$1(param) {
   
 }
 
-var Dot_$1 = Graphviz$RescriptOcamlgraph.Dot({
+var Dot_$1 = Graphviz$Graph.Dot({
       V: {},
       E: {
         src: E$1.src,
@@ -1024,7 +1024,7 @@ var Dot_$1 = Graphviz$RescriptOcamlgraph.Dot({
       edge_attributes: edge_attributes$1
     });
 
-var Neato$1 = Graphviz$RescriptOcamlgraph.Neato({
+var Neato$1 = Graphviz$Graph.Neato({
       V: {},
       E: {
         src: E$1.src,

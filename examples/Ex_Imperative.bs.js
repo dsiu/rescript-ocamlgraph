@@ -5,21 +5,21 @@ import * as Format from "rescript/lib/es6/format.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Belt_List from "rescript/lib/es6/belt_List.js";
-import * as Graphviz$RescriptOcamlgraph from "../src/graphviz.bs.js";
-import * as Traverse$RescriptOcamlgraph from "../src/traverse.bs.js";
-import * as Imperative$RescriptOcamlgraph from "../src/imperative.bs.js";
+import * as Graphviz$Graph from "../src/graphviz.bs.js";
+import * as Traverse$Graph from "../src/traverse.bs.js";
+import * as Imperative$Graph from "../src/imperative.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
 var equal = Caml_obj.caml_equal;
 
-var G = Imperative$RescriptOcamlgraph.Graph.Concrete({
+var G = Imperative$Graph.Graph.Concrete({
       compare: compare,
       hash: Hashtbl.hash,
       equal: equal
     });
 
-Traverse$RescriptOcamlgraph.Dfs({
+Traverse$Graph.Dfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,
@@ -97,7 +97,7 @@ Belt_List.forEach({
                     }));
       }));
 
-var Dfs = Traverse$RescriptOcamlgraph.Dfs({
+var Dfs = Traverse$Graph.Dfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,
@@ -156,7 +156,7 @@ function get_subgraph(param) {
   
 }
 
-var Gv = Graphviz$RescriptOcamlgraph.Dot({
+var Gv = Graphviz$Graph.Dot({
       V: {},
       E: {
         src: E.src,

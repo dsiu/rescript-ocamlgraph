@@ -1,6 +1,6 @@
 
 open Format
-(*open Graph*)
+open Graph
 
 open Pack.Graph
 

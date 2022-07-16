@@ -4,12 +4,12 @@ import * as List from "rescript/lib/es6/list.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Queue from "rescript/lib/es6/queue.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
+import * as Heap$Graph from "./lib/heap.bs.js";
+import * as Util$Graph from "./util.bs.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
+import * as Components$Graph from "./components.bs.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Heap$RescriptOcamlgraph from "./lib/heap.bs.js";
-import * as Util$RescriptOcamlgraph from "./util.bs.js";
-import * as Components$RescriptOcamlgraph from "./components.bs.js";
 
 function Dijkstra(funarg, funarg$1) {
   var $$let = funarg.V;
@@ -28,7 +28,7 @@ function Dijkstra(funarg, funarg$1) {
   var Elt = {
     compare: compare
   };
-  var PQ = Heap$RescriptOcamlgraph.Imperative(Elt);
+  var PQ = Heap$Graph.Imperative(Elt);
   var shortest_path = function (g, v1, v2) {
     var visited = Curry._1(H.create, 97);
     var dist = Curry._1(H.create, 97);
@@ -108,7 +108,7 @@ function BellmanFord(funarg, funarg$1) {
         equal: $$let.equal,
         hash: $$let.hash
       });
-  var NegativeCycle = /* @__PURE__ */Caml_exceptions.create("Path-RescriptOcamlgraph.BellmanFord(G)(W).NegativeCycle");
+  var NegativeCycle = /* @__PURE__ */Caml_exceptions.create("Path-Graph.BellmanFord(G)(W).NegativeCycle");
   var all_shortest_paths = function (g, vs) {
     var dist = Curry._1(H.create, 97);
     Curry._3(H.add, dist, vs, funarg$1.zero);
@@ -213,7 +213,7 @@ function BellmanFord(funarg, funarg$1) {
       throw l;
     }
   };
-  var Comp = Components$RescriptOcamlgraph.Make({
+  var Comp = Components$Graph.Make({
         V: funarg.V,
         iter_vertex: funarg.iter_vertex,
         iter_succ: funarg.iter_succ
@@ -272,7 +272,7 @@ function Johnson(funarg, funarg$1) {
     hash: partial_arg_hash,
     equal: partial_arg_equal
   };
-  var partial_arg$1 = Util$RescriptOcamlgraph.HTProduct;
+  var partial_arg$1 = Util$Graph.HTProduct;
   var $$let$1 = funarg.V;
   var $$let$2 = (function (param) {
         return partial_arg$1(partial_arg, param);
@@ -483,7 +483,7 @@ function Johnson(funarg, funarg$1) {
         equal: equal,
         hash: hash
       });
-  var NegativeCycle = /* @__PURE__ */Caml_exceptions.create("Path-RescriptOcamlgraph.BellmanFord(G)(W).NegativeCycle");
+  var NegativeCycle = /* @__PURE__ */Caml_exceptions.create("Path-Graph.BellmanFord(G)(W).NegativeCycle");
   var all_shortest_paths = function (g, vs) {
     var dist = Curry._1(H.create, 97);
     Curry._3(H.add, dist, vs, zero);
@@ -588,7 +588,7 @@ function Johnson(funarg, funarg$1) {
       throw l;
     }
   };
-  var Comp = Components$RescriptOcamlgraph.Make({
+  var Comp = Components$Graph.Make({
         V: V,
         iter_vertex: iter_vertex,
         iter_succ: iter_succ
@@ -662,7 +662,7 @@ function Johnson(funarg, funarg$1) {
     var Elt = {
       compare: compare$1
     };
-    var PQ = Heap$RescriptOcamlgraph.Imperative(Elt);
+    var PQ = Heap$Graph.Imperative(Elt);
     var shortest_path = function (g, v1, v2) {
       var visited = Curry._1(H$1.create, 97);
       var dist = Curry._1(H$1.create, 97);
@@ -774,7 +774,7 @@ function Check(funarg) {
     hash: partial_arg_hash,
     equal: partial_arg_equal
   };
-  var partial_arg$1 = Util$RescriptOcamlgraph.HTProduct;
+  var partial_arg$1 = Util$Graph.HTProduct;
   var $$let$2 = funarg.V;
   var $$let$3 = (function (param) {
         return partial_arg$1(partial_arg, param);

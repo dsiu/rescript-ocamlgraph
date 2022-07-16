@@ -55,7 +55,7 @@ function Make(funarg) {
             out
           ];
   };
-  var Found = /* @__PURE__ */Caml_exceptions.create("Eulerian-RescriptOcamlgraph.Make(G).Found");
+  var Found = /* @__PURE__ */Caml_exceptions.create("Eulerian-Graph.Make(G).Found");
   var any = function (h) {
     try {
       Curry._2(H.iter, (function (v, param) {

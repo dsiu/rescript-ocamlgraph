@@ -1,7 +1,7 @@
 
 (* Test file for Connectivity.sstrong_articulation_points *)
 
-(*open Graph*)
+open Graph
 
 module Int = struct
   type t = int

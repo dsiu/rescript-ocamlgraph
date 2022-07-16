@@ -3,10 +3,10 @@
 import * as Caml from "rescript/lib/es6/caml.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
-import * as Blocks$RescriptOcamlgraph from "./blocks.bs.js";
+import * as Blocks$Graph from "./blocks.bs.js";
 
-var P = Blocks$RescriptOcamlgraph.Make(function (funarg) {
-      var $$let = Blocks$RescriptOcamlgraph.Make_Map(funarg);
+var P = Blocks$Graph.Make(function (funarg) {
+      var $$let = Blocks$Graph.Make_Map(funarg);
       return {
               create: $$let.create,
               create_from: $$let.create_from,
@@ -110,12 +110,12 @@ function Digraph_Abstract(funarg) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l
           };
   };
@@ -315,12 +315,12 @@ function Digraph_AbstractLabeled(funarg, funarg$1) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l
           };
   };
@@ -653,7 +653,7 @@ function Graph_Concrete(funarg) {
                   return Curry._2(HM.add, k, Curry._2(S.remove, v, s));
                 }), g$1, empty);
   };
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: {
           compare: V.compare,
           hash: V.hash,
@@ -797,12 +797,12 @@ function Graph_Abstract(funarg) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l
           };
   };
@@ -861,7 +861,7 @@ function Graph_Abstract(funarg) {
             size: g.size
           };
   };
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: include.V,
         E: include.E,
         is_directed: include.is_directed,
@@ -1062,7 +1062,7 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
   var remove_edge_e = include_remove_edge_e;
   var unsafe_add_edge = include_unsafe_add_edge;
   var add_edge_e = include_add_edge_e;
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: {
           compare: V$1.compare,
           hash: V$1.hash,
@@ -1233,12 +1233,12 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l
           };
   };
@@ -1369,7 +1369,7 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
   var add_edge_e$1 = add_edge_e;
   var remove_edge$2 = remove_edge$1;
   var remove_edge_e$2 = remove_edge_e$1;
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: V,
         E: include_E,
         is_directed: include_is_directed,

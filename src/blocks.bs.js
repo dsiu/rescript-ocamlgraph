@@ -6,9 +6,9 @@ import * as Caml from "rescript/lib/es6/caml.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Util$Graph from "./util.bs.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Util$RescriptOcamlgraph from "./util.bs.js";
 
 var cpt_vertex = {
   contents: 0
@@ -356,7 +356,7 @@ function Pred(S) {
 
 function Unlabeled(V, HM) {
   var S = $$Set.Make(V);
-  var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+  var partial_arg = Util$Graph.OTProduct;
   var include = partial_arg(V, V);
   var compare = include.compare;
   var src = function (prim) {
@@ -472,7 +472,7 @@ function Unlabeled(V, HM) {
                     }), g, v), /* [] */0);
   };
   var map_vertex = function (f, g) {
-    var MV = Util$RescriptOcamlgraph.Memo({
+    var MV = Util$Graph.Memo({
           hash: V.hash,
           equal: V.equal
         });
@@ -645,7 +645,7 @@ function Unlabeled(V, HM) {
 }
 
 function Labeled(V, E, HM) {
-  var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+  var partial_arg = Util$Graph.OTProduct;
   var VE = partial_arg(V, E);
   var S = $$Set.Make(VE);
   var src = function (param) {
@@ -664,7 +664,7 @@ function Labeled(V, E, HM) {
             v2
           ];
   };
-  var partial_arg$1 = Util$RescriptOcamlgraph.OTProduct;
+  var partial_arg$1 = Util$Graph.OTProduct;
   var C = partial_arg$1(V, VE);
   var compare = function (param, param$1) {
     return Curry._2(C.compare, [
@@ -723,7 +723,7 @@ function Labeled(V, E, HM) {
       throw exn;
     }
   };
-  var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-RescriptOcamlgraph.Labeled(V)(E)(HM).Found");
+  var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-Graph.Labeled(V)(E)(HM).Found");
   var find_edge = function (g, v1, v2) {
     try {
       Curry._2(S.iter, (function (param) {
@@ -856,7 +856,7 @@ function Labeled(V, E, HM) {
                     }), g, v), /* [] */0);
   };
   var map_vertex = function (f, g) {
-    var MV = Util$RescriptOcamlgraph.Memo({
+    var MV = Util$Graph.Memo({
           hash: V.hash,
           equal: V.equal
         });
@@ -1379,7 +1379,7 @@ function BidirectionalMinimal(S, HM) {
 
 function BidirectionalUnlabeled(V, HM) {
   var S = $$Set.Make(V);
-  var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+  var partial_arg = Util$Graph.OTProduct;
   var include = partial_arg(V, V);
   var src = function (prim) {
     return prim[0];
@@ -1504,7 +1504,7 @@ function BidirectionalUnlabeled(V, HM) {
                     }), g, v), /* [] */0);
   };
   var map_vertex = function (f, g) {
-    var MV = Util$RescriptOcamlgraph.Memo({
+    var MV = Util$Graph.Memo({
           hash: V.hash,
           equal: V.equal
         });
@@ -1642,7 +1642,7 @@ function BidirectionalUnlabeled(V, HM) {
 }
 
 function BidirectionalLabeled(V, E, HM) {
-  var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+  var partial_arg = Util$Graph.OTProduct;
   var VE = partial_arg(V, E);
   var S = $$Set.Make(VE);
   var src = function (param) {
@@ -1661,7 +1661,7 @@ function BidirectionalLabeled(V, E, HM) {
             v2
           ];
   };
-  var partial_arg$1 = Util$RescriptOcamlgraph.OTProduct;
+  var partial_arg$1 = Util$Graph.OTProduct;
   var C = partial_arg$1(V, VE);
   var compare = function (param, param$1) {
     return Curry._2(C.compare, [
@@ -1720,7 +1720,7 @@ function BidirectionalLabeled(V, E, HM) {
       throw exn;
     }
   };
-  var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-RescriptOcamlgraph.BidirectionalLabeled(V)(E)(HM).Found");
+  var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-Graph.BidirectionalLabeled(V)(E)(HM).Found");
   var find_edge = function (g, v1, v2) {
     try {
       Curry._2(S.iter, (function (param) {
@@ -1898,7 +1898,7 @@ function BidirectionalLabeled(V, E, HM) {
                     }), g, v), /* [] */0);
   };
   var map_vertex = function (f, g) {
-    var MV = Util$RescriptOcamlgraph.Memo({
+    var MV = Util$Graph.Memo({
           hash: V.hash,
           equal: V.equal
         });
@@ -2086,7 +2086,7 @@ function Make(F) {
     var V$2 = V$1;
     var HM$1 = HM;
     var S = $$Set.Make(V$2);
-    var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg = Util$Graph.OTProduct;
     var include = partial_arg(V$2, V$2);
     var compare = include.compare;
     var src = function (prim) {
@@ -2202,7 +2202,7 @@ function Make(F) {
                       }), g, v), /* [] */0);
     };
     var map_vertex = function (f, g) {
-      var MV = Util$RescriptOcamlgraph.Memo({
+      var MV = Util$Graph.Memo({
             hash: V$2.hash,
             equal: V$2.equal
           });
@@ -2497,7 +2497,7 @@ function Make(F) {
     var V$2 = V$1;
     var HM$1 = HM;
     var S = $$Set.Make(V$2);
-    var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg = Util$Graph.OTProduct;
     var include = partial_arg(V$2, V$2);
     var src = function (prim) {
       return prim[0];
@@ -2622,7 +2622,7 @@ function Make(F) {
                       }), g, v), /* [] */0);
     };
     var map_vertex = function (f, g) {
-      var MV = Util$RescriptOcamlgraph.Memo({
+      var MV = Util$Graph.Memo({
             hash: V$2.hash,
             equal: V$2.equal
           });
@@ -2910,7 +2910,7 @@ function Make(F) {
     var HM = Curry._1(F, V$1);
     var V$2 = V$1;
     var HM$1 = HM;
-    var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg = Util$Graph.OTProduct;
     var VE = partial_arg(V$2, Edge);
     var S = $$Set.Make(VE);
     var src = function (param) {
@@ -2929,7 +2929,7 @@ function Make(F) {
               v2
             ];
     };
-    var partial_arg$1 = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg$1 = Util$Graph.OTProduct;
     var C = partial_arg$1(V$2, VE);
     var compare = function (param, param$1) {
       return Curry._2(C.compare, [
@@ -2988,7 +2988,7 @@ function Make(F) {
         throw exn;
       }
     };
-    var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-RescriptOcamlgraph.Labeled(V)(E)(HM).Found");
+    var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-Graph.Labeled(V)(E)(HM).Found");
     var find_edge = function (g, v1, v2) {
       try {
         Curry._2(S.iter, (function (param) {
@@ -3121,7 +3121,7 @@ function Make(F) {
                       }), g, v), /* [] */0);
     };
     var map_vertex = function (f, g) {
-      var MV = Util$RescriptOcamlgraph.Memo({
+      var MV = Util$Graph.Memo({
             hash: V$2.hash,
             equal: V$2.equal
           });
@@ -3435,7 +3435,7 @@ function Make(F) {
     var HM = Curry._1(F, V$1);
     var V$2 = V$1;
     var HM$1 = HM;
-    var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg = Util$Graph.OTProduct;
     var VE = partial_arg(V$2, Edge);
     var S = $$Set.Make(VE);
     var src = function (param) {
@@ -3454,7 +3454,7 @@ function Make(F) {
               v2
             ];
     };
-    var partial_arg$1 = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg$1 = Util$Graph.OTProduct;
     var C = partial_arg$1(V$2, VE);
     var compare = function (param, param$1) {
       return Curry._2(C.compare, [
@@ -3513,7 +3513,7 @@ function Make(F) {
         throw exn;
       }
     };
-    var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-RescriptOcamlgraph.BidirectionalLabeled(V)(E)(HM).Found");
+    var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-Graph.BidirectionalLabeled(V)(E)(HM).Found");
     var find_edge = function (g, v1, v2) {
       try {
         Curry._2(S.iter, (function (param) {
@@ -3691,7 +3691,7 @@ function Make(F) {
                       }), g, v), /* [] */0);
     };
     var map_vertex = function (f, g) {
-      var MV = Util$RescriptOcamlgraph.Memo({
+      var MV = Util$Graph.Memo({
             hash: V$2.hash,
             equal: V$2.equal
           });
@@ -4004,7 +4004,7 @@ function Make(F) {
   var Abstract = function (V) {
     var HM = Curry._1(F, V);
     var S = $$Set.Make(V);
-    var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg = Util$Graph.OTProduct;
     var include = partial_arg(V, V);
     var compare = include.compare;
     var src = function (prim) {
@@ -4120,7 +4120,7 @@ function Make(F) {
                       }), g, v), /* [] */0);
     };
     var map_vertex = function (f, g) {
-      var MV = Util$RescriptOcamlgraph.Memo({
+      var MV = Util$Graph.Memo({
             hash: V.hash,
             equal: V.equal
           });
@@ -4675,7 +4675,7 @@ function Make(F) {
   };
   var AbstractLabeled = function (V, E) {
     var HM = Curry._1(F, V);
-    var partial_arg = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg = Util$Graph.OTProduct;
     var VE = partial_arg(V, E);
     var S = $$Set.Make(VE);
     var src = function (param) {
@@ -4694,7 +4694,7 @@ function Make(F) {
               v2
             ];
     };
-    var partial_arg$1 = Util$RescriptOcamlgraph.OTProduct;
+    var partial_arg$1 = Util$Graph.OTProduct;
     var C = partial_arg$1(V, VE);
     var compare = function (param, param$1) {
       return Curry._2(C.compare, [
@@ -4753,7 +4753,7 @@ function Make(F) {
         throw exn;
       }
     };
-    var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-RescriptOcamlgraph.Labeled(V)(E)(HM).Found");
+    var Found = /* @__PURE__ */Caml_exceptions.create("Blocks-Graph.Labeled(V)(E)(HM).Found");
     var find_edge = function (g, v1, v2) {
       try {
         Curry._2(S.iter, (function (param) {
@@ -4886,7 +4886,7 @@ function Make(F) {
                       }), g, v), /* [] */0);
     };
     var map_vertex = function (f, g) {
-      var MV = Util$RescriptOcamlgraph.Memo({
+      var MV = Util$Graph.Memo({
             hash: V.hash,
             equal: V.equal
           });

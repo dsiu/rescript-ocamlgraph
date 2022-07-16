@@ -6,7 +6,7 @@ import * as Caml_array from "rescript/lib/es6/caml_array.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
 
-var EmptyHeap = /* @__PURE__ */Caml_exceptions.create("Heap-RescriptOcamlgraph.EmptyHeap");
+var EmptyHeap = /* @__PURE__ */Caml_exceptions.create("Heap-Graph.EmptyHeap");
 
 function Imperative(funarg) {
   var create = function (n) {

@@ -1,7 +1,7 @@
 
 (* Test file for Dominators.dom_tree_to_(s)nontrivial_dom *)
 
-(*open Graph*)
+open Graph
 
 module Int = struct
   type t = int

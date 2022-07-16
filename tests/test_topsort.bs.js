@@ -5,15 +5,15 @@ import * as $$Array from "rescript/lib/es6/array.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
-import * as Pack$RescriptOcamlgraph from "../src/pack.bs.js";
+import * as Pack$Graph from "../src/pack.bs.js";
 
 function test(checkOpt, iter, n, edges) {
   var check = checkOpt !== undefined ? checkOpt : true;
-  var v = $$Array.init(n, Pack$RescriptOcamlgraph.Digraph.V.create);
-  var g = Curry._2(Pack$RescriptOcamlgraph.Digraph.create, undefined, undefined);
-  $$Array.iter(Curry._1(Pack$RescriptOcamlgraph.Digraph.add_vertex, g), v);
+  var v = $$Array.init(n, Pack$Graph.Digraph.V.create);
+  var g = Curry._2(Pack$Graph.Digraph.create, undefined, undefined);
+  $$Array.iter(Curry._1(Pack$Graph.Digraph.add_vertex, g), v);
   var build = function (param) {
-    return Curry._3(Pack$RescriptOcamlgraph.Digraph.add_edge, g, Caml_array.get(v, param[0]), Caml_array.get(v, param[1]));
+    return Curry._3(Pack$Graph.Digraph.add_edge, g, Caml_array.get(v, param[0]), Caml_array.get(v, param[1]));
   };
   List.iter(build, edges);
   var num = Caml_array.make(n, 0);
@@ -22,7 +22,7 @@ function test(checkOpt, iter, n, edges) {
   };
   Curry._2(iter, (function (v) {
           i.contents = i.contents + 1 | 0;
-          return Caml_array.set(num, Curry._1(Pack$RescriptOcamlgraph.Digraph.V.label, v), i.contents);
+          return Caml_array.set(num, Curry._1(Pack$Graph.Digraph.V.label, v), i.contents);
         }), g);
   var r = $$Array.init(n, (function (i) {
           return i;
@@ -30,7 +30,7 @@ function test(checkOpt, iter, n, edges) {
   $$Array.sort((function (i, j) {
           return Caml_array.get(num, i) - Caml_array.get(num, j) | 0;
         }), r);
-  var path = Curry._1(Pack$RescriptOcamlgraph.Digraph.PathCheck.check_path, Curry._1(Pack$RescriptOcamlgraph.Digraph.PathCheck.create, g));
+  var path = Curry._1(Pack$Graph.Digraph.PathCheck.check_path, Curry._1(Pack$Graph.Digraph.PathCheck.create, g));
   var check_edge = function (param) {
     var y = param[1];
     var x = param[0];
@@ -497,7 +497,7 @@ function tests(iter) {
             });
 }
 
-tests(Pack$RescriptOcamlgraph.Digraph.Topological.iter);
+tests(Pack$Graph.Digraph.Topological.iter);
 
 function pow(a, n) {
   if (n === 0) {
@@ -529,7 +529,7 @@ for(var n_iter = 0; n_iter <= 5; ++n_iter){
       tl: el
     };
   }
-  test(false, Pack$RescriptOcamlgraph.Digraph.Topological.iter, n, el);
+  test(false, Pack$Graph.Digraph.Topological.iter, n, el);
 }
 
 export {

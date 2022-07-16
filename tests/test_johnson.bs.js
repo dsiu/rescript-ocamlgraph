@@ -4,8 +4,8 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Printf from "rescript/lib/es6/printf.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
-import * as Path$RescriptOcamlgraph from "../src/path.bs.js";
-import * as Imperative$RescriptOcamlgraph from "../src/imperative.bs.js";
+import * as Path$Graph from "../src/path.bs.js";
+import * as Imperative$Graph from "../src/imperative.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
@@ -18,7 +18,7 @@ var Int = {
   $$default: 0
 };
 
-var partial_arg = Imperative$RescriptOcamlgraph.Digraph.ConcreteLabeled;
+var partial_arg = Imperative$Graph.Digraph.ConcreteLabeled;
 
 var G = partial_arg(Int, {
       compare: compare,
@@ -81,7 +81,7 @@ var partial_arg$1 = {
   nb_vertex: partial_arg_nb_vertex
 };
 
-var partial_arg$2 = Path$RescriptOcamlgraph.Johnson;
+var partial_arg$2 = Path$Graph.Johnson;
 
 var J = (function (param) {
       return partial_arg$2(partial_arg$1, param);

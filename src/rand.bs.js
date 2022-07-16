@@ -8,8 +8,8 @@ import * as Random from "rescript/lib/es6/random.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
 import * as Caml_int64 from "rescript/lib/es6/caml_int64.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
-import * as Builder$RescriptOcamlgraph from "./builder.bs.js";
-import * as Delaunay$RescriptOcamlgraph from "./delaunay.bs.js";
+import * as Builder$Graph from "./builder.bs.js";
+import * as Delaunay$Graph from "./delaunay.bs.js";
 
 function Make(funarg) {
   var max_edges = function (loops, v, e) {
@@ -187,7 +187,7 @@ function Make(funarg) {
 }
 
 function P(funarg) {
-  var B = Builder$RescriptOcamlgraph.P(funarg);
+  var B = Builder$Graph.P(funarg);
   var max_edges = function (loops, v, e) {
     if (v <= 0 || e < 0) {
       Pervasives.invalid_arg("random");
@@ -363,7 +363,7 @@ function P(funarg) {
 }
 
 function I(funarg) {
-  var B = Builder$RescriptOcamlgraph.I(funarg);
+  var B = Builder$Graph.I(funarg);
   var max_edges = function (loops, v, e) {
     if (v <= 0 || e < 0) {
       Pervasives.invalid_arg("random");
@@ -540,10 +540,10 @@ function I(funarg) {
 
 function Planar_Make(funarg) {
   var ccw = function (v1, v2, v3) {
-    return Delaunay$RescriptOcamlgraph.IntPoints.ccw(Curry._1(funarg.G.V.label, v1), Curry._1(funarg.G.V.label, v2), Curry._1(funarg.G.V.label, v3));
+    return Delaunay$Graph.IntPoints.ccw(Curry._1(funarg.G.V.label, v1), Curry._1(funarg.G.V.label, v2), Curry._1(funarg.G.V.label, v3));
   };
   var in_circle = function (v1, v2, v3, v4) {
-    return Delaunay$RescriptOcamlgraph.IntPoints.in_circle(Curry._1(funarg.G.V.label, v1), Curry._1(funarg.G.V.label, v2), Curry._1(funarg.G.V.label, v3), Curry._1(funarg.G.V.label, v4));
+    return Delaunay$Graph.IntPoints.in_circle(Curry._1(funarg.G.V.label, v1), Curry._1(funarg.G.V.label, v2), Curry._1(funarg.G.V.label, v3), Curry._1(funarg.G.V.label, v4));
   };
   var distance = function (v1, v2) {
     var match = Curry._1(funarg.G.V.label, v1);
@@ -559,7 +559,7 @@ function Planar_Make(funarg) {
     in_circle: in_circle,
     distance: distance
   };
-  var Triangulation = Delaunay$RescriptOcamlgraph.Make(Point);
+  var Triangulation = Delaunay$Graph.Make(Point);
   var graph = function ($staropt$star, param, param$1, prob, v) {
     var ymax = param$1[1];
     var ymin = param$1[0];
@@ -612,12 +612,12 @@ function Planar_Make(funarg) {
 }
 
 function Planar_P(funarg) {
-  var B = Builder$RescriptOcamlgraph.P(funarg);
+  var B = Builder$Graph.P(funarg);
   var ccw = function (v1, v2, v3) {
-    return Delaunay$RescriptOcamlgraph.IntPoints.ccw(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3));
+    return Delaunay$Graph.IntPoints.ccw(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3));
   };
   var in_circle = function (v1, v2, v3, v4) {
-    return Delaunay$RescriptOcamlgraph.IntPoints.in_circle(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3), Curry._1(B.G.V.label, v4));
+    return Delaunay$Graph.IntPoints.in_circle(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3), Curry._1(B.G.V.label, v4));
   };
   var distance = function (v1, v2) {
     var match = Curry._1(B.G.V.label, v1);
@@ -633,7 +633,7 @@ function Planar_P(funarg) {
     in_circle: in_circle,
     distance: distance
   };
-  var Triangulation = Delaunay$RescriptOcamlgraph.Make(Point);
+  var Triangulation = Delaunay$Graph.Make(Point);
   var graph = function ($staropt$star, param, param$1, prob, v) {
     var ymax = param$1[1];
     var ymin = param$1[0];
@@ -686,12 +686,12 @@ function Planar_P(funarg) {
 }
 
 function Planar_I(funarg) {
-  var B = Builder$RescriptOcamlgraph.I(funarg);
+  var B = Builder$Graph.I(funarg);
   var ccw = function (v1, v2, v3) {
-    return Delaunay$RescriptOcamlgraph.IntPoints.ccw(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3));
+    return Delaunay$Graph.IntPoints.ccw(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3));
   };
   var in_circle = function (v1, v2, v3, v4) {
-    return Delaunay$RescriptOcamlgraph.IntPoints.in_circle(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3), Curry._1(B.G.V.label, v4));
+    return Delaunay$Graph.IntPoints.in_circle(Curry._1(B.G.V.label, v1), Curry._1(B.G.V.label, v2), Curry._1(B.G.V.label, v3), Curry._1(B.G.V.label, v4));
   };
   var distance = function (v1, v2) {
     var match = Curry._1(B.G.V.label, v1);
@@ -707,7 +707,7 @@ function Planar_I(funarg) {
     in_circle: in_circle,
     distance: distance
   };
-  var Triangulation = Delaunay$RescriptOcamlgraph.Make(Point);
+  var Triangulation = Delaunay$Graph.Make(Point);
   var graph = function ($staropt$star, param, param$1, prob, v) {
     var ymax = param$1[1];
     var ymin = param$1[0];

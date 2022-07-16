@@ -8,11 +8,11 @@ import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Caml_int32 from "rescript/lib/es6/caml_int32.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Util$Graph from "./util.bs.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Util$RescriptOcamlgraph from "./util.bs.js";
-import * as PersistentQueue$RescriptOcamlgraph from "./lib/persistentQueue.bs.js";
+import * as PersistentQueue$Graph from "./lib/persistentQueue.bs.js";
 
 function Goldberg_Tarjan(funarg, funarg$1) {
   var $$let = funarg.V;
@@ -210,24 +210,24 @@ function Goldberg_Tarjan(funarg, funarg$1) {
   var generic_bfs = function (nb_vertices, incidence, iter_fun, source) {
     var reached = Curry._1(create, nb_vertices);
     var frontier = {
-      contents: PersistentQueue$RescriptOcamlgraph.empty
+      contents: PersistentQueue$Graph.empty
     };
     var add_arc = function (arc) {
       var dest = destination(arc);
       if (find(reached, dest) === undefined) {
         Curry._3(VH.add, reached, dest, undefined);
         Curry._1(iter_fun, arc);
-        frontier.contents = PersistentQueue$RescriptOcamlgraph.add(frontier.contents, dest);
+        frontier.contents = PersistentQueue$Graph.add(frontier.contents, dest);
         return ;
       }
       
     };
     Curry._3(VH.add, reached, source, undefined);
     List.iter(add_arc, Curry._1(incidence, source));
-    while(!PersistentQueue$RescriptOcamlgraph.is_empty(frontier.contents)) {
-      var vertex = PersistentQueue$RescriptOcamlgraph.head(frontier.contents);
+    while(!PersistentQueue$Graph.is_empty(frontier.contents)) {
+      var vertex = PersistentQueue$Graph.head(frontier.contents);
       List.iter(add_arc, Curry._1(incidence, vertex));
-      frontier.contents = PersistentQueue$RescriptOcamlgraph.tail(frontier.contents);
+      frontier.contents = PersistentQueue$Graph.tail(frontier.contents);
     };
     
   };
@@ -239,7 +239,7 @@ function Goldberg_Tarjan(funarg, funarg$1) {
     set_potential(context, sink, 0);
     return generic_bfs(context.nb_vertices, Curry._1(context.reverse_incident, context), update, sink);
   };
-  var Break = /* @__PURE__ */Caml_exceptions.create("Flow-RescriptOcamlgraph.Goldberg_Tarjan(G)(F).Break");
+  var Break = /* @__PURE__ */Caml_exceptions.create("Flow-Graph.Goldberg_Tarjan(G)(F).Break");
   var push = function (context, arc) {
     var u = origin(arc);
     var v = destination(arc);
@@ -481,7 +481,7 @@ function Ford_Fulkerson(funarg, funarg$1) {
             match[1]
           ];
   };
-  var partial_arg = Util$RescriptOcamlgraph.HTProduct;
+  var partial_arg = Util$Graph.HTProduct;
   var U = partial_arg(funarg.V, funarg.V);
   var equal = function (e1, e2) {
     return Curry._2(U.equal, [

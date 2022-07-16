@@ -5,10 +5,10 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Random from "rescript/lib/es6/random.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
-import * as Pack$RescriptOcamlgraph from "../src/pack.bs.js";
-import * as Builder$RescriptOcamlgraph from "../src/builder.bs.js";
-import * as Imperative$RescriptOcamlgraph from "../src/imperative.bs.js";
-import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
+import * as Pack$Graph from "../src/pack.bs.js";
+import * as Builder$Graph from "../src/builder.bs.js";
+import * as Imperative$Graph from "../src/imperative.bs.js";
+import * as Persistent$Graph from "../src/persistent.bs.js";
 
 Random.init(1597);
 
@@ -77,7 +77,7 @@ function TestB(B) {
 }
 
 function TestI(G) {
-  var B = Builder$RescriptOcamlgraph.I(G);
+  var B = Builder$Graph.I(G);
   var test = function (n) {
     var v = $$Array.init(n, B.G.V.create);
     var make = function (_g, _i) {
@@ -142,7 +142,7 @@ function TestI(G) {
 }
 
 function TestP(G) {
-  var B = Builder$RescriptOcamlgraph.P(G);
+  var B = Builder$Graph.P(G);
   var test = function (n) {
     var v = $$Array.init(n, B.G.V.create);
     var make = function (_g, _i) {
@@ -221,87 +221,87 @@ var Int = {
   $$default: 42
 };
 
-var G_V = Pack$RescriptOcamlgraph.Digraph.V;
+var G_V = Pack$Graph.Digraph.V;
 
-var G_E = Pack$RescriptOcamlgraph.Digraph.E;
+var G_E = Pack$Graph.Digraph.E;
 
-var G_is_directed = Pack$RescriptOcamlgraph.Digraph.is_directed;
+var G_is_directed = Pack$Graph.Digraph.is_directed;
 
-var G_is_empty = Pack$RescriptOcamlgraph.Digraph.is_empty;
+var G_is_empty = Pack$Graph.Digraph.is_empty;
 
-var G_nb_vertex = Pack$RescriptOcamlgraph.Digraph.nb_vertex;
+var G_nb_vertex = Pack$Graph.Digraph.nb_vertex;
 
-var G_nb_edges = Pack$RescriptOcamlgraph.Digraph.nb_edges;
+var G_nb_edges = Pack$Graph.Digraph.nb_edges;
 
-var G_out_degree = Pack$RescriptOcamlgraph.Digraph.out_degree;
+var G_out_degree = Pack$Graph.Digraph.out_degree;
 
-var G_in_degree = Pack$RescriptOcamlgraph.Digraph.in_degree;
+var G_in_degree = Pack$Graph.Digraph.in_degree;
 
-var G_mem_vertex = Pack$RescriptOcamlgraph.Digraph.mem_vertex;
+var G_mem_vertex = Pack$Graph.Digraph.mem_vertex;
 
-var G_mem_edge = Pack$RescriptOcamlgraph.Digraph.mem_edge;
+var G_mem_edge = Pack$Graph.Digraph.mem_edge;
 
-var G_mem_edge_e = Pack$RescriptOcamlgraph.Digraph.mem_edge_e;
+var G_mem_edge_e = Pack$Graph.Digraph.mem_edge_e;
 
-var G_find_edge = Pack$RescriptOcamlgraph.Digraph.find_edge;
+var G_find_edge = Pack$Graph.Digraph.find_edge;
 
-var G_find_all_edges = Pack$RescriptOcamlgraph.Digraph.find_all_edges;
+var G_find_all_edges = Pack$Graph.Digraph.find_all_edges;
 
-var G_succ = Pack$RescriptOcamlgraph.Digraph.succ;
+var G_succ = Pack$Graph.Digraph.succ;
 
-var G_pred = Pack$RescriptOcamlgraph.Digraph.pred;
+var G_pred = Pack$Graph.Digraph.pred;
 
-var G_succ_e = Pack$RescriptOcamlgraph.Digraph.succ_e;
+var G_succ_e = Pack$Graph.Digraph.succ_e;
 
-var G_pred_e = Pack$RescriptOcamlgraph.Digraph.pred_e;
+var G_pred_e = Pack$Graph.Digraph.pred_e;
 
-var G_iter_vertex = Pack$RescriptOcamlgraph.Digraph.iter_vertex;
+var G_iter_vertex = Pack$Graph.Digraph.iter_vertex;
 
-var G_fold_vertex = Pack$RescriptOcamlgraph.Digraph.fold_vertex;
+var G_fold_vertex = Pack$Graph.Digraph.fold_vertex;
 
-var G_iter_edges = Pack$RescriptOcamlgraph.Digraph.iter_edges;
+var G_iter_edges = Pack$Graph.Digraph.iter_edges;
 
-var G_fold_edges = Pack$RescriptOcamlgraph.Digraph.fold_edges;
+var G_fold_edges = Pack$Graph.Digraph.fold_edges;
 
-var G_iter_edges_e = Pack$RescriptOcamlgraph.Digraph.iter_edges_e;
+var G_iter_edges_e = Pack$Graph.Digraph.iter_edges_e;
 
-var G_fold_edges_e = Pack$RescriptOcamlgraph.Digraph.fold_edges_e;
+var G_fold_edges_e = Pack$Graph.Digraph.fold_edges_e;
 
-var G_map_vertex = Pack$RescriptOcamlgraph.Digraph.map_vertex;
+var G_map_vertex = Pack$Graph.Digraph.map_vertex;
 
-var G_iter_succ = Pack$RescriptOcamlgraph.Digraph.iter_succ;
+var G_iter_succ = Pack$Graph.Digraph.iter_succ;
 
-var G_iter_pred = Pack$RescriptOcamlgraph.Digraph.iter_pred;
+var G_iter_pred = Pack$Graph.Digraph.iter_pred;
 
-var G_fold_succ = Pack$RescriptOcamlgraph.Digraph.fold_succ;
+var G_fold_succ = Pack$Graph.Digraph.fold_succ;
 
-var G_fold_pred = Pack$RescriptOcamlgraph.Digraph.fold_pred;
+var G_fold_pred = Pack$Graph.Digraph.fold_pred;
 
-var G_iter_succ_e = Pack$RescriptOcamlgraph.Digraph.iter_succ_e;
+var G_iter_succ_e = Pack$Graph.Digraph.iter_succ_e;
 
-var G_fold_succ_e = Pack$RescriptOcamlgraph.Digraph.fold_succ_e;
+var G_fold_succ_e = Pack$Graph.Digraph.fold_succ_e;
 
-var G_iter_pred_e = Pack$RescriptOcamlgraph.Digraph.iter_pred_e;
+var G_iter_pred_e = Pack$Graph.Digraph.iter_pred_e;
 
-var G_fold_pred_e = Pack$RescriptOcamlgraph.Digraph.fold_pred_e;
+var G_fold_pred_e = Pack$Graph.Digraph.fold_pred_e;
 
-var G_create = Pack$RescriptOcamlgraph.Digraph.create;
+var G_create = Pack$Graph.Digraph.create;
 
-var G_clear = Pack$RescriptOcamlgraph.Digraph.clear;
+var G_clear = Pack$Graph.Digraph.clear;
 
-var G_copy = Pack$RescriptOcamlgraph.Digraph.copy;
+var G_copy = Pack$Graph.Digraph.copy;
 
-var G_add_vertex = Pack$RescriptOcamlgraph.Digraph.add_vertex;
+var G_add_vertex = Pack$Graph.Digraph.add_vertex;
 
-var G_remove_vertex = Pack$RescriptOcamlgraph.Digraph.remove_vertex;
+var G_remove_vertex = Pack$Graph.Digraph.remove_vertex;
 
-var G_add_edge = Pack$RescriptOcamlgraph.Digraph.add_edge;
+var G_add_edge = Pack$Graph.Digraph.add_edge;
 
-var G_add_edge_e = Pack$RescriptOcamlgraph.Digraph.add_edge_e;
+var G_add_edge_e = Pack$Graph.Digraph.add_edge_e;
 
-var G_remove_edge = Pack$RescriptOcamlgraph.Digraph.remove_edge;
+var G_remove_edge = Pack$Graph.Digraph.remove_edge;
 
-var G_remove_edge_e = Pack$RescriptOcamlgraph.Digraph.remove_edge_e;
+var G_remove_edge_e = Pack$Graph.Digraph.remove_edge_e;
 
 var G = {
   V: G_V,
@@ -347,7 +347,7 @@ var G = {
   remove_edge_e: G_remove_edge_e
 };
 
-var B = Builder$RescriptOcamlgraph.I(G);
+var B = Builder$Graph.I(G);
 
 function test(n) {
   var v = $$Array.init(n, B.G.V.create);
@@ -409,87 +409,87 @@ for(var n = 0; n <= 10; ++n){
   test(n);
 }
 
-var G_V$1 = Pack$RescriptOcamlgraph.Graph.V;
+var G_V$1 = Pack$Graph.Graph.V;
 
-var G_E$1 = Pack$RescriptOcamlgraph.Graph.E;
+var G_E$1 = Pack$Graph.Graph.E;
 
-var G_is_directed$1 = Pack$RescriptOcamlgraph.Graph.is_directed;
+var G_is_directed$1 = Pack$Graph.Graph.is_directed;
 
-var G_is_empty$1 = Pack$RescriptOcamlgraph.Graph.is_empty;
+var G_is_empty$1 = Pack$Graph.Graph.is_empty;
 
-var G_nb_vertex$1 = Pack$RescriptOcamlgraph.Graph.nb_vertex;
+var G_nb_vertex$1 = Pack$Graph.Graph.nb_vertex;
 
-var G_nb_edges$1 = Pack$RescriptOcamlgraph.Graph.nb_edges;
+var G_nb_edges$1 = Pack$Graph.Graph.nb_edges;
 
-var G_out_degree$1 = Pack$RescriptOcamlgraph.Graph.out_degree;
+var G_out_degree$1 = Pack$Graph.Graph.out_degree;
 
-var G_in_degree$1 = Pack$RescriptOcamlgraph.Graph.in_degree;
+var G_in_degree$1 = Pack$Graph.Graph.in_degree;
 
-var G_mem_vertex$1 = Pack$RescriptOcamlgraph.Graph.mem_vertex;
+var G_mem_vertex$1 = Pack$Graph.Graph.mem_vertex;
 
-var G_mem_edge$1 = Pack$RescriptOcamlgraph.Graph.mem_edge;
+var G_mem_edge$1 = Pack$Graph.Graph.mem_edge;
 
-var G_mem_edge_e$1 = Pack$RescriptOcamlgraph.Graph.mem_edge_e;
+var G_mem_edge_e$1 = Pack$Graph.Graph.mem_edge_e;
 
-var G_find_edge$1 = Pack$RescriptOcamlgraph.Graph.find_edge;
+var G_find_edge$1 = Pack$Graph.Graph.find_edge;
 
-var G_find_all_edges$1 = Pack$RescriptOcamlgraph.Graph.find_all_edges;
+var G_find_all_edges$1 = Pack$Graph.Graph.find_all_edges;
 
-var G_succ$1 = Pack$RescriptOcamlgraph.Graph.succ;
+var G_succ$1 = Pack$Graph.Graph.succ;
 
-var G_pred$1 = Pack$RescriptOcamlgraph.Graph.pred;
+var G_pred$1 = Pack$Graph.Graph.pred;
 
-var G_succ_e$1 = Pack$RescriptOcamlgraph.Graph.succ_e;
+var G_succ_e$1 = Pack$Graph.Graph.succ_e;
 
-var G_pred_e$1 = Pack$RescriptOcamlgraph.Graph.pred_e;
+var G_pred_e$1 = Pack$Graph.Graph.pred_e;
 
-var G_iter_vertex$1 = Pack$RescriptOcamlgraph.Graph.iter_vertex;
+var G_iter_vertex$1 = Pack$Graph.Graph.iter_vertex;
 
-var G_fold_vertex$1 = Pack$RescriptOcamlgraph.Graph.fold_vertex;
+var G_fold_vertex$1 = Pack$Graph.Graph.fold_vertex;
 
-var G_iter_edges$1 = Pack$RescriptOcamlgraph.Graph.iter_edges;
+var G_iter_edges$1 = Pack$Graph.Graph.iter_edges;
 
-var G_fold_edges$1 = Pack$RescriptOcamlgraph.Graph.fold_edges;
+var G_fold_edges$1 = Pack$Graph.Graph.fold_edges;
 
-var G_iter_edges_e$1 = Pack$RescriptOcamlgraph.Graph.iter_edges_e;
+var G_iter_edges_e$1 = Pack$Graph.Graph.iter_edges_e;
 
-var G_fold_edges_e$1 = Pack$RescriptOcamlgraph.Graph.fold_edges_e;
+var G_fold_edges_e$1 = Pack$Graph.Graph.fold_edges_e;
 
-var G_map_vertex$1 = Pack$RescriptOcamlgraph.Graph.map_vertex;
+var G_map_vertex$1 = Pack$Graph.Graph.map_vertex;
 
-var G_iter_succ$1 = Pack$RescriptOcamlgraph.Graph.iter_succ;
+var G_iter_succ$1 = Pack$Graph.Graph.iter_succ;
 
-var G_iter_pred$1 = Pack$RescriptOcamlgraph.Graph.iter_pred;
+var G_iter_pred$1 = Pack$Graph.Graph.iter_pred;
 
-var G_fold_succ$1 = Pack$RescriptOcamlgraph.Graph.fold_succ;
+var G_fold_succ$1 = Pack$Graph.Graph.fold_succ;
 
-var G_fold_pred$1 = Pack$RescriptOcamlgraph.Graph.fold_pred;
+var G_fold_pred$1 = Pack$Graph.Graph.fold_pred;
 
-var G_iter_succ_e$1 = Pack$RescriptOcamlgraph.Graph.iter_succ_e;
+var G_iter_succ_e$1 = Pack$Graph.Graph.iter_succ_e;
 
-var G_fold_succ_e$1 = Pack$RescriptOcamlgraph.Graph.fold_succ_e;
+var G_fold_succ_e$1 = Pack$Graph.Graph.fold_succ_e;
 
-var G_iter_pred_e$1 = Pack$RescriptOcamlgraph.Graph.iter_pred_e;
+var G_iter_pred_e$1 = Pack$Graph.Graph.iter_pred_e;
 
-var G_fold_pred_e$1 = Pack$RescriptOcamlgraph.Graph.fold_pred_e;
+var G_fold_pred_e$1 = Pack$Graph.Graph.fold_pred_e;
 
-var G_create$1 = Pack$RescriptOcamlgraph.Graph.create;
+var G_create$1 = Pack$Graph.Graph.create;
 
-var G_clear$1 = Pack$RescriptOcamlgraph.Graph.clear;
+var G_clear$1 = Pack$Graph.Graph.clear;
 
-var G_copy$1 = Pack$RescriptOcamlgraph.Graph.copy;
+var G_copy$1 = Pack$Graph.Graph.copy;
 
-var G_add_vertex$1 = Pack$RescriptOcamlgraph.Graph.add_vertex;
+var G_add_vertex$1 = Pack$Graph.Graph.add_vertex;
 
-var G_remove_vertex$1 = Pack$RescriptOcamlgraph.Graph.remove_vertex;
+var G_remove_vertex$1 = Pack$Graph.Graph.remove_vertex;
 
-var G_add_edge$1 = Pack$RescriptOcamlgraph.Graph.add_edge;
+var G_add_edge$1 = Pack$Graph.Graph.add_edge;
 
-var G_add_edge_e$1 = Pack$RescriptOcamlgraph.Graph.add_edge_e;
+var G_add_edge_e$1 = Pack$Graph.Graph.add_edge_e;
 
-var G_remove_edge$1 = Pack$RescriptOcamlgraph.Graph.remove_edge;
+var G_remove_edge$1 = Pack$Graph.Graph.remove_edge;
 
-var G_remove_edge_e$1 = Pack$RescriptOcamlgraph.Graph.remove_edge_e;
+var G_remove_edge_e$1 = Pack$Graph.Graph.remove_edge_e;
 
 var G$1 = {
   V: G_V$1,
@@ -535,7 +535,7 @@ var G$1 = {
   remove_edge_e: G_remove_edge_e$1
 };
 
-var B$1 = Builder$RescriptOcamlgraph.I(G$1);
+var B$1 = Builder$Graph.I(G$1);
 
 function test$1(n) {
   var v = $$Array.init(n, B$1.G.V.create);
@@ -597,13 +597,13 @@ for(var n$1 = 0; n$1 <= 10; ++n$1){
   test$1(n$1);
 }
 
-var G$2 = Imperative$RescriptOcamlgraph.Digraph.Concrete({
+var G$2 = Imperative$Graph.Digraph.Concrete({
       compare: compare,
       hash: hash,
       equal: equal
     });
 
-var B$2 = Builder$RescriptOcamlgraph.I(G$2);
+var B$2 = Builder$Graph.I(G$2);
 
 function test$2(n) {
   var v = $$Array.init(n, B$2.G.V.create);
@@ -665,9 +665,9 @@ for(var n$2 = 0; n$2 <= 10; ++n$2){
   test$2(n$2);
 }
 
-var G$3 = Imperative$RescriptOcamlgraph.Digraph.Abstract({});
+var G$3 = Imperative$Graph.Digraph.Abstract({});
 
-var B$3 = Builder$RescriptOcamlgraph.I(G$3);
+var B$3 = Builder$Graph.I(G$3);
 
 function test$3(n) {
   var v = $$Array.init(n, B$3.G.V.create);
@@ -729,13 +729,13 @@ for(var n$3 = 0; n$3 <= 10; ++n$3){
   test$3(n$3);
 }
 
-var G$4 = Imperative$RescriptOcamlgraph.Digraph.ConcreteBidirectional({
+var G$4 = Imperative$Graph.Digraph.ConcreteBidirectional({
       compare: compare,
       hash: hash,
       equal: equal
     });
 
-var B$4 = Builder$RescriptOcamlgraph.I(G$4);
+var B$4 = Builder$Graph.I(G$4);
 
 function test$4(n) {
   var v = $$Array.init(n, B$4.G.V.create);
@@ -803,7 +803,7 @@ var partial_arg = {
   equal: equal
 };
 
-var partial_arg$1 = Imperative$RescriptOcamlgraph.Digraph.ConcreteLabeled;
+var partial_arg$1 = Imperative$Graph.Digraph.ConcreteLabeled;
 
 var G$5 = (function (param) {
       return partial_arg$1(partial_arg, param);
@@ -812,7 +812,7 @@ var G$5 = (function (param) {
       $$default: 42
     });
 
-var B$5 = Builder$RescriptOcamlgraph.I(G$5);
+var B$5 = Builder$Graph.I(G$5);
 
 function test$5(n) {
   var v = $$Array.init(n, B$5.G.V.create);
@@ -876,7 +876,7 @@ for(var n$5 = 0; n$5 <= 10; ++n$5){
 
 var partial_arg$2 = {};
 
-var partial_arg$3 = Imperative$RescriptOcamlgraph.Digraph.AbstractLabeled;
+var partial_arg$3 = Imperative$Graph.Digraph.AbstractLabeled;
 
 var G$6 = (function (param) {
       return partial_arg$3(partial_arg$2, param);
@@ -885,7 +885,7 @@ var G$6 = (function (param) {
       $$default: 42
     });
 
-var B$6 = Builder$RescriptOcamlgraph.I(G$6);
+var B$6 = Builder$Graph.I(G$6);
 
 function test$6(n) {
   var v = $$Array.init(n, B$6.G.V.create);
@@ -953,7 +953,7 @@ var partial_arg$4 = {
   equal: equal
 };
 
-var partial_arg$5 = Imperative$RescriptOcamlgraph.Digraph.ConcreteBidirectionalLabeled;
+var partial_arg$5 = Imperative$Graph.Digraph.ConcreteBidirectionalLabeled;
 
 var G$7 = (function (param) {
       return partial_arg$5(partial_arg$4, param);
@@ -962,7 +962,7 @@ var G$7 = (function (param) {
       $$default: 42
     });
 
-var B$7 = Builder$RescriptOcamlgraph.I(G$7);
+var B$7 = Builder$Graph.I(G$7);
 
 function test$7(n) {
   var v = $$Array.init(n, B$7.G.V.create);
@@ -1024,13 +1024,13 @@ for(var n$7 = 0; n$7 <= 10; ++n$7){
   test$7(n$7);
 }
 
-var G$8 = Imperative$RescriptOcamlgraph.Graph.Concrete({
+var G$8 = Imperative$Graph.Graph.Concrete({
       compare: compare,
       hash: hash,
       equal: equal
     });
 
-var B$8 = Builder$RescriptOcamlgraph.I(G$8);
+var B$8 = Builder$Graph.I(G$8);
 
 function test$8(n) {
   var v = $$Array.init(n, B$8.G.V.create);
@@ -1092,9 +1092,9 @@ for(var n$8 = 0; n$8 <= 10; ++n$8){
   test$8(n$8);
 }
 
-var G$9 = Imperative$RescriptOcamlgraph.Graph.Abstract({});
+var G$9 = Imperative$Graph.Graph.Abstract({});
 
-var B$9 = Builder$RescriptOcamlgraph.I(G$9);
+var B$9 = Builder$Graph.I(G$9);
 
 function test$9(n) {
   var v = $$Array.init(n, B$9.G.V.create);
@@ -1162,7 +1162,7 @@ var partial_arg$6 = {
   equal: equal
 };
 
-var partial_arg$7 = Imperative$RescriptOcamlgraph.Graph.ConcreteLabeled;
+var partial_arg$7 = Imperative$Graph.Graph.ConcreteLabeled;
 
 var G$10 = (function (param) {
       return partial_arg$7(partial_arg$6, param);
@@ -1171,7 +1171,7 @@ var G$10 = (function (param) {
       $$default: 42
     });
 
-var B$10 = Builder$RescriptOcamlgraph.I(G$10);
+var B$10 = Builder$Graph.I(G$10);
 
 function test$10(n) {
   var v = $$Array.init(n, B$10.G.V.create);
@@ -1235,7 +1235,7 @@ for(var n$10 = 0; n$10 <= 10; ++n$10){
 
 var partial_arg$8 = {};
 
-var partial_arg$9 = Imperative$RescriptOcamlgraph.Graph.AbstractLabeled;
+var partial_arg$9 = Imperative$Graph.Graph.AbstractLabeled;
 
 var G$11 = (function (param) {
       return partial_arg$9(partial_arg$8, param);
@@ -1244,7 +1244,7 @@ var G$11 = (function (param) {
       $$default: 42
     });
 
-var B$11 = Builder$RescriptOcamlgraph.I(G$11);
+var B$11 = Builder$Graph.I(G$11);
 
 function test$11(n) {
   var v = $$Array.init(n, B$11.G.V.create);
@@ -1357,7 +1357,7 @@ function TestM(G) {
         };
 }
 
-var G$12 = Imperative$RescriptOcamlgraph.Matrix.Digraph;
+var G$12 = Imperative$Graph.Matrix.Digraph;
 
 function test$12(n) {
   var g = Curry._1(G$12.make, n);
@@ -1406,7 +1406,7 @@ for(var n$12 = 0; n$12 <= 10; ++n$12){
   test$12(n$12);
 }
 
-var G$13 = Imperative$RescriptOcamlgraph.Matrix.Graph;
+var G$13 = Imperative$Graph.Matrix.Graph;
 
 function test$13(n) {
   var g = Curry._1(G$13.make, n);
@@ -1455,13 +1455,13 @@ for(var n$13 = 0; n$13 <= 10; ++n$13){
   test$13(n$13);
 }
 
-var G$14 = Persistent$RescriptOcamlgraph.Digraph.Concrete({
+var G$14 = Persistent$Graph.Digraph.Concrete({
       compare: compare,
       hash: hash,
       equal: equal
     });
 
-var B$12 = Builder$RescriptOcamlgraph.P(G$14);
+var B$12 = Builder$Graph.P(G$14);
 
 function test$14(n) {
   var v = $$Array.init(n, B$12.G.V.create);
@@ -1523,9 +1523,9 @@ for(var n$14 = 0; n$14 <= 10; ++n$14){
   test$14(n$14);
 }
 
-var G$15 = Persistent$RescriptOcamlgraph.Digraph.Abstract({});
+var G$15 = Persistent$Graph.Digraph.Abstract({});
 
-var B$13 = Builder$RescriptOcamlgraph.P(G$15);
+var B$13 = Builder$Graph.P(G$15);
 
 function test$15(n) {
   var v = $$Array.init(n, B$13.G.V.create);
@@ -1587,13 +1587,13 @@ for(var n$15 = 0; n$15 <= 10; ++n$15){
   test$15(n$15);
 }
 
-var G$16 = Persistent$RescriptOcamlgraph.Digraph.ConcreteBidirectional({
+var G$16 = Persistent$Graph.Digraph.ConcreteBidirectional({
       compare: compare,
       hash: hash,
       equal: equal
     });
 
-var B$14 = Builder$RescriptOcamlgraph.P(G$16);
+var B$14 = Builder$Graph.P(G$16);
 
 function test$16(n) {
   var v = $$Array.init(n, B$14.G.V.create);
@@ -1661,7 +1661,7 @@ var partial_arg$10 = {
   equal: equal
 };
 
-var partial_arg$11 = Persistent$RescriptOcamlgraph.Digraph.ConcreteLabeled;
+var partial_arg$11 = Persistent$Graph.Digraph.ConcreteLabeled;
 
 var G$17 = (function (param) {
       return partial_arg$11(partial_arg$10, param);
@@ -1670,7 +1670,7 @@ var G$17 = (function (param) {
       $$default: 42
     });
 
-var B$15 = Builder$RescriptOcamlgraph.P(G$17);
+var B$15 = Builder$Graph.P(G$17);
 
 function test$17(n) {
   var v = $$Array.init(n, B$15.G.V.create);
@@ -1734,7 +1734,7 @@ for(var n$17 = 0; n$17 <= 10; ++n$17){
 
 var partial_arg$12 = {};
 
-var partial_arg$13 = Persistent$RescriptOcamlgraph.Digraph.AbstractLabeled;
+var partial_arg$13 = Persistent$Graph.Digraph.AbstractLabeled;
 
 var G$18 = (function (param) {
       return partial_arg$13(partial_arg$12, param);
@@ -1743,7 +1743,7 @@ var G$18 = (function (param) {
       $$default: 42
     });
 
-var B$16 = Builder$RescriptOcamlgraph.P(G$18);
+var B$16 = Builder$Graph.P(G$18);
 
 function test$18(n) {
   var v = $$Array.init(n, B$16.G.V.create);
@@ -1811,7 +1811,7 @@ var partial_arg$14 = {
   equal: equal
 };
 
-var partial_arg$15 = Persistent$RescriptOcamlgraph.Digraph.ConcreteBidirectionalLabeled;
+var partial_arg$15 = Persistent$Graph.Digraph.ConcreteBidirectionalLabeled;
 
 var G$19 = (function (param) {
       return partial_arg$15(partial_arg$14, param);
@@ -1820,7 +1820,7 @@ var G$19 = (function (param) {
       $$default: 42
     });
 
-var B$17 = Builder$RescriptOcamlgraph.P(G$19);
+var B$17 = Builder$Graph.P(G$19);
 
 function test$19(n) {
   var v = $$Array.init(n, B$17.G.V.create);
@@ -1882,13 +1882,13 @@ for(var n$19 = 0; n$19 <= 10; ++n$19){
   test$19(n$19);
 }
 
-var G$20 = Persistent$RescriptOcamlgraph.Graph.Concrete({
+var G$20 = Persistent$Graph.Graph.Concrete({
       compare: compare,
       hash: hash,
       equal: equal
     });
 
-var B$18 = Builder$RescriptOcamlgraph.P(G$20);
+var B$18 = Builder$Graph.P(G$20);
 
 function test$20(n) {
   var v = $$Array.init(n, B$18.G.V.create);
@@ -1950,9 +1950,9 @@ for(var n$20 = 0; n$20 <= 10; ++n$20){
   test$20(n$20);
 }
 
-var G$21 = Persistent$RescriptOcamlgraph.Graph.Abstract({});
+var G$21 = Persistent$Graph.Graph.Abstract({});
 
-var B$19 = Builder$RescriptOcamlgraph.P(G$21);
+var B$19 = Builder$Graph.P(G$21);
 
 function test$21(n) {
   var v = $$Array.init(n, B$19.G.V.create);
@@ -2020,7 +2020,7 @@ var partial_arg$16 = {
   equal: equal
 };
 
-var partial_arg$17 = Persistent$RescriptOcamlgraph.Graph.ConcreteLabeled;
+var partial_arg$17 = Persistent$Graph.Graph.ConcreteLabeled;
 
 var G$22 = (function (param) {
       return partial_arg$17(partial_arg$16, param);
@@ -2029,7 +2029,7 @@ var G$22 = (function (param) {
       $$default: 42
     });
 
-var B$20 = Builder$RescriptOcamlgraph.P(G$22);
+var B$20 = Builder$Graph.P(G$22);
 
 function test$22(n) {
   var v = $$Array.init(n, B$20.G.V.create);
@@ -2093,7 +2093,7 @@ for(var n$22 = 0; n$22 <= 10; ++n$22){
 
 var partial_arg$18 = {};
 
-var partial_arg$19 = Persistent$RescriptOcamlgraph.Graph.AbstractLabeled;
+var partial_arg$19 = Persistent$Graph.Graph.AbstractLabeled;
 
 var G$23 = (function (param) {
       return partial_arg$19(partial_arg$18, param);
@@ -2102,7 +2102,7 @@ var G$23 = (function (param) {
       $$default: 42
     });
 
-var B$21 = Builder$RescriptOcamlgraph.P(G$23);
+var B$21 = Builder$Graph.P(G$23);
 
 function test$23(n) {
   var v = $$Array.init(n, B$21.G.V.create);

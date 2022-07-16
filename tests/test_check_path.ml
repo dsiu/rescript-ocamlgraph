@@ -2,7 +2,7 @@
 (* Test file for Path.Check *)
 
 open Format
-(*open Graph*)
+open Graph
 open Pack.Digraph
 
 let test n edges =

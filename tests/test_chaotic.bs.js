@@ -5,9 +5,9 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
-import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
-import * as WeakTopological$RescriptOcamlgraph from "../src/weakTopological.bs.js";
-import * as ChaoticIteration$RescriptOcamlgraph from "../src/chaoticIteration.bs.js";
+import * as Persistent$Graph from "../src/persistent.bs.js";
+import * as WeakTopological$Graph from "../src/weakTopological.bs.js";
+import * as ChaoticIteration$Graph from "../src/chaoticIteration.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
@@ -284,11 +284,11 @@ var Data = {
   widening: widening
 };
 
-var partial_arg = Persistent$RescriptOcamlgraph.Digraph.ConcreteLabeled;
+var partial_arg = Persistent$Graph.Digraph.ConcreteLabeled;
 
 var G = partial_arg(Int, Operator);
 
-var Wto = WeakTopological$RescriptOcamlgraph.Make({
+var Wto = WeakTopological$Graph.Make({
       V: G.V,
       iter_vertex: G.iter_vertex,
       iter_succ: G.iter_succ
@@ -308,7 +308,7 @@ var partial_arg$1 = {
   fold_pred_e: partial_arg_fold_pred_e
 };
 
-var partial_arg$2 = ChaoticIteration$RescriptOcamlgraph.Make;
+var partial_arg$2 = ChaoticIteration$Graph.Make;
 
 var Chaotic = (function (param) {
       return partial_arg$2(partial_arg$1, param);

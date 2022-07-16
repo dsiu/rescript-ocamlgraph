@@ -5,8 +5,8 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
-import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
-import * as WeakTopological$RescriptOcamlgraph from "../src/weakTopological.bs.js";
+import * as Persistent$Graph from "../src/persistent.bs.js";
+import * as WeakTopological$Graph from "../src/weakTopological.bs.js";
 
 var compare = Caml_obj.caml_compare;
 
@@ -18,9 +18,9 @@ var Vertex = {
   equal: equal
 };
 
-var G = Persistent$RescriptOcamlgraph.Digraph.Concrete(Vertex);
+var G = Persistent$Graph.Digraph.Concrete(Vertex);
 
-var Wto = WeakTopological$RescriptOcamlgraph.Make({
+var Wto = WeakTopological$Graph.Make({
       V: G.V,
       iter_vertex: G.iter_vertex,
       iter_succ: G.iter_succ
@@ -38,7 +38,7 @@ function print_element(v) {
 }
 
 function print_components(components) {
-  return WeakTopological$RescriptOcamlgraph.fold_left((function (param, elem) {
+  return WeakTopological$Graph.fold_left((function (param, elem) {
                 print_element(elem);
                 return Pervasives.print_string(" ");
               }), undefined, components);

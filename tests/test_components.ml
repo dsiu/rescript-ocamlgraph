@@ -16,7 +16,7 @@
 (**************************************************************************)
 
 open Format
-(*open Graph*)
+open Graph
 
 module C = Components.Undirected(Pack.Graph)
 

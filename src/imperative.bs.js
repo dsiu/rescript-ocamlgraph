@@ -5,14 +5,14 @@ import * as $$Array from "rescript/lib/es6/array.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
+import * as Bitv$Graph from "./lib/bitv.bs.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Blocks$Graph from "./blocks.bs.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Bitv$RescriptOcamlgraph from "./lib/bitv.bs.js";
-import * as Blocks$RescriptOcamlgraph from "./blocks.bs.js";
 
-var I = Blocks$RescriptOcamlgraph.Make(function (funarg) {
-      var $$let = Blocks$RescriptOcamlgraph.Make_Hashtbl(funarg);
+var I = Blocks$Graph.Make(function (funarg) {
+      var $$let = Blocks$Graph.Make_Hashtbl(funarg);
       return {
               create: $$let.create,
               create_from: $$let.create_from,
@@ -83,7 +83,7 @@ function make(n) {
     Pervasives.invalid_arg("[ocamlgraph] Matrix.make");
   }
   return $$Array.init(n, (function (param) {
-                return Bitv$RescriptOcamlgraph.create(n, false);
+                return Bitv$Graph.create(n, false);
               }));
 }
 
@@ -97,7 +97,7 @@ function is_empty(g) {
 
 function nb_edges(param) {
   return $$Array.fold_left((function (param, param$1) {
-                return Bitv$RescriptOcamlgraph.fold_left((function (n, b) {
+                return Bitv$Graph.fold_left((function (n, b) {
                               if (b) {
                                 return n + 1 | 0;
                               } else {
@@ -116,11 +116,11 @@ function mem_vertex(g, v) {
 }
 
 function mem_edge(g, i, j) {
-  return Bitv$RescriptOcamlgraph.get(Caml_array.get(g, i), j);
+  return Bitv$Graph.get(Caml_array.get(g, i), j);
 }
 
 function mem_edge_e(g, param) {
-  return Bitv$RescriptOcamlgraph.get(Caml_array.get(g, param[0]), param[1]);
+  return Bitv$Graph.get(Caml_array.get(g, param[0]), param[1]);
 }
 
 function find_edge(g, i, j) {
@@ -153,27 +153,27 @@ function find_all_edges(g, i, j) {
 }
 
 function add_edge(g, i, j) {
-  return Bitv$RescriptOcamlgraph.set(Caml_array.get(g, i), j, true);
+  return Bitv$Graph.set(Caml_array.get(g, i), j, true);
 }
 
 function add_edge_e(g, param) {
-  return Bitv$RescriptOcamlgraph.set(Caml_array.get(g, param[0]), param[1], true);
+  return Bitv$Graph.set(Caml_array.get(g, param[0]), param[1], true);
 }
 
 function remove_edge(g, i, j) {
-  return Bitv$RescriptOcamlgraph.set(Caml_array.get(g, i), j, false);
+  return Bitv$Graph.set(Caml_array.get(g, i), j, false);
 }
 
 function remove_edge_e(g, param) {
-  return Bitv$RescriptOcamlgraph.set(Caml_array.get(g, param[0]), param[1], false);
+  return Bitv$Graph.set(Caml_array.get(g, param[0]), param[1], false);
 }
 
 function unsafe_add_edge(g, i, j) {
-  return Bitv$RescriptOcamlgraph.unsafe_set(g[i], j, true);
+  return Bitv$Graph.unsafe_set(g[i], j, true);
 }
 
 function unsafe_remove_edge(g, i, j) {
-  return Bitv$RescriptOcamlgraph.unsafe_set(g[i], j, false);
+  return Bitv$Graph.unsafe_set(g[i], j, false);
 }
 
 function remove_vertex(param, param$1) {
@@ -186,15 +186,15 @@ function add_vertex(param, param$1) {
 
 function clear(g) {
   return $$Array.iter((function (b) {
-                return Bitv$RescriptOcamlgraph.iteri((function (j, param) {
-                              return Bitv$RescriptOcamlgraph.set(b, j, false);
+                return Bitv$Graph.iteri((function (j, param) {
+                              return Bitv$Graph.set(b, j, false);
                             }), b);
               }), g);
 }
 
 function copy(g) {
   return $$Array.init(g.length, (function (i) {
-                return Bitv$RescriptOcamlgraph.copy(Caml_array.get(g, i));
+                return Bitv$Graph.copy(Caml_array.get(g, i));
               }));
 }
 
@@ -207,7 +207,7 @@ function iter_vertex(f, g) {
 
 function iter_edges(f, g) {
   for(var i = 0 ,i_finish = g.length; i < i_finish; ++i){
-    Bitv$RescriptOcamlgraph.iteri((function(i){
+    Bitv$Graph.iteri((function(i){
         return function (j, b) {
           if (b) {
             return Curry._2(f, i, j);
@@ -237,7 +237,7 @@ function fold_vertex(f, g, a) {
 
 function fold_edges(f, g, a) {
   return fold_vertex((function (i, a) {
-                return Bitv$RescriptOcamlgraph.foldi_right((function (j, b, a) {
+                return Bitv$Graph.foldi_right((function (j, b, a) {
                               if (b) {
                                 return Curry._3(f, i, j, a);
                               } else {
@@ -248,7 +248,7 @@ function fold_edges(f, g, a) {
 }
 
 function succ(g, i) {
-  return Bitv$RescriptOcamlgraph.foldi_left((function (l, j, b) {
+  return Bitv$Graph.foldi_left((function (l, j, b) {
                 if (b) {
                   return {
                           hd: j,
@@ -262,7 +262,7 @@ function succ(g, i) {
 
 function pred(g, i) {
   return fold_vertex((function (j, a) {
-                if (Bitv$RescriptOcamlgraph.unsafe_get(Caml_array.get(g, j), i)) {
+                if (Bitv$Graph.unsafe_get(Caml_array.get(g, j), i)) {
                   return {
                           hd: j,
                           tl: a
@@ -276,7 +276,7 @@ function pred(g, i) {
 function iter_succ(f, g, i) {
   var si = Caml_array.get(g, i);
   for(var j = 0 ,j_finish = g.length; j < j_finish; ++j){
-    if (Bitv$RescriptOcamlgraph.unsafe_get(si, j)) {
+    if (Bitv$Graph.unsafe_get(si, j)) {
       Curry._1(f, j);
     }
     
@@ -286,7 +286,7 @@ function iter_succ(f, g, i) {
 
 function iter_pred(f, g, i) {
   for(var j = 0 ,j_finish = g.length; j < j_finish; ++j){
-    if (Bitv$RescriptOcamlgraph.unsafe_get(Caml_array.get(g, j), i)) {
+    if (Bitv$Graph.unsafe_get(Caml_array.get(g, j), i)) {
       Curry._1(f, j);
     }
     
@@ -295,7 +295,7 @@ function iter_pred(f, g, i) {
 }
 
 function fold_succ(f, g, i, a) {
-  return Bitv$RescriptOcamlgraph.foldi_right((function (j, b, a) {
+  return Bitv$Graph.foldi_right((function (j, b, a) {
                 if (b) {
                   return Curry._2(f, j, a);
                 } else {
@@ -306,7 +306,7 @@ function fold_succ(f, g, i, a) {
 
 function fold_pred(f, g, i, a) {
   return fold_vertex((function (j, a) {
-                if (Bitv$RescriptOcamlgraph.unsafe_get(Caml_array.get(g, j), i)) {
+                if (Bitv$Graph.unsafe_get(Caml_array.get(g, j), i)) {
                   return Curry._2(f, j, a);
                 } else {
                   return a;
@@ -338,13 +338,13 @@ function map_vertex(f, g) {
   var v = $$Array.init(n, f$1);
   var g$p = make(n);
   iter_edges((function (i, j) {
-          return Bitv$RescriptOcamlgraph.unsafe_set(Caml_array.get(g$p, Caml_array.get(v, i)), Caml_array.get(v, j), true);
+          return Bitv$Graph.unsafe_set(Caml_array.get(g$p, Caml_array.get(v, i)), Caml_array.get(v, j), true);
         }), g);
   return g$p;
 }
 
 function succ_e(g, i) {
-  return Bitv$RescriptOcamlgraph.foldi_left((function (l, j, b) {
+  return Bitv$Graph.foldi_left((function (l, j, b) {
                 if (b) {
                   return {
                           hd: [
@@ -361,7 +361,7 @@ function succ_e(g, i) {
 
 function pred_e(g, i) {
   return fold_vertex((function (j, a) {
-                if (Bitv$RescriptOcamlgraph.unsafe_get(Caml_array.get(g, j), i)) {
+                if (Bitv$Graph.unsafe_get(Caml_array.get(g, j), i)) {
                   return {
                           hd: [
                             j,
@@ -377,7 +377,7 @@ function pred_e(g, i) {
 
 function iter_edges_e(f, g) {
   for(var i = 0 ,i_finish = g.length; i < i_finish; ++i){
-    Bitv$RescriptOcamlgraph.iteri((function(i){
+    Bitv$Graph.iteri((function(i){
         return function (j, b) {
           if (b) {
             return Curry._1(f, [
@@ -394,7 +394,7 @@ function iter_edges_e(f, g) {
 
 function fold_edges_e(f, g, a) {
   return fold_vertex((function (i, a) {
-                return Bitv$RescriptOcamlgraph.foldi_right((function (j, b, a) {
+                return Bitv$Graph.foldi_right((function (j, b, a) {
                               if (b) {
                                 return Curry._2(f, [
                                             i,
@@ -410,7 +410,7 @@ function fold_edges_e(f, g, a) {
 function iter_succ_e(f, g, i) {
   var si = Caml_array.get(g, i);
   for(var j = 0 ,j_finish = g.length; j < j_finish; ++j){
-    if (Bitv$RescriptOcamlgraph.unsafe_get(si, j)) {
+    if (Bitv$Graph.unsafe_get(si, j)) {
       Curry._1(f, [
             i,
             j
@@ -423,7 +423,7 @@ function iter_succ_e(f, g, i) {
 
 function iter_pred_e(f, g, i) {
   for(var j = 0 ,j_finish = g.length; j < j_finish; ++j){
-    if (Bitv$RescriptOcamlgraph.unsafe_get(Caml_array.get(g, j), i)) {
+    if (Bitv$Graph.unsafe_get(Caml_array.get(g, j), i)) {
       Curry._1(f, [
             j,
             i
@@ -435,7 +435,7 @@ function iter_pred_e(f, g, i) {
 }
 
 function fold_succ_e(f, g, i, a) {
-  return Bitv$RescriptOcamlgraph.foldi_right((function (j, b, a) {
+  return Bitv$Graph.foldi_right((function (j, b, a) {
                 if (b) {
                   return Curry._2(f, [
                               i,
@@ -449,7 +449,7 @@ function fold_succ_e(f, g, i, a) {
 
 function fold_pred_e(f, g, i, a) {
   return fold_vertex((function (j, a) {
-                if (Bitv$RescriptOcamlgraph.unsafe_get(Caml_array.get(g, j), i)) {
+                if (Bitv$Graph.unsafe_get(Caml_array.get(g, j), i)) {
                   return Curry._2(f, [
                               j,
                               i
@@ -460,7 +460,7 @@ function fold_pred_e(f, g, i, a) {
               }), g, a);
 }
 
-var include = Blocks$RescriptOcamlgraph.Graph({
+var include = Blocks$Graph.Graph({
       V: V,
       E: {
         compare: compare$1,
@@ -638,12 +638,12 @@ function Digraph_Abstract(funarg) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l,
             mark: 0
           };
@@ -880,12 +880,12 @@ function Digraph_AbstractLabeled(funarg, funarg$1) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l,
             mark: 0
           };
@@ -1276,7 +1276,7 @@ function Graph_Concrete(funarg) {
     }
     
   };
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: {
           compare: V.compare,
           hash: V.hash,
@@ -1428,12 +1428,12 @@ function Graph_Abstract(funarg) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l,
             mark: 0
           };
@@ -1547,7 +1547,7 @@ function Graph_Abstract(funarg) {
   var G_PV = include.PV;
   var G_PE = include.PE;
   var G_unsafe_remove_edge_e = include.unsafe_remove_edge_e;
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: V,
         E: E,
         is_directed: is_directed,
@@ -1773,7 +1773,7 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
   var remove_edge$2 = remove_edge$1;
   var remove_edge_e$2 = remove_edge_e$1;
   var add_edge_e$2 = add_edge_e$1;
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: {
           compare: V$1.compare,
           hash: V$1.hash,
@@ -1953,12 +1953,12 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
     return x.label;
   };
   var create = function (l) {
-    if (Blocks$RescriptOcamlgraph.cpt_vertex.contents === (Blocks$RescriptOcamlgraph.first_value_for_cpt_vertex - 1 | 0)) {
+    if (Blocks$Graph.cpt_vertex.contents === (Blocks$Graph.first_value_for_cpt_vertex - 1 | 0)) {
       Pervasives.invalid_arg("Too much vertices");
     }
-    Blocks$RescriptOcamlgraph.cpt_vertex.contents = Blocks$RescriptOcamlgraph.cpt_vertex.contents + 1 | 0;
+    Blocks$Graph.cpt_vertex.contents = Blocks$Graph.cpt_vertex.contents + 1 | 0;
     return {
-            tag: Blocks$RescriptOcamlgraph.cpt_vertex.contents,
+            tag: Blocks$Graph.cpt_vertex.contents,
             label: l,
             mark: 0
           };
@@ -2141,7 +2141,7 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
   var G_S = S;
   var G_add_edge = add_edge;
   var G_Mark = Mark;
-  var include$1 = Blocks$RescriptOcamlgraph.Graph({
+  var include$1 = Blocks$Graph.Graph({
         V: V$1,
         E: E,
         is_directed: is_directed,

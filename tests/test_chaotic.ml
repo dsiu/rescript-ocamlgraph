@@ -1,4 +1,4 @@
-(*open Graph*)
+open Graph
 
 (*
    Analysis with ChaoticIteration of the following program :

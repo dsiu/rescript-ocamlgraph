@@ -2,7 +2,7 @@
 
 import * as List from "rescript/lib/es6/list.js";
 import * as Curry from "rescript/lib/es6/curry.js";
-import * as Unionfind$RescriptOcamlgraph from "./lib/unionfind.bs.js";
+import * as Unionfind$Graph from "./lib/unionfind.bs.js";
 
 function Generic(G, W, UF) {
   var spanningtree = function (g) {
@@ -52,7 +52,7 @@ function Generic(G, W, UF) {
 
 function Make(G, W) {
   var $$let = G.V;
-  var param = Unionfind$RescriptOcamlgraph.Make({
+  var param = Unionfind$Graph.Make({
         equal: $$let.equal,
         hash: $$let.hash,
         compare: $$let.compare

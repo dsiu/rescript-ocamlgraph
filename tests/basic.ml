@@ -16,7 +16,7 @@
 (**************************************************************************)
 
 open Format
-(*open Graph*)
+open Graph
 
 module Int = struct
   type t = int

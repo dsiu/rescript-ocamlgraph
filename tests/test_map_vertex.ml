@@ -1,7 +1,7 @@
 
 (* Check that map_vertex applies the function exactly once per vertex *)
 
-(*open Graph*)
+open Graph
 
 let () = Random.init 1597
 

@@ -7,10 +7,10 @@ import * as Random from "rescript/lib/es6/random.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_obj from "rescript/lib/es6/caml_obj.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Rand$Graph from "../src/rand.bs.js";
+import * as Traverse$Graph from "../src/traverse.bs.js";
+import * as Imperative$Graph from "../src/imperative.bs.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Rand$RescriptOcamlgraph from "../src/rand.bs.js";
-import * as Traverse$RescriptOcamlgraph from "../src/traverse.bs.js";
-import * as Imperative$RescriptOcamlgraph from "../src/imperative.bs.js";
 
 var n_ = {
   contents: 30
@@ -115,14 +115,14 @@ var Int = {
   $$default: 0
 };
 
-var partial_arg = Imperative$RescriptOcamlgraph.Graph.AbstractLabeled;
+var partial_arg = Imperative$Graph.Graph.AbstractLabeled;
 
 var G = partial_arg(IntInt, {
       compare: compare,
       $$default: 0
     });
 
-var R = Rand$RescriptOcamlgraph.Planar.I(G);
+var R = Rand$Graph.Planar.I(G);
 
 var g0 = Curry._5(R.graph, undefined, [
       20,
@@ -144,7 +144,7 @@ function color_vertex(v) {
   
 }
 
-var Dfs = Traverse$RescriptOcamlgraph.Dfs({
+var Dfs = Traverse$Graph.Dfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,
@@ -153,7 +153,7 @@ var Dfs = Traverse$RescriptOcamlgraph.Dfs({
       fold_succ: G.fold_succ
     });
 
-var Bfs = Traverse$RescriptOcamlgraph.Bfs({
+var Bfs = Traverse$Graph.Bfs({
       is_directed: G.is_directed,
       V: G.V,
       iter_vertex: G.iter_vertex,

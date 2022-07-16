@@ -11,7 +11,7 @@ import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
 import * as CamlinternalLazy from "rescript/lib/es6/camlinternalLazy.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
 
-var Unreachable = /* @__PURE__ */Caml_exceptions.create("Dominator-RescriptOcamlgraph.Unreachable");
+var Unreachable = /* @__PURE__ */Caml_exceptions.create("Dominator-Graph.Unreachable");
 
 function Make(funarg) {
   var $$let = funarg.V;

@@ -2,7 +2,7 @@
 (* Test file for Bellman-Ford *)
 
 open Printf
-(*open Graph*)
+open Graph
 open Pack.Digraph
 
 (* TODO: This could be done a tiny bit better,

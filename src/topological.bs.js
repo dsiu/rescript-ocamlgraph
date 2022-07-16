@@ -6,13 +6,13 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Queue from "rescript/lib/es6/queue.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
+import * as Path$Graph from "./path.bs.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Components$Graph from "./components.bs.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Path$RescriptOcamlgraph from "./path.bs.js";
-import * as Components$RescriptOcamlgraph from "./components.bs.js";
 
 function Make(funarg) {
-  var Scc = Components$RescriptOcamlgraph.Make(funarg);
+  var Scc = Components$Graph.Make(funarg);
   var fold = function (f, g, acc) {
     var match = Curry._1(Scc.scc, g);
     var scc = match[1];
@@ -95,7 +95,7 @@ function Make_stable(funarg) {
         equal: $$let.equal,
         hash: $$let.hash
       });
-  var C = Path$RescriptOcamlgraph.Check({
+  var C = Path$Graph.Check({
         V: funarg.V,
         iter_succ: funarg.iter_succ
       });

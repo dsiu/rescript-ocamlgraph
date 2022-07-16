@@ -15,7 +15,7 @@
 (*                                                                        *)
 (**************************************************************************)
 
-(*open Graph*)
+open Graph
 
 module Int = struct
   type t = int
@@ -696,7 +696,7 @@ end
 module Test_clique = struct
   (* Test file for Brom-Kerbosch *)
 
-(*  open Graph*)
+  open Graph
 
   module G = Persistent.Graph.Concrete (struct
     type t = int
@@ -725,7 +725,7 @@ end
 
 module Test_reduction = struct
 
-(*  open Graph*)
+  open Graph
 
   module G = Imperative.Digraph.Concrete(struct
                  type t = int

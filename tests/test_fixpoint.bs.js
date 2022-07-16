@@ -4,9 +4,9 @@ import * as $$Set from "rescript/lib/es6/set.js";
 import * as Caml from "rescript/lib/es6/caml.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Format from "rescript/lib/es6/format.js";
-import * as Classic$RescriptOcamlgraph from "../src/classic.bs.js";
-import * as Fixpoint$RescriptOcamlgraph from "../src/fixpoint.bs.js";
-import * as Persistent$RescriptOcamlgraph from "../src/persistent.bs.js";
+import * as Classic$Graph from "../src/classic.bs.js";
+import * as Fixpoint$Graph from "../src/fixpoint.bs.js";
+import * as Persistent$Graph from "../src/persistent.bs.js";
 
 function id(x) {
   return x;
@@ -26,9 +26,9 @@ var IntOrdered = {
 
 var IntSet = $$Set.Make(IntOrdered);
 
-var G = Persistent$RescriptOcamlgraph.Digraph.Concrete(IntOrdered);
+var G = Persistent$Graph.Digraph.Concrete(IntOrdered);
 
-var Divisors = Classic$RescriptOcamlgraph.P(G);
+var Divisors = Classic$Graph.P(G);
 
 function analyze(param) {
   return id;
@@ -74,7 +74,7 @@ var partial_arg = {
   pred: partial_arg_pred
 };
 
-var partial_arg$1 = Fixpoint$RescriptOcamlgraph.Make;
+var partial_arg$1 = Fixpoint$Graph.Make;
 
 var Fixpoint = (function (param) {
       return partial_arg$1(partial_arg, param);

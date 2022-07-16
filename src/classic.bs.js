@@ -6,10 +6,10 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
 import * as Caml_int32 from "rescript/lib/es6/caml_int32.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
-import * as Builder$RescriptOcamlgraph from "./builder.bs.js";
+import * as Builder$Graph from "./builder.bs.js";
 
 function P(funarg) {
-  var B = Builder$RescriptOcamlgraph.P(funarg);
+  var B = Builder$Graph.P(funarg);
   var divisors = function (n) {
     if (n < 2) {
       Pervasives.invalid_arg("divisors");
@@ -188,7 +188,7 @@ function P(funarg) {
 }
 
 function I(funarg) {
-  var B = Builder$RescriptOcamlgraph.I(funarg);
+  var B = Builder$Graph.I(funarg);
   var divisors = function (n) {
     if (n < 2) {
       Pervasives.invalid_arg("divisors");

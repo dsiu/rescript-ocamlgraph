@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/master/docs/docson/build-schema.json",
   "name": "rescript-ocamlgraph",
+  "namespace": "Graph",
   "version": "0.0.1",
   "sources": [
     {
@@ -30,6 +31,5 @@
     "error": "+101",
     "number": "-3-44"
   },
-  "namespace": true,
   "refmt": 3
 }

@@ -1,4 +1,4 @@
-(*open Graph*)
+open Graph
 
 (*
   The non-reducible example from Bourdoncle paper

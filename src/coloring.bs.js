@@ -4,14 +4,14 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as Stack from "rescript/lib/es6/stack.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Traverse$Graph from "./traverse.bs.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Traverse$RescriptOcamlgraph from "./traverse.bs.js";
 
-var NoColoring = /* @__PURE__ */Caml_exceptions.create("Coloring-RescriptOcamlgraph.NoColoring");
+var NoColoring = /* @__PURE__ */Caml_exceptions.create("Coloring-Graph.NoColoring");
 
 function Mark(funarg) {
-  var Bfs = Traverse$RescriptOcamlgraph.Bfs({
+  var Bfs = Traverse$Graph.Bfs({
         is_directed: funarg.is_directed,
         V: funarg.V,
         iter_vertex: funarg.iter_vertex,
@@ -210,7 +210,7 @@ function Make(funarg) {
   var coloring = function (g, k) {
     var match = add_marks(undefined);
     var GM = match[1];
-    var Bfs = Traverse$RescriptOcamlgraph.Bfs({
+    var Bfs = Traverse$Graph.Bfs({
           is_directed: GM.is_directed,
           V: GM.V,
           iter_vertex: GM.iter_vertex,
@@ -330,7 +330,7 @@ function Make(funarg) {
   var two_color = function (g) {
     var match = add_marks(undefined);
     var GM = match[1];
-    Traverse$RescriptOcamlgraph.Bfs({
+    Traverse$Graph.Bfs({
           is_directed: GM.is_directed,
           V: GM.V,
           iter_vertex: GM.iter_vertex,

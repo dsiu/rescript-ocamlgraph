@@ -5,10 +5,10 @@ import * as List from "rescript/lib/es6/list.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Builder$Graph from "./builder.bs.js";
+import * as Traverse$Graph from "./traverse.bs.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Builder$RescriptOcamlgraph from "./builder.bs.js";
-import * as Traverse$RescriptOcamlgraph from "./traverse.bs.js";
 
 function Make(funarg) {
   var add_transitive_closure = function (reflexiveOpt, g0) {
@@ -90,7 +90,7 @@ function Make(funarg) {
           hash: $$let.hash
         });
     var $$let$1 = funarg.G;
-    var D = Traverse$RescriptOcamlgraph.Dfs({
+    var D = Traverse$Graph.Dfs({
           is_directed: $$let$1.is_directed,
           V: $$let$1.V,
           iter_vertex: $$let$1.iter_vertex,
@@ -141,7 +141,7 @@ function Make(funarg) {
 }
 
 function P(funarg) {
-  var B = Builder$RescriptOcamlgraph.P(funarg);
+  var B = Builder$Graph.P(funarg);
   var add_transitive_closure = function (reflexiveOpt, g0) {
     var reflexive = reflexiveOpt !== undefined ? reflexiveOpt : false;
     var phi = function (v, g) {
@@ -221,7 +221,7 @@ function P(funarg) {
           hash: $$let.hash
         });
     var $$let$1 = B.G;
-    var D = Traverse$RescriptOcamlgraph.Dfs({
+    var D = Traverse$Graph.Dfs({
           is_directed: $$let$1.is_directed,
           V: $$let$1.V,
           iter_vertex: $$let$1.iter_vertex,
@@ -272,7 +272,7 @@ function P(funarg) {
 }
 
 function I(funarg) {
-  var B = Builder$RescriptOcamlgraph.I(funarg);
+  var B = Builder$Graph.I(funarg);
   var add_transitive_closure = function (reflexiveOpt, g0) {
     var reflexive = reflexiveOpt !== undefined ? reflexiveOpt : false;
     var phi = function (v, g) {
@@ -352,7 +352,7 @@ function I(funarg) {
           hash: $$let.hash
         });
     var $$let$1 = B.G;
-    var D = Traverse$RescriptOcamlgraph.Dfs({
+    var D = Traverse$Graph.Dfs({
           is_directed: $$let$1.is_directed,
           V: $$let$1.V,
           iter_vertex: $$let$1.iter_vertex,
@@ -403,7 +403,7 @@ function I(funarg) {
 }
 
 function Choose(funarg) {
-  var Found_Vertex = /* @__PURE__ */Caml_exceptions.create("Oper-RescriptOcamlgraph.Choose(G).Found_Vertex");
+  var Found_Vertex = /* @__PURE__ */Caml_exceptions.create("Oper-Graph.Choose(G).Found_Vertex");
   var choose_vertex = function (g) {
     try {
       Curry._2(funarg.iter_vertex, (function (v) {
@@ -423,7 +423,7 @@ function Choose(funarg) {
       throw v;
     }
   };
-  var Found_Edge = /* @__PURE__ */Caml_exceptions.create("Oper-RescriptOcamlgraph.Choose(G).Found_Edge");
+  var Found_Edge = /* @__PURE__ */Caml_exceptions.create("Oper-Graph.Choose(G).Found_Edge");
   var choose_edge = function (g) {
     try {
       Curry._2(funarg.iter_edges_e, (function (v) {

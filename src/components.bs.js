@@ -5,9 +5,9 @@ import * as $$Array from "rescript/lib/es6/array.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as Hashtbl from "rescript/lib/es6/hashtbl.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
-import * as Oper$RescriptOcamlgraph from "./oper.bs.js";
-import * as Dominator$RescriptOcamlgraph from "./dominator.bs.js";
-import * as Unionfind$RescriptOcamlgraph from "./lib/unionfind.bs.js";
+import * as Oper$Graph from "./oper.bs.js";
+import * as Dominator$Graph from "./dominator.bs.js";
+import * as Unionfind$Graph from "./lib/unionfind.bs.js";
 
 function Make(funarg) {
   var $$let = funarg.V;
@@ -162,14 +162,14 @@ function Make(funarg) {
 }
 
 function Connectivity(funarg) {
-  var MOper = Oper$RescriptOcamlgraph.Make(funarg);
+  var MOper = Oper$Graph.Make(funarg);
   var $$let = funarg.G;
-  var Choose = Oper$RescriptOcamlgraph.Choose({
+  var Choose = Oper$Graph.Choose({
         iter_vertex: $$let.iter_vertex,
         iter_edges_e: $$let.iter_edges_e
       });
   var $$let$1 = funarg.G;
-  var Dom = Dominator$RescriptOcamlgraph.Make({
+  var Dom = Dominator$Graph.Make({
         V: $$let$1.V,
         pred: $$let$1.pred,
         succ: $$let$1.succ,
@@ -342,11 +342,11 @@ function Connectivity(funarg) {
 }
 
 function BiConnectivity(funarg) {
-  var Choose = Oper$RescriptOcamlgraph.Choose({
+  var Choose = Oper$Graph.Choose({
         iter_vertex: funarg.iter_vertex,
         iter_edges_e: funarg.iter_edges_e
       });
-  var Dom = Dominator$RescriptOcamlgraph.Make({
+  var Dom = Dominator$Graph.Make({
         V: funarg.V,
         pred: funarg.pred,
         succ: funarg.succ,
@@ -355,7 +355,7 @@ function BiConnectivity(funarg) {
         iter_succ: funarg.iter_succ,
         nb_vertex: funarg.nb_vertex
       });
-  var RDom = Dominator$RescriptOcamlgraph.Make({
+  var RDom = Dominator$Graph.Make({
         V: funarg.V,
         pred: funarg.succ,
         succ: funarg.pred,
@@ -528,7 +528,7 @@ function BiConnectivity(funarg) {
 
 function Undirected(funarg) {
   var $$let = funarg.V;
-  var UF = Unionfind$RescriptOcamlgraph.Make({
+  var UF = Unionfind$Graph.Make({
         equal: $$let.equal,
         hash: $$let.hash,
         compare: $$let.compare
