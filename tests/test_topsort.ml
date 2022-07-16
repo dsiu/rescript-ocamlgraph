@@ -2,7 +2,7 @@
 (* Test file for topological sort *)
 
 open Format
-(*open Graph*)
+open Graph
 open Pack.Digraph
 
 let test ?(check=true) iter n edges =
