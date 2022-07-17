@@ -64,7 +64,17 @@ function Make(funarg) {
     var max_e = max_edges(loops, v, e);
     var a = $$Array.init(v, funarg.G.V.create);
     var g = $$Array.fold_left(funarg.add_vertex, Curry._1(funarg.empty, undefined), a);
-    var add_edges = function (i, j, max, nb, g) {
+    var _i = 0;
+    var _j = 0;
+    var _max = max_e;
+    var _nb = e;
+    var _g = g;
+    while(true) {
+      var g$1 = _g;
+      var nb = _nb;
+      var max = _max;
+      var j = _j;
+      var i = _i;
       var tmp = false;
       if (Caml.i64_ge(max, Caml_int64.zero)) {
         var match = funarg.G.is_directed;
@@ -86,15 +96,15 @@ function Make(funarg) {
         throw {
               RE_EXN_ID: "Assert_failure",
               _1: [
-                "rand.ml",
-                81,
+                "rand.res",
+                104,
                 6
               ],
               Error: new Error()
             };
       }
       if (nb === 0) {
-        return g;
+        return g$1;
       }
       var match$1 = j === (v - 1 | 0) ? [
           i + 1 | 0,
@@ -103,25 +113,27 @@ function Make(funarg) {
           i,
           j + 1 | 0
         ];
-      var j$1 = match$1[1];
-      var i$1 = match$1[0];
-      var add_edges$1 = function (param, param$1, param$2) {
-        return add_edges(i$1, j$1, param, param$1, param$2);
-      };
+      var j$p = match$1[1];
+      var i$p = match$1[0];
       if (i === j && !loops || !funarg.G.is_directed && i > j) {
-        return add_edges$1(max, nb, g);
+        _j = j$p;
+        _i = i$p;
+        continue ;
       }
-      var partial_arg = Int64.pred(max);
-      var add_edges$2 = function (param, param$1) {
-        return add_edges$1(partial_arg, param, param$1);
-      };
+      var pred_max = Int64.pred(max);
       if (Caml.i64_lt(Random.int64(max), Caml_int64.of_int32(nb))) {
-        return Curry._2(add_edges$2, nb - 1 | 0, Curry._3(add_edge, g, Caml_array.get(a, i), Caml_array.get(a, j)));
-      } else {
-        return Curry._2(add_edges$2, nb, g);
+        _g = Curry._3(add_edge, g$1, Caml_array.get(a, i), Caml_array.get(a, j));
+        _nb = nb - 1 | 0;
+        _max = pred_max;
+        _j = j$p;
+        _i = i$p;
+        continue ;
       }
+      _max = pred_max;
+      _j = j$p;
+      _i = i$p;
+      continue ;
     };
-    return add_edges(0, 0, max_e, e, g);
   };
   var random = function (loops, v, e) {
     var r = e / (v * v);
@@ -240,7 +252,17 @@ function P(funarg) {
     var max_e = max_edges(loops, v, e);
     var a = $$Array.init(v, B.G.V.create);
     var g = $$Array.fold_left(B.add_vertex, Curry._1(B.empty, undefined), a);
-    var add_edges = function (i, j, max, nb, g) {
+    var _i = 0;
+    var _j = 0;
+    var _max = max_e;
+    var _nb = e;
+    var _g = g;
+    while(true) {
+      var g$1 = _g;
+      var nb = _nb;
+      var max = _max;
+      var j = _j;
+      var i = _i;
       var tmp = false;
       if (Caml.i64_ge(max, Caml_int64.zero)) {
         var match = B.G.is_directed;
@@ -262,15 +284,15 @@ function P(funarg) {
         throw {
               RE_EXN_ID: "Assert_failure",
               _1: [
-                "rand.ml",
-                81,
+                "rand.res",
+                104,
                 6
               ],
               Error: new Error()
             };
       }
       if (nb === 0) {
-        return g;
+        return g$1;
       }
       var match$1 = j === (v - 1 | 0) ? [
           i + 1 | 0,
@@ -279,25 +301,27 @@ function P(funarg) {
           i,
           j + 1 | 0
         ];
-      var j$1 = match$1[1];
-      var i$1 = match$1[0];
-      var add_edges$1 = function (param, param$1, param$2) {
-        return add_edges(i$1, j$1, param, param$1, param$2);
-      };
+      var j$p = match$1[1];
+      var i$p = match$1[0];
       if (i === j && !loops || !B.G.is_directed && i > j) {
-        return add_edges$1(max, nb, g);
+        _j = j$p;
+        _i = i$p;
+        continue ;
       }
-      var partial_arg = Int64.pred(max);
-      var add_edges$2 = function (param, param$1) {
-        return add_edges$1(partial_arg, param, param$1);
-      };
+      var pred_max = Int64.pred(max);
       if (Caml.i64_lt(Random.int64(max), Caml_int64.of_int32(nb))) {
-        return Curry._2(add_edges$2, nb - 1 | 0, Curry._3(add_edge, g, Caml_array.get(a, i), Caml_array.get(a, j)));
-      } else {
-        return Curry._2(add_edges$2, nb, g);
+        _g = Curry._3(add_edge, g$1, Caml_array.get(a, i), Caml_array.get(a, j));
+        _nb = nb - 1 | 0;
+        _max = pred_max;
+        _j = j$p;
+        _i = i$p;
+        continue ;
       }
+      _max = pred_max;
+      _j = j$p;
+      _i = i$p;
+      continue ;
     };
-    return add_edges(0, 0, max_e, e, g);
   };
   var random = function (loops, v, e) {
     var r = e / (v * v);
@@ -416,7 +440,17 @@ function I(funarg) {
     var max_e = max_edges(loops, v, e);
     var a = $$Array.init(v, B.G.V.create);
     var g = $$Array.fold_left(B.add_vertex, Curry._1(B.empty, undefined), a);
-    var add_edges = function (i, j, max, nb, g) {
+    var _i = 0;
+    var _j = 0;
+    var _max = max_e;
+    var _nb = e;
+    var _g = g;
+    while(true) {
+      var g$1 = _g;
+      var nb = _nb;
+      var max = _max;
+      var j = _j;
+      var i = _i;
       var tmp = false;
       if (Caml.i64_ge(max, Caml_int64.zero)) {
         var match = B.G.is_directed;
@@ -438,15 +472,15 @@ function I(funarg) {
         throw {
               RE_EXN_ID: "Assert_failure",
               _1: [
-                "rand.ml",
-                81,
+                "rand.res",
+                104,
                 6
               ],
               Error: new Error()
             };
       }
       if (nb === 0) {
-        return g;
+        return g$1;
       }
       var match$1 = j === (v - 1 | 0) ? [
           i + 1 | 0,
@@ -455,25 +489,27 @@ function I(funarg) {
           i,
           j + 1 | 0
         ];
-      var j$1 = match$1[1];
-      var i$1 = match$1[0];
-      var add_edges$1 = function (param, param$1, param$2) {
-        return add_edges(i$1, j$1, param, param$1, param$2);
-      };
+      var j$p = match$1[1];
+      var i$p = match$1[0];
       if (i === j && !loops || !B.G.is_directed && i > j) {
-        return add_edges$1(max, nb, g);
+        _j = j$p;
+        _i = i$p;
+        continue ;
       }
-      var partial_arg = Int64.pred(max);
-      var add_edges$2 = function (param, param$1) {
-        return add_edges$1(partial_arg, param, param$1);
-      };
+      var pred_max = Int64.pred(max);
       if (Caml.i64_lt(Random.int64(max), Caml_int64.of_int32(nb))) {
-        return Curry._2(add_edges$2, nb - 1 | 0, Curry._3(add_edge, g, Caml_array.get(a, i), Caml_array.get(a, j)));
-      } else {
-        return Curry._2(add_edges$2, nb, g);
+        _g = Curry._3(add_edge, g$1, Caml_array.get(a, i), Caml_array.get(a, j));
+        _nb = nb - 1 | 0;
+        _max = pred_max;
+        _j = j$p;
+        _i = i$p;
+        continue ;
       }
+      _max = pred_max;
+      _j = j$p;
+      _i = i$p;
+      continue ;
     };
-    return add_edges(0, 0, max_e, e, g);
   };
   var random = function (loops, v, e) {
     var r = e / (v * v);
