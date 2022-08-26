@@ -23,9 +23,6 @@
     "jest": "^28.1.2",
     "rescript": "^9.1.4"
   },
-  "peerDependencies": {
-    "rescript": "^9.0.0"
-  },
   "jest": {
     "testMatch": [
       "<rootDir>/**/**/*.test.(js|jsx|ts|tsx)",
