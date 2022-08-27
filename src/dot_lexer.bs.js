@@ -14,7 +14,7 @@ var string_buf = $$Buffer.create(1024);
 var h = Hashtbl.create(undefined, 17);
 
 List.iter((function (param) {
-        return Hashtbl.add(h, param[0], param[1]);
+        Hashtbl.add(h, param[0], param[1]);
       }), {
       hd: [
         "strict",
@@ -71,6 +71,80 @@ var __ocaml_lex_tables = {
   lex_check_code: "",
   lex_code: ""
 };
+
+function __ocaml_lex_string_rec(lexbuf, ___ocaml_lex_state) {
+  while(true) {
+    var __ocaml_lex_state = ___ocaml_lex_state;
+    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    switch (__ocaml_lex_state$1) {
+      case 0 :
+          return $$Buffer.contents(string_buf);
+      case 1 :
+          $$Buffer.add_char(string_buf, /* '"' */34);
+          ___ocaml_lex_state = 27;
+          continue ;
+      case 2 :
+          var c = Lexing.sub_lexeme_char(lexbuf, lexbuf.lex_start_pos);
+          $$Buffer.add_char(string_buf, c);
+          ___ocaml_lex_state = 27;
+          continue ;
+      case 3 :
+          return Pervasives.failwith("Dot_lexer: unterminated string literal");
+      default:
+        Curry._1(lexbuf.refill_buff, lexbuf);
+        ___ocaml_lex_state = __ocaml_lex_state$1;
+        continue ;
+    }
+  };
+}
+
+function __ocaml_lex_html_rec(lexbuf, ___ocaml_lex_state) {
+  while(true) {
+    var __ocaml_lex_state = ___ocaml_lex_state;
+    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    switch (__ocaml_lex_state$1) {
+      case 0 :
+          return ;
+      case 1 :
+          $$Buffer.add_char(string_buf, /* '<' */60);
+          __ocaml_lex_html_rec(lexbuf, 33);
+          $$Buffer.add_char(string_buf, /* '>' */62);
+          ___ocaml_lex_state = 33;
+          continue ;
+      case 2 :
+          var c = Lexing.sub_lexeme_char(lexbuf, lexbuf.lex_start_pos);
+          $$Buffer.add_char(string_buf, c);
+          ___ocaml_lex_state = 33;
+          continue ;
+      case 3 :
+          return Pervasives.failwith("Dot_lexer: unterminated html literal");
+      default:
+        Curry._1(lexbuf.refill_buff, lexbuf);
+        ___ocaml_lex_state = __ocaml_lex_state$1;
+        continue ;
+    }
+  };
+}
+
+function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
+  while(true) {
+    var __ocaml_lex_state = ___ocaml_lex_state;
+    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    switch (__ocaml_lex_state$1) {
+      case 0 :
+          return ;
+      case 1 :
+          ___ocaml_lex_state = 38;
+          continue ;
+      case 2 :
+          return Pervasives.failwith("Dot_lexer: unterminated comment");
+      default:
+        Curry._1(lexbuf.refill_buff, lexbuf);
+        ___ocaml_lex_state = __ocaml_lex_state$1;
+        continue ;
+    }
+  };
+}
 
 function __ocaml_lex_token_rec(lexbuf, ___ocaml_lex_state) {
   while(true) {
@@ -159,80 +233,6 @@ function __ocaml_lex_token_rec(lexbuf, ___ocaml_lex_state) {
   };
 }
 
-function __ocaml_lex_string_rec(lexbuf, ___ocaml_lex_state) {
-  while(true) {
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) {
-      case 0 :
-          return $$Buffer.contents(string_buf);
-      case 1 :
-          $$Buffer.add_char(string_buf, /* '"' */34);
-          ___ocaml_lex_state = 27;
-          continue ;
-      case 2 :
-          var c = Lexing.sub_lexeme_char(lexbuf, lexbuf.lex_start_pos);
-          $$Buffer.add_char(string_buf, c);
-          ___ocaml_lex_state = 27;
-          continue ;
-      case 3 :
-          return Pervasives.failwith("Dot_lexer: unterminated string literal");
-      default:
-        Curry._1(lexbuf.refill_buff, lexbuf);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
-    }
-  };
-}
-
-function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
-  while(true) {
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) {
-      case 0 :
-          return ;
-      case 1 :
-          ___ocaml_lex_state = 38;
-          continue ;
-      case 2 :
-          return Pervasives.failwith("Dot_lexer: unterminated comment");
-      default:
-        Curry._1(lexbuf.refill_buff, lexbuf);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
-    }
-  };
-}
-
-function __ocaml_lex_html_rec(lexbuf, ___ocaml_lex_state) {
-  while(true) {
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) {
-      case 0 :
-          return ;
-      case 1 :
-          $$Buffer.add_char(string_buf, /* '<' */60);
-          __ocaml_lex_html_rec(lexbuf, 33);
-          $$Buffer.add_char(string_buf, /* '>' */62);
-          ___ocaml_lex_state = 33;
-          continue ;
-      case 2 :
-          var c = Lexing.sub_lexeme_char(lexbuf, lexbuf.lex_start_pos);
-          $$Buffer.add_char(string_buf, c);
-          ___ocaml_lex_state = 33;
-          continue ;
-      case 3 :
-          return Pervasives.failwith("Dot_lexer: unterminated html literal");
-      default:
-        Curry._1(lexbuf.refill_buff, lexbuf);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
-        continue ;
-    }
-  };
-}
-
 function token(lexbuf) {
   return __ocaml_lex_token_rec(lexbuf, 0);
 }
@@ -242,11 +242,11 @@ function string(lexbuf) {
 }
 
 function html(lexbuf) {
-  return __ocaml_lex_html_rec(lexbuf, 33);
+  __ocaml_lex_html_rec(lexbuf, 33);
 }
 
 function comment(lexbuf) {
-  return __ocaml_lex_comment_rec(lexbuf, 38);
+  __ocaml_lex_comment_rec(lexbuf, 38);
 }
 
 export {
@@ -261,6 +261,5 @@ export {
   __ocaml_lex_html_rec ,
   comment ,
   __ocaml_lex_comment_rec ,
-  
 }
 /* string_buf Not a pure module */

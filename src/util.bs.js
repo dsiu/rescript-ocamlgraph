@@ -46,7 +46,6 @@ function DataV(L, V) {
     var partial_arg = param[0];
     return function (param) {
       partial_arg.contents = param;
-      
     };
   };
   return {
@@ -146,6 +145,5 @@ export {
   CMPProduct ,
   DataV ,
   Memo ,
-  
 }
 /* No side effect */

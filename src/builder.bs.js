@@ -66,6 +66,5 @@ function I(G) {
 export {
   P ,
   I ,
-  
 }
 /* No side effect */

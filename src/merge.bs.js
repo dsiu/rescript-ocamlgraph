@@ -119,7 +119,7 @@ function B(funarg) {
       }
     };
     var collect_edge = function (e, accu) {
-      if (Caml_obj.caml_equal(Curry._1(funarg.G.E.label, e), l)) {
+      if (Caml_obj.equal(Curry._1(funarg.G.E.label, e), l)) {
         return {
                 hd: update_label(e),
                 tl: accu
@@ -425,7 +425,7 @@ function P(funarg) {
       }
     };
     var collect_edge = function (e, accu) {
-      if (Caml_obj.caml_equal(Curry._1(B.G.E.label, e), l)) {
+      if (Caml_obj.equal(Curry._1(B.G.E.label, e), l)) {
         return {
                 hd: update_label(e),
                 tl: accu
@@ -731,7 +731,7 @@ function I(funarg) {
       }
     };
     var collect_edge = function (e, accu) {
-      if (Caml_obj.caml_equal(Curry._1(B.G.E.label, e), l)) {
+      if (Caml_obj.equal(Curry._1(B.G.E.label, e), l)) {
         return {
                 hd: update_label(e),
                 tl: accu
@@ -919,31 +919,24 @@ function I(funarg) {
   };
   var merge_vertex$1 = function (g, vl) {
     merge_vertex(g, vl);
-    
   };
   var merge_edges_e$1 = function (src, dst, g, el) {
     merge_edges_e(src, dst, g, el);
-    
   };
   var merge_edges_with_label$1 = function (src, dst, label, g, l) {
     merge_edges_with_label(src, dst, label, g, l);
-    
   };
   var merge_isolabelled_edges$1 = function (g) {
     merge_isolabelled_edges(g);
-    
   };
   var merge_ends$1 = function (strict, specified_vertex, g) {
     merge_ends(strict, specified_vertex, g);
-    
   };
   var merge_starts$1 = function (strict, specified_vertex, g) {
     merge_starts(strict, specified_vertex, g);
-    
   };
   var merge_scc$1 = function (loop_killer, specified_vertex, g) {
     merge_scc(loop_killer, specified_vertex, g);
-    
   };
   return {
           merge_vertex: merge_vertex$1,
@@ -960,6 +953,5 @@ export {
   B ,
   P ,
   I ,
-  
 }
 /* No side effect */

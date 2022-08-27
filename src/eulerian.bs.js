@@ -32,7 +32,7 @@ function Make(funarg) {
         throw exn;
       }
     }
-    return Curry._3(H.add, s, y, e);
+    Curry._3(H.add, s, y, e);
   };
   var setup = function (g) {
     var nbe = {
@@ -174,7 +174,6 @@ function Make(funarg) {
   var connect = function (e, e$p) {
     e.next = e$p;
     e$p.prev = e;
-    
   };
   var eulerian_cycle = function (out, start) {
     var todos = Curry._1(H.create, 8);
@@ -406,11 +405,11 @@ function Make(funarg) {
           throw exn;
         }
       }
-      return Curry._3(H.replace, delta, v, d + tmp | 0);
+      Curry._3(H.replace, delta, v, d + tmp | 0);
     };
     var add$1 = function (e) {
       add(Curry._1(funarg.E.src, e), 1);
-      return add(Curry._1(funarg.E.dst, e), -1);
+      add(Curry._1(funarg.E.dst, e), -1);
     };
     Curry._2(funarg.iter_edges_e, add$1, g);
     var start = {
@@ -530,6 +529,5 @@ function Make(funarg) {
 
 export {
   Make ,
-  
 }
 /* No side effect */

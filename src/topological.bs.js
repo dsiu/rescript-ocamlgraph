@@ -37,7 +37,7 @@ function Make(funarg) {
         }
         
       };
-      return Curry._3(funarg.iter_succ, add_edge, g, x);
+      Curry._3(funarg.iter_succ, add_edge, g, x);
     };
     Curry._2(funarg.iter_vertex, add_vertex, g);
     var todo = Queue.create(undefined);
@@ -79,9 +79,9 @@ function Make(funarg) {
     };
   };
   var iter = function (f, g) {
-    return fold((function (v, param) {
-                  return Curry._1(f, v);
-                }), g, undefined);
+    fold((function (v, param) {
+            Curry._1(f, v);
+          }), g, undefined);
   };
   return {
           fold: fold,
@@ -126,7 +126,6 @@ function Make_stable(funarg) {
   var S = $$Set.Make(funarg.V);
   var push = function (v, s) {
     s.contents = Curry._2(S.add, v, s.contents);
-    
   };
   var pop = function (s) {
     var r = Curry._1(S.min_elt, s.contents);
@@ -153,7 +152,7 @@ function Make_stable(funarg) {
     };
     var push$1 = function (x) {
       Curry._2(H.remove, degree, x);
-      return push(x, todo);
+      push(x, todo);
     };
     Curry._2(funarg.iter_vertex, (function (v) {
             var d = Curry._2(funarg.in_degree, g, v);
@@ -213,9 +212,9 @@ function Make_stable(funarg) {
     };
   };
   var iter = function (f, g) {
-    return fold((function (v, param) {
-                  return Curry._1(f, v);
-                }), g, undefined);
+    fold((function (v, param) {
+            Curry._1(f, v);
+          }), g, undefined);
   };
   return {
           fold: fold,
@@ -226,6 +225,5 @@ function Make_stable(funarg) {
 export {
   Make ,
   Make_stable ,
-  
 }
 /* No side effect */

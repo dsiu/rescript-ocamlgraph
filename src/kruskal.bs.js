@@ -21,7 +21,6 @@ function Generic(G, W, UF) {
               hd: e,
               tl: l.contents
             };
-            
           }), g);
     var edges = List.sort((function (e, e$p) {
             return Curry._2(W.compare, Curry._1(G.E.label, e), Curry._1(G.E.label, e$p));
@@ -73,7 +72,6 @@ function Make(G, W) {
               hd: e,
               tl: l.contents
             };
-            
           }), g);
     var edges = List.sort((function (e, e$p) {
             return Curry._2(W.compare, Curry._1(G.E.label, e), Curry._1(G.E.label, e$p));
@@ -105,6 +103,5 @@ function Make(G, W) {
 export {
   Make ,
   Generic ,
-  
 }
 /* No side effect */

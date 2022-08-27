@@ -399,6 +399,5 @@ function file(lexfun, lexbuf) {
 
 export {
   file ,
-  
 }
 /* No side effect */

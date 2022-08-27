@@ -140,6 +140,5 @@ function Make(funarg, funarg$1) {
 
 export {
   Make ,
-  
 }
 /* No side effect */

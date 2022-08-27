@@ -392,11 +392,11 @@ function Johnson(funarg, funarg$1) {
   };
   var iter_vertex = function (f, g) {
     Curry._1(f, /* New */0);
-    return Curry._2(funarg.iter_vertex, (function (v) {
-                  return Curry._1(f, /* Old */{
-                              _0: v
-                            });
-                }), g);
+    Curry._2(funarg.iter_vertex, (function (v) {
+            Curry._1(f, /* Old */{
+                  _0: v
+                });
+          }), g);
   };
   var fold_vertex = function (f, g, acc) {
     var acc$p = Curry._2(f, /* New */0, acc);
@@ -409,34 +409,34 @@ function Johnson(funarg, funarg$1) {
   var iter_succ = function (f, g, v) {
     if (v) {
       return Curry._3(funarg.iter_succ, (function (u) {
-                    return Curry._1(f, /* Old */{
-                                _0: u
-                              });
+                    Curry._1(f, /* Old */{
+                          _0: u
+                        });
                   }), g, v._0);
     } else {
       return Curry._2(funarg.iter_vertex, (function (u) {
-                    return Curry._1(f, /* Old */{
-                                _0: u
-                              });
+                    Curry._1(f, /* Old */{
+                          _0: u
+                        });
                   }), g);
     }
   };
   var iter_succ_e = function (f, g, v) {
     if (v) {
       return Curry._3(funarg.iter_succ_e, (function (e) {
-                    return Curry._1(f, {
-                                TAG: /* OldE */1,
-                                _0: e
-                              });
+                    Curry._1(f, {
+                          TAG: /* OldE */1,
+                          _0: e
+                        });
                   }), g, v._0);
     } else {
       return Curry._2(funarg.iter_vertex, (function (u) {
-                    return Curry._1(f, {
-                                TAG: /* NewE */0,
-                                _0: /* Old */{
-                                  _0: u
-                                }
-                              });
+                    Curry._1(f, {
+                          TAG: /* NewE */0,
+                          _0: /* Old */{
+                            _0: u
+                          }
+                        });
                   }), g);
     }
   };
@@ -732,26 +732,26 @@ function Johnson(funarg, funarg$1) {
       };
     };
     Curry._2(funarg.iter_vertex, (function (v) {
-            return Curry._2(funarg.iter_vertex, (function (u) {
-                          try {
-                            var match = Curry._3(shortest_path, g, v, u);
-                            return Curry._3(HVV.add, pairs_dist, [
-                                        v,
-                                        u
-                                      ], Curry._2(add, match[1], Curry._2(sub, Curry._2(H.find, bf_res, /* Old */{
-                                                    _0: u
-                                                  }), Curry._2(H.find, bf_res, /* Old */{
-                                                    _0: v
-                                                  }))));
-                          }
-                          catch (raw_exn){
-                            var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-                            if (exn.RE_EXN_ID === "Not_found") {
-                              return ;
-                            }
-                            throw exn;
-                          }
-                        }), g);
+            Curry._2(funarg.iter_vertex, (function (u) {
+                    try {
+                      var match = Curry._3(shortest_path, g, v, u);
+                      return Curry._3(HVV.add, pairs_dist, [
+                                  v,
+                                  u
+                                ], Curry._2(add, match[1], Curry._2(sub, Curry._2(H.find, bf_res, /* Old */{
+                                              _0: u
+                                            }), Curry._2(H.find, bf_res, /* Old */{
+                                              _0: v
+                                            }))));
+                    }
+                    catch (raw_exn){
+                      var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+                      if (exn.RE_EXN_ID === "Not_found") {
+                        return ;
+                      }
+                      throw exn;
+                    }
+                  }), g);
           }), g);
     return pairs_dist;
   };
@@ -848,6 +848,5 @@ export {
   BellmanFord ,
   Johnson ,
   Check ,
-  
 }
 /* No side effect */

@@ -2,8 +2,6 @@
 
 import * as Caml from "rescript/lib/es6/caml.js";
 import * as Curry from "rescript/lib/es6/curry.js";
-import * as Caml_sys from "rescript/lib/es6/caml_sys.js";
-import * as Filename from "rescript/lib/es6/filename.js";
 import * as Flow$Graph from "./flow.bs.js";
 import * as Oper$Graph from "./oper.bs.js";
 import * as Path$Graph from "./path.bs.js";
@@ -14,16 +12,14 @@ import * as Classic$Graph from "./classic.bs.js";
 import * as Kruskal$Graph from "./kruskal.bs.js";
 import * as Coloring$Graph from "./coloring.bs.js";
 import * as Eulerian$Graph from "./eulerian.bs.js";
-import * as Graphviz$Graph from "./graphviz.bs.js";
 import * as Traverse$Graph from "./traverse.bs.js";
 import * as Caml_exceptions from "rescript/lib/es6/caml_exceptions.js";
 import * as Components$Graph from "./components.bs.js";
 import * as Imperative$Graph from "./imperative.bs.js";
 import * as Topological$Graph from "./topological.bs.js";
 import * as Caml_js_exceptions from "rescript/lib/es6/caml_js_exceptions.js";
-import * as Caml_external_polyfill from "rescript/lib/es6/caml_external_polyfill.js";
 
-var compare = Caml.caml_int_compare;
+var compare = Caml.int_compare;
 
 var I = {
   compare: compare,
@@ -39,8 +35,6 @@ var G = (function (param) {
     })(I);
 
 var V = G.V;
-
-var is_directed = G.is_directed;
 
 var iter_vertex = G.iter_vertex;
 
@@ -138,7 +132,7 @@ function sub(prim0, prim1) {
   return prim0 - prim1 | 0;
 }
 
-var compare$1 = Caml.caml_int_compare;
+var compare$1 = Caml.int_compare;
 
 var $$let$1 = G.E;
 
@@ -296,7 +290,7 @@ function sub$1(prim0, prim1) {
   return prim0 - prim1 | 0;
 }
 
-var compare$2 = Caml.caml_int_compare;
+var compare$2 = Caml.int_compare;
 
 var $$let$4 = G.V;
 
@@ -418,7 +412,7 @@ var include$3 = Eulerian$Graph.Make({
 
 var Eulerian = include$3;
 
-var compare$3 = Caml.caml_int_compare;
+var compare$3 = Caml.int_compare;
 
 var Int = {
   compare: compare$3
@@ -451,99 +445,6 @@ var include$4 = (function (param) {
       return partial_arg$13(partial_arg$12, param);
     })(Int);
 
-var V$1 = G.V;
-
-var E = G.E;
-
-var iter_vertex$1 = G.iter_vertex;
-
-var iter_edges_e = G.iter_edges_e;
-
-function vertex_name(v) {
-  return String(Curry._1(V$1.label, v));
-}
-
-function graph_attributes(param) {
-  return /* [] */0;
-}
-
-function default_vertex_attributes(param) {
-  return /* [] */0;
-}
-
-function vertex_attributes(param) {
-  return /* [] */0;
-}
-
-function default_edge_attributes(param) {
-  return /* [] */0;
-}
-
-function edge_attributes(e) {
-  return {
-          hd: {
-            NAME: "Label",
-            VAL: String(Curry._1(E.label, e))
-          },
-          tl: /* [] */0
-        };
-}
-
-function get_subgraph(param) {
-  
-}
-
-var Dot_ = Graphviz$Graph.Dot({
-      V: {},
-      E: {
-        src: E.src,
-        dst: E.dst
-      },
-      iter_vertex: iter_vertex$1,
-      iter_edges_e: iter_edges_e,
-      graph_attributes: graph_attributes,
-      default_vertex_attributes: default_vertex_attributes,
-      vertex_name: vertex_name,
-      vertex_attributes: vertex_attributes,
-      get_subgraph: get_subgraph,
-      default_edge_attributes: default_edge_attributes,
-      edge_attributes: edge_attributes
-    });
-
-var Neato = Graphviz$Graph.Neato({
-      V: {},
-      E: {
-        src: E.src,
-        dst: E.dst
-      },
-      iter_vertex: iter_vertex$1,
-      iter_edges_e: iter_edges_e,
-      graph_attributes: graph_attributes,
-      default_vertex_attributes: default_vertex_attributes,
-      vertex_name: vertex_name,
-      vertex_attributes: vertex_attributes,
-      get_subgraph: get_subgraph,
-      default_edge_attributes: default_edge_attributes,
-      edge_attributes: edge_attributes
-    });
-
-function dot_output(g, f) {
-  var oc = Pervasives.open_out(f);
-  if (is_directed) {
-    Curry._2(Dot_.output_graph, oc, g);
-  } else {
-    Curry._2(Neato.output_graph, oc, g);
-  }
-  return Pervasives.close_out(oc);
-}
-
-function display_with_gv(g) {
-  var tmp = Filename.temp_file(undefined, "graph", ".dot");
-  dot_output(g, tmp);
-  Caml_sys.caml_sys_system_command("dot -Tps " + (tmp + " | gv -"));
-  return Caml_external_polyfill.resolve("caml_sys_remove")(tmp);
-}
-
 var partial_arg$14 = {};
 
 var partial_arg$15 = Imperative$Graph.Graph.AbstractLabeled;
@@ -552,18 +453,16 @@ var G$1 = (function (param) {
       return partial_arg$15(partial_arg$14, param);
     })(I);
 
-var V$2 = G$1.V;
+var V$1 = G$1.V;
 
-var is_directed$1 = G$1.is_directed;
-
-var iter_vertex$2 = G$1.iter_vertex;
+var iter_vertex$1 = G$1.iter_vertex;
 
 var Found$1 = /* @__PURE__ */Caml_exceptions.create("Pack-Graph.Generic(G).Found");
 
 function find_vertex$1(g, i) {
   try {
-    Curry._2(iter_vertex$2, (function (v) {
-            if (Curry._1(V$2.label, v) !== i) {
+    Curry._2(iter_vertex$1, (function (v) {
+            if (Curry._1(V$1.label, v) !== i) {
               return ;
             }
             throw {
@@ -652,7 +551,7 @@ function sub$2(prim0, prim1) {
   return prim0 - prim1 | 0;
 }
 
-var compare$4 = Caml.caml_int_compare;
+var compare$4 = Caml.int_compare;
 
 var $$let$8 = G$1.E;
 
@@ -810,7 +709,7 @@ function sub$3(prim0, prim1) {
   return prim0 - prim1 | 0;
 }
 
-var compare$5 = Caml.caml_int_compare;
+var compare$5 = Caml.int_compare;
 
 var $$let$11 = G$1.V;
 
@@ -932,7 +831,7 @@ var include$8 = Eulerian$Graph.Make({
 
 var Eulerian$1 = include$8;
 
-var compare$6 = Caml.caml_int_compare;
+var compare$6 = Caml.int_compare;
 
 var Int$1 = {
   compare: compare$6
@@ -965,100 +864,9 @@ var include$9 = (function (param) {
       return partial_arg$27(partial_arg$26, param);
     })(Int$1);
 
-var V$3 = G$1.V;
-
-var E$1 = G$1.E;
-
-var iter_vertex$3 = G$1.iter_vertex;
-
-var iter_edges_e$1 = G$1.iter_edges_e;
-
-function vertex_name$1(v) {
-  return String(Curry._1(V$3.label, v));
-}
-
-function graph_attributes$1(param) {
-  return /* [] */0;
-}
-
-function default_vertex_attributes$1(param) {
-  return /* [] */0;
-}
-
-function vertex_attributes$1(param) {
-  return /* [] */0;
-}
-
-function default_edge_attributes$1(param) {
-  return /* [] */0;
-}
-
-function edge_attributes$1(e) {
-  return {
-          hd: {
-            NAME: "Label",
-            VAL: String(Curry._1(E$1.label, e))
-          },
-          tl: /* [] */0
-        };
-}
-
-function get_subgraph$1(param) {
-  
-}
-
-var Dot_$1 = Graphviz$Graph.Dot({
-      V: {},
-      E: {
-        src: E$1.src,
-        dst: E$1.dst
-      },
-      iter_vertex: iter_vertex$3,
-      iter_edges_e: iter_edges_e$1,
-      graph_attributes: graph_attributes$1,
-      default_vertex_attributes: default_vertex_attributes$1,
-      vertex_name: vertex_name$1,
-      vertex_attributes: vertex_attributes$1,
-      get_subgraph: get_subgraph$1,
-      default_edge_attributes: default_edge_attributes$1,
-      edge_attributes: edge_attributes$1
-    });
-
-var Neato$1 = Graphviz$Graph.Neato({
-      V: {},
-      E: {
-        src: E$1.src,
-        dst: E$1.dst
-      },
-      iter_vertex: iter_vertex$3,
-      iter_edges_e: iter_edges_e$1,
-      graph_attributes: graph_attributes$1,
-      default_vertex_attributes: default_vertex_attributes$1,
-      vertex_name: vertex_name$1,
-      vertex_attributes: vertex_attributes$1,
-      get_subgraph: get_subgraph$1,
-      default_edge_attributes: default_edge_attributes$1,
-      edge_attributes: edge_attributes$1
-    });
-
-function dot_output$1(g, f) {
-  var oc = Pervasives.open_out(f);
-  if (is_directed$1) {
-    Curry._2(Dot_$1.output_graph, oc, g);
-  } else {
-    Curry._2(Neato$1.output_graph, oc, g);
-  }
-  return Pervasives.close_out(oc);
-}
-
-function display_with_gv$1(g) {
-  var tmp = Filename.temp_file(undefined, "graph", ".dot");
-  dot_output$1(g, tmp);
-  Caml_sys.caml_sys_system_command("dot -Tps " + (tmp + " | gv -"));
-  return Caml_external_polyfill.resolve("caml_sys_remove")(tmp);
-}
-
 var Digraph_E = G.E;
+
+var Digraph_is_directed = G.is_directed;
 
 var Digraph_create = G.create;
 
@@ -1187,7 +995,7 @@ var Digraph_spanningtree = include$4.spanningtree;
 var Digraph = {
   V: V,
   E: Digraph_E,
-  is_directed: is_directed,
+  is_directed: Digraph_is_directed,
   create: Digraph_create,
   clear: Digraph_clear,
   copy: Digraph_copy,
@@ -1250,12 +1058,12 @@ var Digraph = {
   PathCheck: PathCheck,
   Topological: Digraph_Topological,
   Eulerian: Eulerian,
-  spanningtree: Digraph_spanningtree,
-  dot_output: dot_output,
-  display_with_gv: display_with_gv
+  spanningtree: Digraph_spanningtree
 };
 
 var Graph_E = G$1.E;
+
+var Graph_is_directed = G$1.is_directed;
 
 var Graph_create = G$1.create;
 
@@ -1382,9 +1190,9 @@ var Graph_Topological = {
 var Graph_spanningtree = include$9.spanningtree;
 
 var Graph = {
-  V: V$2,
+  V: V$1,
   E: Graph_E,
-  is_directed: is_directed$1,
+  is_directed: Graph_is_directed,
   create: Graph_create,
   clear: Graph_clear,
   copy: Graph_copy,
@@ -1409,7 +1217,7 @@ var Graph = {
   pred: Graph_pred,
   succ_e: Graph_succ_e,
   pred_e: Graph_pred_e,
-  iter_vertex: iter_vertex$2,
+  iter_vertex: iter_vertex$1,
   iter_edges: Graph_iter_edges,
   fold_vertex: Graph_fold_vertex,
   fold_edges: Graph_fold_edges,
@@ -1447,14 +1255,11 @@ var Graph = {
   PathCheck: PathCheck$1,
   Topological: Graph_Topological,
   Eulerian: Eulerian$1,
-  spanningtree: Graph_spanningtree,
-  dot_output: dot_output$1,
-  display_with_gv: display_with_gv$1
+  spanningtree: Graph_spanningtree
 };
 
 export {
   Digraph ,
   Graph ,
-  
 }
 /* G Not a pure module */

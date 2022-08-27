@@ -48,28 +48,24 @@ function CliqueTree(funarg) {
   };
   var set_clique = function (x, v) {
     x.clique = v;
-    
   };
   var number = function (x) {
     return x.number;
   };
   var set_number = function (x, v) {
     x.number = v;
-    
   };
   var mark = function (x) {
     return x.mark;
   };
   var incr_mark = function (x) {
     x.mark = x.mark + 1 | 0;
-    
   };
   var m = function (x) {
     return x.m;
   };
   var set_m = function (x, v) {
     x.m = v;
-    
   };
   var last = function (x) {
     var v = x.last;
@@ -81,7 +77,6 @@ function CliqueTree(funarg) {
   };
   var set_last = function (x, v) {
     x.last = Caml_option.some(v);
-    
   };
   var CliqueV = {
     compare: compare,
@@ -104,7 +99,7 @@ function CliqueTree(funarg) {
   var CVS = $$Set.Make(CliqueV);
   var partial_arg = {};
   var partial_arg$1 = Util$Graph.DataV;
-  var compare$1 = Caml.caml_int_compare;
+  var compare$1 = Caml.int_compare;
   var hash$1 = Hashtbl.hash;
   var equal$1 = function (x, y) {
     return x === y;
@@ -117,7 +112,7 @@ function CliqueTree(funarg) {
         equal: equal$1
       });
   var compare$2 = function (param, param$1) {
-    return Caml.caml_int_compare(param[0], param$1[0]);
+    return Caml.int_compare(param[0], param$1[0]);
   };
   var default_1 = CVS.empty;
   var $$default = [
@@ -137,7 +132,7 @@ function CliqueTree(funarg) {
     var vertices = List.map(vertex, Curry._1(CVS.elements, param[1]));
     var w = List.fold_left((function (w, v) {
             return List.fold_left((function (w, v$p) {
-                          if (Caml_obj.caml_notequal(v, v$p) && !Curry._3(funarg.mem_edge, g, v, v$p) && Curry._3(funarg.mem_edge, tri, v, v$p)) {
+                          if (Caml_obj.notequal(v, v$p) && !Curry._3(funarg.mem_edge, g, v, v$p) && Curry._3(funarg.mem_edge, tri, v, v$p)) {
                             return w + 1 | 0;
                           } else {
                             return w;
@@ -254,7 +249,7 @@ function CliqueTree(funarg) {
               Curry._1(incr_mark, y);
               Curry._2(set_m, y, Curry._2(CVS.add, x, Curry._1(m, y)));
             }
-            return Curry._2(set_last, y, x);
+            Curry._2(set_last, y, x);
           }
           }(x)), g$p, x);
       pmark = mark$1;
@@ -383,6 +378,5 @@ function CliqueTree(funarg) {
 
 export {
   CliqueTree ,
-  
 }
 /* Persistent-Graph Not a pure module */

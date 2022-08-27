@@ -69,6 +69,5 @@ function Bron_Kerbosch(funarg) {
 
 export {
   Bron_Kerbosch ,
-  
 }
 /* No side effect */

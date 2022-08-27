@@ -31,7 +31,7 @@ var I = Blocks$Graph.Make(function (funarg) {
             };
     });
 
-var compare = Caml.caml_int_compare;
+var compare = Caml.int_compare;
 
 function equal(prim0, prim1) {
   return prim0 === prim1;
@@ -53,7 +53,7 @@ var V = {
   label: label
 };
 
-var compare$1 = Caml_obj.caml_compare;
+var compare$1 = Caml_obj.compare;
 
 function create$1(v1, param, v2) {
   return [
@@ -153,27 +153,27 @@ function find_all_edges(g, i, j) {
 }
 
 function add_edge(g, i, j) {
-  return Bitv$Graph.set(Caml_array.get(g, i), j, true);
+  Bitv$Graph.set(Caml_array.get(g, i), j, true);
 }
 
 function add_edge_e(g, param) {
-  return Bitv$Graph.set(Caml_array.get(g, param[0]), param[1], true);
+  Bitv$Graph.set(Caml_array.get(g, param[0]), param[1], true);
 }
 
 function remove_edge(g, i, j) {
-  return Bitv$Graph.set(Caml_array.get(g, i), j, false);
+  Bitv$Graph.set(Caml_array.get(g, i), j, false);
 }
 
 function remove_edge_e(g, param) {
-  return Bitv$Graph.set(Caml_array.get(g, param[0]), param[1], false);
+  Bitv$Graph.set(Caml_array.get(g, param[0]), param[1], false);
 }
 
 function unsafe_add_edge(g, i, j) {
-  return Bitv$Graph.unsafe_set(g[i], j, true);
+  Bitv$Graph.unsafe_set(g[i], j, true);
 }
 
 function unsafe_remove_edge(g, i, j) {
-  return Bitv$Graph.unsafe_set(g[i], j, false);
+  Bitv$Graph.unsafe_set(g[i], j, false);
 }
 
 function remove_vertex(param, param$1) {
@@ -185,11 +185,11 @@ function add_vertex(param, param$1) {
 }
 
 function clear(g) {
-  return $$Array.iter((function (b) {
-                return Bitv$Graph.iteri((function (j, param) {
-                              return Bitv$Graph.set(b, j, false);
-                            }), b);
-              }), g);
+  $$Array.iter((function (b) {
+          Bitv$Graph.iteri((function (j, param) {
+                  Bitv$Graph.set(b, j, false);
+                }), b);
+        }), g);
 }
 
 function copy(g) {
@@ -202,7 +202,6 @@ function iter_vertex(f, g) {
   for(var i = 0 ,i_finish = g.length; i < i_finish; ++i){
     Curry._1(f, i);
   }
-  
 }
 
 function iter_edges(f, g) {
@@ -216,7 +215,6 @@ function iter_edges(f, g) {
         }
         }(i)), Caml_array.get(g, i));
   }
-  
 }
 
 function fold_vertex(f, g, a) {
@@ -281,7 +279,6 @@ function iter_succ(f, g, i) {
     }
     
   }
-  
 }
 
 function iter_pred(f, g, i) {
@@ -291,7 +288,6 @@ function iter_pred(f, g, i) {
     }
     
   }
-  
 }
 
 function fold_succ(f, g, i, a) {
@@ -338,7 +334,7 @@ function map_vertex(f, g) {
   var v = $$Array.init(n, f$1);
   var g$p = make(n);
   iter_edges((function (i, j) {
-          return Bitv$Graph.unsafe_set(Caml_array.get(g$p, Caml_array.get(v, i)), Caml_array.get(v, j), true);
+          Bitv$Graph.unsafe_set(Caml_array.get(g$p, Caml_array.get(v, i)), Caml_array.get(v, j), true);
         }), g);
   return g$p;
 }
@@ -389,7 +385,6 @@ function iter_edges_e(f, g) {
         }
         }(i)), Caml_array.get(g, i));
   }
-  
 }
 
 function fold_edges_e(f, g, a) {
@@ -418,7 +413,6 @@ function iter_succ_e(f, g, i) {
     }
     
   }
-  
 }
 
 function iter_pred_e(f, g, i) {
@@ -431,7 +425,6 @@ function iter_pred_e(f, g, i) {
     }
     
   }
-  
 }
 
 function fold_succ_e(f, g, i, a) {
@@ -509,21 +502,19 @@ var include = Blocks$Graph.Graph({
 function add_edge$1(g, v1, v2) {
   add_edge(g, v1, v2);
   unsafe_add_edge(g, v2, v1);
-  
 }
 
 function add_edge_e$1(g, param) {
-  return add_edge$1(g, param[0], param[1]);
+  add_edge$1(g, param[0], param[1]);
 }
 
 function remove_edge$1(g, v1, v2) {
   remove_edge(g, v1, v2);
   unsafe_remove_edge(g, v2, v1);
-  
 }
 
 function remove_edge_e$1(g, param) {
-  return remove_edge$1(g, param[0], param[1]);
+  remove_edge$1(g, param[0], param[1]);
 }
 
 function Digraph_Concrete(funarg) {
@@ -539,30 +530,24 @@ function Digraph_Concrete(funarg) {
   var add_edge_e = include.add_edge_e;
   var add_vertex$1 = function (g, v) {
     Curry._2(add_vertex, g, v);
-    
   };
   var add_edge$1 = function (g, v1, v2) {
     Curry._3(add_edge, g, v1, v2);
-    
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   var add_edge_e$1 = function (g, e) {
     Curry._2(add_edge_e, g, e);
-    
   };
   var remove_vertex = function (g, v) {
     if (Curry._2(HM.mem, v, g)) {
       Curry._2(HM.remove, v, g);
       return Curry._2(HM.iter, (function (k, s) {
                     Curry._3(HM.add, k, Curry._2(S.remove, v, s), g);
-                    
                   }), g);
     }
     
@@ -626,7 +611,7 @@ function Digraph_Concrete(funarg) {
 
 function Digraph_Abstract(funarg) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -674,10 +659,9 @@ function Digraph_Abstract(funarg) {
     add_vertex(g, v1);
     add_vertex(g, v2);
     Curry._3(unsafe_add_edge, g.edges, v1, v2);
-    
   };
   var add_edge_e = function (g, param) {
-    return add_edge(g, param[0], param[1]);
+    add_edge(g, param[0], param[1]);
   };
   var remove_vertex = function (g, v) {
     if (!Curry._2(HM.mem, v, g.edges)) {
@@ -687,31 +671,25 @@ function Digraph_Abstract(funarg) {
     Curry._2(HM.remove, v, e);
     Curry._2(HM.iter, (function (k, s) {
             Curry._3(HM.add, k, Curry._2(S.remove, v, s), e);
-            
           }), e);
     g.size = g.size - 1 | 0;
-    
   };
   var get = function (v) {
     return v.mark;
   };
   var set = function (v, m) {
     v.mark = m;
-    
   };
   var clear = function (g) {
-    return Curry._2(iter_vertex, (function (v) {
-                  v.mark = 0;
-                  
-                }), g);
+    Curry._2(iter_vertex, (function (v) {
+            v.mark = 0;
+          }), g);
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   return {
           V: include.V,
@@ -776,23 +754,18 @@ function Digraph_ConcreteLabeled(funarg, funarg$1) {
   var add_edge = include.add_edge;
   var add_vertex$1 = function (g, v) {
     Curry._2(add_vertex, g, v);
-    
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   var add_edge_e$1 = function (g, e) {
     Curry._2(add_edge_e, g, e);
-    
   };
   var add_edge$1 = function (g, v1, v2) {
     Curry._3(add_edge, g, v1, v2);
-    
   };
   var remove_vertex = function (g, v) {
     if (!Curry._2(HM.mem, v, g)) {
@@ -804,10 +777,9 @@ function Digraph_ConcreteLabeled(funarg, funarg$1) {
                     return !Curry._2(V.equal, v, param[0]);
                   }));
     };
-    return Curry._2(HM.iter, (function (k, s) {
-                  Curry._3(HM.add, k, Curry._1(remove(v), s), g);
-                  
-                }), g);
+    Curry._2(HM.iter, (function (k, s) {
+            Curry._3(HM.add, k, Curry._1(remove(v), s), g);
+          }), g);
   };
   return {
           V: {
@@ -868,7 +840,7 @@ function Digraph_ConcreteLabeled(funarg, funarg$1) {
 
 function Digraph_AbstractLabeled(funarg, funarg$1) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -922,14 +894,13 @@ function Digraph_AbstractLabeled(funarg, funarg$1) {
           v2,
           param[1]
         ]);
-    
   };
   var add_edge = function (g, v1, v2) {
-    return add_edge_e(g, [
-                v1,
-                funarg$1.$$default,
-                v2
-              ]);
+    add_edge_e(g, [
+          v1,
+          funarg$1.$$default,
+          v2
+        ]);
   };
   var remove_vertex = function (g, v) {
     if (!Curry._2(HM.mem, v, g.edges)) {
@@ -948,31 +919,25 @@ function Digraph_AbstractLabeled(funarg, funarg$1) {
     Curry._2(HM.remove, v, e);
     Curry._2(HM.iter, (function (k, s) {
             Curry._3(HM.add, k, remove(s), e);
-            
           }), e);
     g.size = g.size - 1 | 0;
-    
   };
   var get = function (v) {
     return v.mark;
   };
   var set = function (v, m) {
     v.mark = m;
-    
   };
   var clear = function (g) {
-    return Curry._2(iter_vertex, (function (v) {
-                  v.mark = 0;
-                  
-                }), g);
+    Curry._2(iter_vertex, (function (v) {
+            v.mark = 0;
+          }), g);
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   return {
           V: V,
@@ -1037,32 +1002,26 @@ function Digraph_ConcreteBidirectional(funarg) {
   var add_edge = include.add_edge;
   var add_vertex$1 = function (g, v) {
     Curry._2(add_vertex, g, v);
-    
   };
   var add_edge$1 = function (g, v1, v2) {
     Curry._3(add_edge, g, v1, v2);
-    
   };
   var add_edge_e = function (g, param) {
-    return add_edge$1(g, param[0], param[1]);
+    add_edge$1(g, param[0], param[1]);
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   var remove_vertex = function (g, v) {
     if (Curry._2(HM.mem, v, g)) {
       Curry._3(iter_pred_e, (function (e) {
               Curry._2(remove_edge_e, g, e);
-              
             }), g, v);
       Curry._3(iter_succ_e, (function (e) {
               Curry._2(remove_edge_e, g, e);
-              
             }), g, v);
       Curry._2(HM.remove, v, g);
       return ;
@@ -1140,11 +1099,9 @@ function Digraph_ConcreteBidirectionalLabeled(funarg, funarg$1) {
   var add_edge = include.add_edge;
   var add_vertex$1 = function (g, v) {
     Curry._2(add_vertex, g, v);
-    
   };
   var add_edge$1 = function (g, v1, v2) {
     Curry._3(add_edge, g, v1, v2);
-    
   };
   var add_edge_e$1 = function (g, param) {
     Curry._2(add_edge_e, g, [
@@ -1152,25 +1109,20 @@ function Digraph_ConcreteBidirectionalLabeled(funarg, funarg$1) {
           param[1],
           param[2]
         ]);
-    
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   var remove_vertex = function (g, v) {
     if (Curry._2(HM.mem, v, g)) {
       Curry._3(iter_pred_e, (function (e) {
               Curry._2(remove_edge_e, g, e);
-              
             }), g, v);
       Curry._3(iter_succ_e, (function (e) {
               Curry._2(remove_edge_e, g, e);
-              
             }), g, v);
       Curry._2(HM.remove, v, g);
       return ;
@@ -1256,22 +1208,18 @@ function Graph_Concrete(funarg) {
   var add_edge = include.add_edge;
   var add_vertex$1 = function (g, v) {
     Curry._2(add_vertex, g, v);
-    
   };
   var add_edge$1 = function (g, v1, v2) {
     Curry._3(add_edge, g, v1, v2);
-    
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_vertex = function (g, v) {
     if (Curry._2(HM.mem, v, g)) {
       Curry._2(HM.remove, v, g);
       return Curry._2(HM.iter, (function (k, s) {
                     Curry._3(HM.add, k, Curry._2(S.remove, v, s), g);
-                    
                   }), g);
     }
     
@@ -1345,10 +1293,9 @@ function Graph_Concrete(funarg) {
           };
     }
     Curry._3(unsafe_add_edge, g, v2, v1);
-    
   };
   var add_edge_e = function (g, param) {
-    return add_edge$2(g, param[0], param[1]);
+    add_edge$2(g, param[0], param[1]);
   };
   var remove_edge$2 = function (g, v1, v2) {
     remove_edge$1(g, v1, v2);
@@ -1364,10 +1311,9 @@ function Graph_Concrete(funarg) {
           };
     }
     Curry._3(unsafe_remove_edge, g, v2, v1);
-    
   };
   var remove_edge_e = function (g, param) {
-    return remove_edge$2(g, param[0], param[1]);
+    remove_edge$2(g, param[0], param[1]);
   };
   return {
           V: include$1.V,
@@ -1416,7 +1362,7 @@ function Graph_Concrete(funarg) {
 
 function Graph_Abstract(funarg) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -1499,10 +1445,9 @@ function Graph_Abstract(funarg) {
     add_vertex(g, v1);
     add_vertex(g, v2);
     Curry._3(unsafe_add_edge, g.edges, v1, v2);
-    
   };
   var add_edge_e = function (g, param) {
-    return add_edge(g, param[0], param[1]);
+    add_edge(g, param[0], param[1]);
   };
   var remove_vertex = function (g, v) {
     if (!Curry._2(HM.mem, v, g.edges)) {
@@ -1512,23 +1457,19 @@ function Graph_Abstract(funarg) {
     Curry._2(HM.remove, v, e);
     Curry._2(HM.iter, (function (k, s) {
             Curry._3(HM.add, k, Curry._2(S.remove, v, s), e);
-            
           }), e);
     g.size = g.size - 1 | 0;
-    
   };
   var get = function (v) {
     return v.mark;
   };
   var set = function (v, m) {
     v.mark = m;
-    
   };
   var clear$1 = function (g) {
-    return Curry._2(iter_vertex, (function (v) {
-                  v.mark = 0;
-                  
-                }), g);
+    Curry._2(iter_vertex, (function (v) {
+            v.mark = 0;
+          }), g);
   };
   var Mark = {
     get: get,
@@ -1537,11 +1478,9 @@ function Graph_Abstract(funarg) {
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   var G_I = include.I;
   var G_PV = include.PV;
@@ -1600,10 +1539,9 @@ function Graph_Abstract(funarg) {
           };
     }
     Curry._3(unsafe_add_edge, g.edges, v2, v1);
-    
   };
   var add_edge_e$1 = function (g, param) {
-    return add_edge$1(g, param[0], param[1]);
+    add_edge$1(g, param[0], param[1]);
   };
   var remove_edge$2 = function (g, v1, v2) {
     remove_edge$1(g, v1, v2);
@@ -1619,10 +1557,9 @@ function Graph_Abstract(funarg) {
           };
     }
     Curry._3(unsafe_remove_edge, g.edges, v2, v1);
-    
   };
   var remove_edge_e$2 = function (g, param) {
-    return remove_edge$2(g, param[0], param[1]);
+    remove_edge$2(g, param[0], param[1]);
   };
   var $$let = Mark;
   return {
@@ -1687,23 +1624,18 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
   var add_edge = include.add_edge;
   var add_vertex$1 = function (g, v) {
     Curry._2(add_vertex, g, v);
-    
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   var add_edge_e$1 = function (g, e) {
     Curry._2(add_edge_e, g, e);
-    
   };
   var add_edge$1 = function (g, v1, v2) {
     Curry._3(add_edge, g, v1, v2);
-    
   };
   var remove_vertex = function (g, v) {
     if (!Curry._2(HM.mem, v, g)) {
@@ -1715,10 +1647,9 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
                     return !Curry._2(V.equal, v, param[0]);
                   }));
     };
-    return Curry._2(HM.iter, (function (k, s) {
-                  Curry._3(HM.add, k, Curry._1(remove(v), s), g);
-                  
-                }), g);
+    Curry._2(HM.iter, (function (k, s) {
+            Curry._3(HM.add, k, Curry._1(remove(v), s), g);
+          }), g);
   };
   var include_VE = include.VE;
   var include_E = include.E;
@@ -1847,14 +1778,13 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
           v1,
           e[1]
         ]);
-    
   };
   var add_edge$2 = function (g, v1, v2) {
-    return add_edge_e$3(g, [
-                v1,
-                funarg$1.$$default,
-                v2
-              ]);
+    add_edge_e$3(g, [
+          v1,
+          funarg$1.$$default,
+          v2
+        ]);
   };
   var remove_edge$3 = function (g, v1, v2) {
     Curry._3(remove_edge$2, g, v1, v2);
@@ -1870,7 +1800,6 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
           };
     }
     Curry._3(unsafe_remove_edge, g, v2, v1);
-    
   };
   var remove_edge_e$3 = function (g, e) {
     var v2 = e[2];
@@ -1892,7 +1821,6 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
           e[1],
           v1
         ]);
-    
   };
   return {
           V: include$1.V,
@@ -1941,7 +1869,7 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
 
 function Graph_AbstractLabeled(funarg, funarg$1) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -1995,14 +1923,13 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
           v2,
           param[1]
         ]);
-    
   };
   var add_edge = function (g, v1, v2) {
-    return add_edge_e(g, [
-                v1,
-                funarg$1.$$default,
-                v2
-              ]);
+    add_edge_e(g, [
+          v1,
+          funarg$1.$$default,
+          v2
+        ]);
   };
   var remove_vertex = function (g, v) {
     if (!Curry._2(HM.mem, v, g.edges)) {
@@ -2021,23 +1948,19 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
     Curry._2(HM.remove, v, e);
     Curry._2(HM.iter, (function (k, s) {
             Curry._3(HM.add, k, remove(s), e);
-            
           }), e);
     g.size = g.size - 1 | 0;
-    
   };
   var get = function (v) {
     return v.mark;
   };
   var set = function (v, m) {
     v.mark = m;
-    
   };
   var clear = function (g) {
-    return Curry._2(iter_vertex, (function (v) {
-                  v.mark = 0;
-                  
-                }), g);
+    Curry._2(iter_vertex, (function (v) {
+            v.mark = 0;
+          }), g);
   };
   var Mark = {
     get: get,
@@ -2046,11 +1969,9 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
   };
   var remove_edge$1 = function (g, v1, v2) {
     Curry._3(remove_edge, g, v1, v2);
-    
   };
   var remove_edge_e$1 = function (g, e) {
     Curry._2(remove_edge_e, g, e);
-    
   };
   var include_I = include.I;
   var include_PV = include.PV;
@@ -2199,14 +2120,13 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
           v1,
           e[1]
         ]);
-    
   };
   var add_edge$1 = function (g, v1, v2) {
-    return add_edge_e$2(g, [
-                v1,
-                funarg$1.$$default,
-                v2
-              ]);
+    add_edge_e$2(g, [
+          v1,
+          funarg$1.$$default,
+          v2
+        ]);
   };
   var remove_edge$3 = function (g, v1, v2) {
     Curry._3(remove_edge$2, g, v1, v2);
@@ -2222,7 +2142,6 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
           };
     }
     Curry._3(unsafe_remove_edge, g.edges, v2, v1);
-    
   };
   var remove_edge_e$3 = function (g, e) {
     var v2 = e[2];
@@ -2244,7 +2163,6 @@ function Graph_AbstractLabeled(funarg, funarg$1) {
           e[1],
           v1
         ]);
-    
   };
   var $$let = G_Mark;
   return {
@@ -2409,6 +2327,5 @@ export {
   Digraph ,
   Graph ,
   Matrix ,
-  
 }
 /* I Not a pure module */

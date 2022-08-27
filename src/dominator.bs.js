@@ -82,7 +82,6 @@ function Make(funarg) {
         }
         
       };
-      
     };
     var ancestor_with_lowest_semi = function (v) {
       try {
@@ -107,7 +106,7 @@ function Make(funarg) {
     };
     var link = function (p, n) {
       Curry._3(H.replace, ancestor, n, p);
-      return Curry._3(H.replace, best, n, n);
+      Curry._3(H.replace, best, n, n);
     };
     var semidominator = function (n) {
       var s = Curry._2(H.find, parent, n);
@@ -147,7 +146,7 @@ function Make(funarg) {
             } else {
               Curry._3(H.add, samedom, v, y);
             }
-            return Curry._2(H.remove, bucket, p);
+            Curry._2(H.remove, bucket, p);
           }
           }(p)), Curry._2(H.find_all, bucket, p));
     };
@@ -215,12 +214,12 @@ function Make(funarg) {
                 return Curry._3(H.add, tree, x, y);
               }
             }
-            return Curry._2(S.iter, (function (x) {
-                          if (Curry._2(idoms, x, y)) {
-                            return Curry._3(H.add, tree, x, y);
-                          }
-                          
-                        }), Curry._1(dominators, y));
+            Curry._2(S.iter, (function (x) {
+                    if (Curry._2(idoms, x, y)) {
+                      return Curry._3(H.add, tree, x, y);
+                    }
+                    
+                  }), Curry._1(dominators, y));
           }), cfg);
     return function (x) {
       var x$1 = Curry._2(H.find_all, tree, x);
@@ -479,7 +478,6 @@ function Make_graph(funarg) {
         }
         
       };
-      
     };
     var ancestor_with_lowest_semi = function (v) {
       try {
@@ -504,7 +502,7 @@ function Make_graph(funarg) {
     };
     var link = function (p, n) {
       Curry._3(H.replace, ancestor, n, p);
-      return Curry._3(H.replace, best, n, n);
+      Curry._3(H.replace, best, n, n);
     };
     var semidominator = function (n) {
       var s = Curry._2(H.find, parent, n);
@@ -544,7 +542,7 @@ function Make_graph(funarg) {
             } else {
               Curry._3(H.add, samedom, v, y);
             }
-            return Curry._2(H.remove, bucket, p);
+            Curry._2(H.remove, bucket, p);
           }
           }(p)), Curry._2(H.find_all, bucket, p));
     };
@@ -612,12 +610,12 @@ function Make_graph(funarg) {
                 return Curry._3(H.add, tree, x, y);
               }
             }
-            return Curry._2(S.iter, (function (x) {
-                          if (Curry._2(idoms, x, y)) {
-                            return Curry._3(H.add, tree, x, y);
-                          }
-                          
-                        }), Curry._1(dominators, y));
+            Curry._2(S.iter, (function (x) {
+                    if (Curry._2(idoms, x, y)) {
+                      return Curry._3(H.add, tree, x, y);
+                    }
+                    
+                  }), Curry._1(dominators, y));
           }), cfg);
     return function (x) {
       var x$1 = Curry._2(H.find_all, tree, x);
@@ -872,6 +870,5 @@ export {
   Unreachable ,
   Make ,
   Make_graph ,
-  
 }
 /* No side effect */

@@ -60,24 +60,23 @@ function Make(funarg) {
         },
         tl: cont.contents
       };
-      return Curry._3(funarg.iter_succ, (function (w) {
-                    cont.contents = {
-                      hd: {
-                        TAG: /* Visit */1,
-                        _0: v,
-                        _1: w
-                      },
-                      tl: {
-                        hd: {
-                          TAG: /* Test */2,
-                          _0: v,
-                          _1: w
-                        },
-                        tl: cont.contents
-                      }
-                    };
-                    
-                  }), g, v);
+      Curry._3(funarg.iter_succ, (function (w) {
+              cont.contents = {
+                hd: {
+                  TAG: /* Visit */1,
+                  _0: v,
+                  _1: w
+                },
+                tl: {
+                  hd: {
+                    TAG: /* Test */2,
+                    _0: v,
+                    _1: w
+                  },
+                  tl: cont.contents
+                }
+              };
+            }), g, v);
     };
     var visit_and_finish = function (v) {
       visit(v);
@@ -115,7 +114,7 @@ function Make(funarg) {
               var w = action._1;
               var v$2 = action._0;
               if (!Curry._2(H.mem, hashcomp, w)) {
-                Curry._3(H.replace, root, v$2, Caml.caml_int_min(Curry._2(H.find, root, v$2), Curry._2(H.find, root, w)));
+                Curry._3(H.replace, root, v$2, Caml.int_min(Curry._2(H.find, root, v$2), Curry._2(H.find, root, w)));
               }
               break;
           
@@ -138,10 +137,10 @@ function Make(funarg) {
     var t = Caml_array.make(match[0], /* [] */0);
     Curry._2(funarg.iter_vertex, (function (v) {
             var i = Curry._1(f, v);
-            return Caml_array.set(t, i, {
-                        hd: v,
-                        tl: Caml_array.get(t, i)
-                      });
+            Caml_array.set(t, i, {
+                  hd: v,
+                  tl: Caml_array.get(t, i)
+                });
           }), g);
     return t;
   };
@@ -246,24 +245,23 @@ function Connectivity(funarg) {
           },
           tl: cont.contents
         };
-        return Curry._2(iter_succ(function (w) {
-                        cont.contents = {
-                          hd: {
-                            TAG: /* Visit */1,
-                            _0: v,
-                            _1: w
-                          },
-                          tl: {
-                            hd: {
-                              TAG: /* Test */2,
-                              _0: v,
-                              _1: w
-                            },
-                            tl: cont.contents
-                          }
-                        };
-                        
-                      }), g, v);
+        Curry._2(iter_succ(function (w) {
+                  cont.contents = {
+                    hd: {
+                      TAG: /* Visit */1,
+                      _0: v,
+                      _1: w
+                    },
+                    tl: {
+                      hd: {
+                        TAG: /* Test */2,
+                        _0: v,
+                        _1: w
+                      },
+                      tl: cont.contents
+                    }
+                  };
+                }), g, v);
       };
       var visit_and_finish = function (v) {
         visit(v);
@@ -301,7 +299,7 @@ function Connectivity(funarg) {
                 var w = action._1;
                 var v$2 = action._0;
                 if (!Curry._2(H.mem, hashcomp, w)) {
-                  Curry._3(H.replace, root, v$2, Caml.caml_int_min(Curry._2(H.find, root, v$2), Curry._2(H.find, root, w)));
+                  Curry._3(H.replace, root, v$2, Caml.int_min(Curry._2(H.find, root, v$2), Curry._2(H.find, root, w)));
                 }
                 break;
             
@@ -432,24 +430,23 @@ function BiConnectivity(funarg) {
           },
           tl: cont.contents
         };
-        return Curry._2(iter_succ(function (w) {
-                        cont.contents = {
-                          hd: {
-                            TAG: /* Visit */1,
-                            _0: v,
-                            _1: w
-                          },
-                          tl: {
-                            hd: {
-                              TAG: /* Test */2,
-                              _0: v,
-                              _1: w
-                            },
-                            tl: cont.contents
-                          }
-                        };
-                        
-                      }), g, v);
+        Curry._2(iter_succ(function (w) {
+                  cont.contents = {
+                    hd: {
+                      TAG: /* Visit */1,
+                      _0: v,
+                      _1: w
+                    },
+                    tl: {
+                      hd: {
+                        TAG: /* Test */2,
+                        _0: v,
+                        _1: w
+                      },
+                      tl: cont.contents
+                    }
+                  };
+                }), g, v);
       };
       var visit_and_finish = function (v) {
         visit(v);
@@ -487,7 +484,7 @@ function BiConnectivity(funarg) {
                 var w = action._1;
                 var v$2 = action._0;
                 if (!Curry._2(H.mem, hashcomp, w)) {
-                  Curry._3(H.replace, root, v$2, Caml.caml_int_min(Curry._2(H.find, root, v$2), Curry._2(H.find, root, w)));
+                  Curry._3(H.replace, root, v$2, Caml.int_min(Curry._2(H.find, root, v$2), Curry._2(H.find, root, w)));
                 }
                 break;
             
@@ -547,11 +544,10 @@ function Undirected(funarg) {
               hd: v,
               tl: vertices.contents
             };
-            
           }), g);
     var uf = Curry._1(UF.init, vertices.contents);
     var visit = function (u, v) {
-      return Curry._3(UF.union, u, v, uf);
+      Curry._3(UF.union, u, v, uf);
     };
     Curry._2(funarg.iter_edges, visit, g);
     var count = {
@@ -581,10 +577,10 @@ function Undirected(funarg) {
     var t = Caml_array.make(match[0], /* [] */0);
     Curry._2(funarg.iter_vertex, (function (v) {
             var i = Curry._1(f, v);
-            return Caml_array.set(t, i, {
-                        hd: v,
-                        tl: Caml_array.get(t, i)
-                      });
+            Caml_array.set(t, i, {
+                  hd: v,
+                  tl: Caml_array.get(t, i)
+                });
           }), g);
     return t;
   };
@@ -609,6 +605,5 @@ export {
   Connectivity ,
   BiConnectivity ,
   Undirected ,
-  
 }
 /* No side effect */

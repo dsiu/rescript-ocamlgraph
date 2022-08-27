@@ -297,6 +297,5 @@ function Algo(G, P, S) {
 
 export {
   Algo ,
-  
 }
 /* No side effect */

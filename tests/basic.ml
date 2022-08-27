@@ -15,7 +15,7 @@
 (*                                                                        *)
 (**************************************************************************)
 
-open Format
+open Format_noop
 open Graph
 
 module Int = struct

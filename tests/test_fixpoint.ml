@@ -29,15 +29,15 @@ module Fixpoint = Fixpoint.Make(G)(Analysis)
 
 let pp_int_set pp set =
   let first = ref true in
-  Format.fprintf pp "@[<hov>";
+(*  Format.fprintf pp "@[<hov>";*)
   IntSet.iter (fun x ->
       if !first then
 	first := false
       else
-	Format.fprintf pp ",@ ";
+(*	Format.fprintf pp ",@ ";*)
       Format.pp_print_int pp x)
     set;
-  Format.fprintf pp "@]"
+(*  Format.fprintf pp "@]"*)
 
 let () =
   let n = 15 in

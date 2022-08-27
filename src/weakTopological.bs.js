@@ -24,7 +24,7 @@ function Make(funarg) {
       contents: /* [] */0
     };
     Curry._2(funarg.iter_vertex, (function (v) {
-            return Curry._3(HT.add, dfn, v, 0);
+            Curry._3(HT.add, dfn, v, 0);
           }), g);
     var visit = function (vertex, partition) {
       var head = {
@@ -99,6 +99,5 @@ function Make(funarg) {
 export {
   fold_left ,
   Make ,
-  
 }
 /* No side effect */

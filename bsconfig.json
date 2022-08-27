@@ -9,13 +9,8 @@
       "subdirs": true
     },
     {
-      "dir": "examples",
+      "dir": "interop",
       "subdirs": true
-    },
-    {
-      "dir": "tests",
-      "subdirs": true,
-      "type": "dev"
     }
   ],
   "package-specs": {

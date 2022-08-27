@@ -5,11 +5,11 @@ import * as List from "rescript/lib/es6/list.js";
 import * as $$Array from "rescript/lib/es6/array.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as $$Buffer from "rescript/lib/es6/buffer.js";
-import * as Format from "rescript/lib/es6/format.js";
 import * as Caml_array from "rescript/lib/es6/caml_array.js";
 import * as Caml_int32 from "rescript/lib/es6/caml_int32.js";
 import * as Caml_int64 from "rescript/lib/es6/caml_int64.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
+import * as Format_noop$Graph from "../../interop/format_noop.bs.js";
 
 function length(v) {
   return v.length;
@@ -70,7 +70,7 @@ function normalize(v) {
   }
   var b = v.bits;
   var s = b.length;
-  return Caml_array.set(b, s - 1 | 0, Caml_array.get(b, s - 1 | 0) & Caml_array.get(low_mask, r));
+  Caml_array.set(b, s - 1 | 0, Caml_array.get(b, s - 1 | 0) & Caml_array.get(low_mask, r));
 }
 
 function copy(v) {
@@ -110,7 +110,6 @@ function unsafe_set(v, n, b) {
   } else {
     v.bits[i] = v.bits[i] & bit_not_j[j];
   }
-  
 }
 
 function get(v, n) {
@@ -133,7 +132,6 @@ function set(v, n, b) {
   } else {
     v.bits[i] = v.bits[i] & bit_not_j[j];
   }
-  
 }
 
 function init(n, f) {
@@ -159,7 +157,6 @@ function blit_bits(a, i, m, v, n) {
   } else {
     v[i$p] = (keep_lowest_bits((a >>> i) | 0, m) << j) | v[i$p] & (Caml_array.get(low_mask, j) | Caml_array.get(high_mask, -d | 0));
   }
-  
 }
 
 function blit_int(a, v, n) {
@@ -172,7 +169,6 @@ function blit_int(a, v, n) {
     v[i] = keep_lowest_bits(v[i], j) | (keep_lowest_bits(a, bpi - j | 0) << j);
     v[i + 1 | 0] = keep_highest_bits(v[i + 1 | 0], bpi - j | 0) | (a >>> (bpi - j | 0)) | 0;
   }
-  
 }
 
 function unsafe_blit(v1, ofs1, v2, ofs2, len) {
@@ -193,14 +189,14 @@ function unsafe_blit(v1, ofs1, v2, ofs2, len) {
     blit_int(v1[i], v2, n);
     n = n + bpi | 0;
   }
-  return blit_bits(v1[ei], 0, match$1[1] + 1 | 0, v2, n);
+  blit_bits(v1[ei], 0, match$1[1] + 1 | 0, v2, n);
 }
 
 function blit(v1, ofs1, v2, ofs2, len) {
   if (len < 0 || ofs1 < 0 || (ofs1 + len | 0) > v1.length || ofs2 < 0 || (ofs2 + len | 0) > v2.length) {
     Pervasives.invalid_arg("Bitv.blit");
   }
-  return unsafe_blit(v1.bits, ofs1, v2.bits, ofs2, len);
+  unsafe_blit(v1.bits, ofs1, v2.bits, ofs2, len);
 }
 
 function sub(v, ofs, len) {
@@ -239,7 +235,6 @@ function concat(vl) {
           var n = v.length;
           unsafe_blit(v.bits, 0, b, pos.contents, n);
           pos.contents = pos.contents + n | 0;
-          
         }), vl);
   return res;
 }
@@ -295,7 +290,6 @@ function iter(f, v) {
   for(var i = 0 ,i_finish = v.length; i < i_finish; ++i){
     Curry._1(f, unsafe_get(v, i));
   }
-  
 }
 
 function map(f, v) {
@@ -311,7 +305,6 @@ function iteri(f, v) {
   for(var i = 0 ,i_finish = v.length; i < i_finish; ++i){
     Curry._2(f, i, unsafe_get(v, i));
   }
-  
 }
 
 function mapi(f, v) {
@@ -502,14 +495,14 @@ function to_string(v) {
 }
 
 function print(fmt, v) {
-  return Format.pp_print_string(fmt, to_string(v));
+  Format_noop$Graph.pp_print_string(fmt, to_string(v));
 }
 
 function of_string(s) {
   var n = s.length;
   var v = create(n, false);
   for(var i = 0; i < n; ++i){
-    var c = s.charCodeAt(i);
+    var c = s.codePointAt(i);
     if (c === /* '1' */49) {
       unsafe_set(v, i, true);
     } else if (c !== /* '0' */48) {
@@ -571,7 +564,7 @@ function of_list(l) {
     if (i < 0) {
       Pervasives.invalid_arg("Bitv.of_list");
     }
-    return unsafe_set(b, i, true);
+    unsafe_set(b, i, true);
   };
   List.iter(add_element, l);
   return b;
@@ -583,7 +576,7 @@ function of_list_with_length(l, len) {
     if (i < 0 || i >= len) {
       Pervasives.invalid_arg("Bitv.of_list_with_length");
     }
-    return unsafe_set(b, i, true);
+    unsafe_set(b, i, true);
   };
   List.iter(add_element, l);
   return b;
@@ -833,6 +826,5 @@ export {
   to_int64_us ,
   unsafe_set ,
   unsafe_get ,
-  
 }
 /* bit_j Not a pure module */

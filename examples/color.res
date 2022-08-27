@@ -42,7 +42,7 @@ let seed = switch seed_.contents {
 | Some(s) => s
 }
 let () = {
-  Format.printf("seed = %d@.", seed)
+  //  Format.printf("seed = %d@.", seed)
   Random.init(seed)
 }
 

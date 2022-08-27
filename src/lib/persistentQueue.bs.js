@@ -71,6 +71,5 @@ export {
   add ,
   head ,
   tail ,
-  
 }
 /* No side effect */

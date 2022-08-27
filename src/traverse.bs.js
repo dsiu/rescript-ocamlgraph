@@ -24,7 +24,7 @@ function Mark(G) {
       }
       
     };
-    return Curry._2(G.iter_vertex, visit, g);
+    Curry._2(G.iter_vertex, visit, g);
   };
   var has_cycle = function (g) {
     Curry._1(G.Mark.clear, g);
@@ -43,7 +43,7 @@ function Mark(G) {
               }
               
             }), g, v);
-      return Curry._2(G.Mark.set, v, 2);
+      Curry._2(G.Mark.set, v, 2);
     };
     try {
       Curry._2(G.iter_vertex, (function (v) {
@@ -117,10 +117,10 @@ function Dfs(funarg) {
       }
       
     };
-    return Curry._2(funarg.iter_vertex, visit, g);
+    Curry._2(funarg.iter_vertex, visit, g);
   };
   var postfix = function (post, g) {
-    return iter(undefined, post, g);
+    iter(undefined, post, g);
   };
   var fold_component = function (f, i, g, v0) {
     var h = Curry._1(H.create, 97);
@@ -163,9 +163,9 @@ function Dfs(funarg) {
               }
               
             }), g, v);
-      return Curry._1(post, v);
+      Curry._1(post, v);
     };
-    return visit(v);
+    visit(v);
   };
   var postfix_component = function (post, g) {
     var partial_arg = post;
@@ -290,27 +290,27 @@ function Dfs(funarg) {
   var iter$1 = function (f, g) {
     var h = Curry._1(H.create, 97);
     var stack = Stack.create(undefined);
-    return Curry._2(funarg.iter_vertex, (function (v) {
-                  if (!Curry._2(H.mem, h, v)) {
-                    Stack.push(v, stack);
-                    while(!Stack.is_empty(stack)) {
-                      var v$1 = Stack.pop(stack);
-                      if (!Curry._2(H.mem, h, v$1)) {
-                        Curry._3(H.add, h, v$1, undefined);
-                        Curry._1(f, v$1);
-                        Curry._3(funarg.iter_succ, (function (w) {
-                                if (!Curry._2(H.mem, h, w)) {
-                                  return Stack.push(w, stack);
-                                }
-                                
-                              }), g, v$1);
-                      }
-                      
-                    };
-                    return ;
-                  }
-                  
-                }), g);
+    Curry._2(funarg.iter_vertex, (function (v) {
+            if (!Curry._2(H.mem, h, v)) {
+              Stack.push(v, stack);
+              while(!Stack.is_empty(stack)) {
+                var v$1 = Stack.pop(stack);
+                if (!Curry._2(H.mem, h, v$1)) {
+                  Curry._3(H.add, h, v$1, undefined);
+                  Curry._1(f, v$1);
+                  Curry._3(funarg.iter_succ, (function (w) {
+                          if (!Curry._2(H.mem, h, w)) {
+                            return Stack.push(w, stack);
+                          }
+                          
+                        }), g, v$1);
+                }
+                
+              };
+              return ;
+            }
+            
+          }), g);
   };
   var iter_component$1 = function (f, g, v0) {
     var h = Curry._1(H.create, 97);
@@ -330,7 +330,6 @@ function Dfs(funarg) {
       }
       
     };
-    
   };
   var S = $$Set.Make(funarg.V);
   var start = function (g) {
@@ -443,7 +442,7 @@ function Bfs(funarg) {
   var iter = function (f) {
     return function (param) {
       return fold((function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }), undefined, param);
     };
   };
@@ -474,7 +473,7 @@ function Bfs(funarg) {
   var iter_component = function (f) {
     return function (param, param$1) {
       return fold_component((function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }), undefined, param, param$1);
     };
   };
@@ -621,6 +620,5 @@ export {
   Dfs ,
   Bfs ,
   Mark ,
-  
 }
 /* No side effect */

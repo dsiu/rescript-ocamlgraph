@@ -334,9 +334,9 @@ function MaximalCardinalitySearch_I(funarg) {
   };
   var triangulate = function (g) {
     var match = mcsm(g);
-    return List.iter((function (param) {
-                  return Curry._3(funarg.add_edge, g, param[0], param[1]);
-                }), match[1]);
+    List.iter((function (param) {
+            Curry._3(funarg.add_edge, g, param[0], param[1]);
+          }), match[1]);
   };
   return {
           mcsm: mcsm,
@@ -351,6 +351,5 @@ var MaximalCardinalitySearch = {
 
 export {
   MaximalCardinalitySearch ,
-  
 }
 /* Imperative-Graph Not a pure module */

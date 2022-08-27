@@ -102,9 +102,9 @@ function Make(funarg) {
     var path_from = function (v) {
       var s = Curry._1(H.create, 8);
       Curry._3(H.add, reachable, v, s);
-      return Curry._3(D.prefix_component, (function (w) {
-                    return Curry._3(H.add, s, w, undefined);
-                  }), g0, v);
+      Curry._3(D.prefix_component, (function (w) {
+              Curry._3(H.add, s, w, undefined);
+            }), g0, v);
     };
     Curry._2(funarg.G.iter_vertex, path_from, g0);
     var path = function (u, v) {
@@ -233,9 +233,9 @@ function P(funarg) {
     var path_from = function (v) {
       var s = Curry._1(H.create, 8);
       Curry._3(H.add, reachable, v, s);
-      return Curry._3(D.prefix_component, (function (w) {
-                    return Curry._3(H.add, s, w, undefined);
-                  }), g0, v);
+      Curry._3(D.prefix_component, (function (w) {
+              Curry._3(H.add, s, w, undefined);
+            }), g0, v);
     };
     Curry._2(B.G.iter_vertex, path_from, g0);
     var path = function (u, v) {
@@ -364,9 +364,9 @@ function I(funarg) {
     var path_from = function (v) {
       var s = Curry._1(H.create, 8);
       Curry._3(H.add, reachable, v, s);
-      return Curry._3(D.prefix_component, (function (w) {
-                    return Curry._3(H.add, s, w, undefined);
-                  }), g0, v);
+      Curry._3(D.prefix_component, (function (w) {
+              Curry._3(H.add, s, w, undefined);
+            }), g0, v);
     };
     Curry._2(B.G.iter_vertex, path_from, g0);
     var path = function (u, v) {
@@ -521,6 +521,5 @@ export {
   I ,
   Choose ,
   Neighbourhood ,
-  
 }
 /* No side effect */

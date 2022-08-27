@@ -15,12 +15,11 @@ var cpt_vertex = {
 };
 
 function max_cpt(c1, c2) {
-  return Caml.caml_int_max(c1 + Pervasives.min_int | 0, c2 + Pervasives.min_int | 0) - Pervasives.min_int | 0;
+  return Caml.int_max(c1 + Pervasives.min_int | 0, c2 + Pervasives.min_int | 0) - Pervasives.min_int | 0;
 }
 
 function after_unserialization(serialized_cpt_vertex) {
   cpt_vertex.contents = max_cpt(serialized_cpt_vertex, cpt_vertex.contents);
-  
 }
 
 function Make_Hashtbl(X) {
@@ -61,7 +60,7 @@ function Make_Hashtbl(X) {
     var h$p = Curry._1(create, Curry._1(length, h));
     Curry._2(iter, (function (k, v) {
             var match = Curry._2(f, k, v);
-            return Curry._3(add, h$p, match[0], match[1]);
+            Curry._3(add, h$p, match[0], match[1]);
           }), h);
     return h$p;
   };
@@ -245,7 +244,7 @@ function Minimal(S, HM) {
   };
   var iter_vertex = function (f) {
     return Curry._1(HM.iter, (function (v, param) {
-                  return Curry._1(f, v);
+                  Curry._1(f, v);
                 }));
   };
   var fold_vertex = function (f) {
@@ -277,12 +276,12 @@ function Pred(S) {
     if (!Curry._2(S.mem_vertex, v, g)) {
       Pervasives.invalid_arg("[ocamlgraph] iter_pred");
     }
-    return Curry._2(S.iter_edges, (function (v1, v2) {
-                  if (Curry._2(S.PV.equal, v, v2)) {
-                    return Curry._1(f, v1);
-                  }
-                  
-                }), g);
+    Curry._2(S.iter_edges, (function (v1, v2) {
+            if (Curry._2(S.PV.equal, v, v2)) {
+              return Curry._1(f, v1);
+            }
+            
+          }), g);
   };
   var fold_pred = function (f, g, v) {
     if (!Curry._2(S.mem_vertex, v, g)) {
@@ -316,12 +315,12 @@ function Pred(S) {
     if (!Curry._2(S.mem_vertex, v, g)) {
       Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
     }
-    return Curry._2(S.iter_edges_e, (function (e) {
-                  if (Curry._2(S.PV.equal, v, Curry._1(S.PE.dst, e))) {
-                    return Curry._1(f, e);
-                  }
-                  
-                }), g);
+    Curry._2(S.iter_edges_e, (function (e) {
+            if (Curry._2(S.PV.equal, v, Curry._1(S.PE.dst, e))) {
+              return Curry._1(f, e);
+            }
+            
+          }), g);
   };
   var fold_pred_e = function (f, g, v) {
     if (!Curry._2(S.mem_vertex, v, g)) {
@@ -439,18 +438,18 @@ function Unlabeled(V, HM) {
     return remove_edge(g, param[0], param[1]);
   };
   var iter_succ = function (f, g, v) {
-    return Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
+    Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
   };
   var fold_succ = function (f, g, v) {
     return Curry._2(S.fold, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] fold_succ"));
   };
   var iter_succ_e = function (f, g, v) {
-    return iter_succ((function (v2) {
-                  return Curry._1(f, [
-                              v,
-                              v2
-                            ]);
-                }), g, v);
+    iter_succ((function (v2) {
+            Curry._1(f, [
+                  v,
+                  v2
+                ]);
+          }), g, v);
   };
   var fold_succ_e = function (f, g, v) {
     return fold_succ((function (v2) {
@@ -543,9 +542,9 @@ function Unlabeled(V, HM) {
       }
       
     };
-    return Curry._1(Curry._1(HM.iter, (function (v) {
-                      return Curry._1(S.iter, Curry._1(f$1, v));
-                    })), g);
+    Curry._1(Curry._1(HM.iter, (function (v) {
+                return Curry._1(S.iter, Curry._1(f$1, v));
+              })), g);
   };
   var fold_pred = function (f, g, v) {
     if (!Curry._2(mem_vertex, v, g)) {
@@ -582,12 +581,12 @@ function Unlabeled(V, HM) {
     if (!Curry._2(mem_vertex, v, g)) {
       Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
     }
-    return Curry._1(iter_edges_e(function (e) {
-                    if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
-                      return Curry._1(f, e);
-                    }
-                    
-                  }), g);
+    Curry._1(iter_edges_e(function (e) {
+              if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
+                return Curry._1(f, e);
+              }
+              
+            }), g);
   };
   var fold_pred_e = function (f, g, v) {
     if (!Curry._2(mem_vertex, v, g)) {
@@ -812,9 +811,9 @@ function Labeled(V, E, HM) {
                   ], Curry._3(HM.find_and_raise, v1, g, "[ocamlgraph] remove_edge_e")), g);
   };
   var iter_succ = function (f, g, v) {
-    return Curry._2(S.iter, (function (param) {
-                  return Curry._1(f, param[0]);
-                }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
+    Curry._2(S.iter, (function (param) {
+            Curry._1(f, param[0]);
+          }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
   };
   var fold_succ = function (f, g, v) {
     return Curry._2(S.fold, (function (param) {
@@ -822,13 +821,13 @@ function Labeled(V, E, HM) {
                 }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] fold_succ"));
   };
   var iter_succ_e = function (f, g, v) {
-    return Curry._2(S.iter, (function (param) {
-                  return Curry._1(f, [
-                              v,
-                              param[1],
-                              param[0]
-                            ]);
-                }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ_e"));
+    Curry._2(S.iter, (function (param) {
+            Curry._1(f, [
+                  v,
+                  param[1],
+                  param[0]
+                ]);
+          }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ_e"));
   };
   var fold_succ_e = function (f, g, v) {
     return Curry._2(S.fold, (function (param) {
@@ -877,7 +876,7 @@ function Labeled(V, E, HM) {
   var iter_edges = function (f) {
     return Curry._1(HM.iter, (function (v) {
                   return Curry._1(S.iter, (function (param) {
-                                return Curry._2(f, v, param[0]);
+                                Curry._2(f, v, param[0]);
                               }));
                 }));
   };
@@ -891,11 +890,11 @@ function Labeled(V, E, HM) {
   var iter_edges_e = function (f) {
     return Curry._1(HM.iter, (function (v) {
                   return Curry._1(S.iter, (function (param) {
-                                return Curry._1(f, [
-                                            v,
-                                            param[1],
-                                            param[0]
-                                          ]);
+                                Curry._1(f, [
+                                      v,
+                                      param[1],
+                                      param[0]
+                                    ]);
                               }));
                 }));
   };
@@ -930,12 +929,12 @@ function Labeled(V, E, HM) {
     if (!Curry._2(mem_vertex, v, g)) {
       Pervasives.invalid_arg("[ocamlgraph] iter_pred");
     }
-    return Curry._1(iter_edges(function (v1, v2) {
-                    if (Curry._2(V.equal, v, v2)) {
-                      return Curry._1(f, v1);
-                    }
-                    
-                  }), g);
+    Curry._1(iter_edges(function (v1, v2) {
+              if (Curry._2(V.equal, v, v2)) {
+                return Curry._1(f, v1);
+              }
+              
+            }), g);
   };
   var fold_pred = function (f, g, v) {
     if (!Curry._2(mem_vertex, v, g)) {
@@ -969,12 +968,12 @@ function Labeled(V, E, HM) {
     if (!Curry._2(mem_vertex, v, g)) {
       Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
     }
-    return Curry._1(iter_edges_e(function (e) {
-                    if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
-                      return Curry._1(f, e);
-                    }
-                    
-                  }), g);
+    Curry._1(iter_edges_e(function (e) {
+              if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
+                return Curry._1(f, e);
+              }
+              
+            }), g);
   };
   var fold_pred_e = function (f, g, v) {
     if (!Curry._2(mem_vertex, v, g)) {
@@ -1061,13 +1060,13 @@ function Make_Abstract(G) {
   var PV = G.V;
   var PE = G.E;
   var iter_edges = function (f, g) {
-    return Curry._2(G.iter_edges, f, g.edges);
+    Curry._2(G.iter_edges, f, g.edges);
   };
   var fold_edges = function (f, g) {
     return Curry._2(G.fold_edges, f, g.edges);
   };
   var iter_edges_e = function (f, g) {
-    return Curry._2(G.iter_edges_e, f, g.edges);
+    Curry._2(G.iter_edges_e, f, g.edges);
   };
   var fold_edges_e = function (f, g) {
     return Curry._2(G.fold_edges_e, f, g.edges);
@@ -1084,7 +1083,6 @@ function Make_Abstract(G) {
   var clear = function (g) {
     Curry._1(G.clear, g.edges);
     g.size = 0;
-    
   };
   var I = {
     PV: PV,
@@ -1101,12 +1099,12 @@ function Make_Abstract(G) {
     if (!Curry._2(G.mem_vertex, g.edges, v)) {
       Pervasives.invalid_arg("[ocamlgraph] iter_pred");
     }
-    return Curry._2(G.iter_edges, (function (v1, v2) {
-                  if (Curry._2(PV.equal, v, v2)) {
-                    return Curry._1(f, v1);
-                  }
-                  
-                }), g.edges);
+    Curry._2(G.iter_edges, (function (v1, v2) {
+            if (Curry._2(PV.equal, v, v2)) {
+              return Curry._1(f, v1);
+            }
+            
+          }), g.edges);
   };
   var fold_pred = function (f, g, v) {
     if (!Curry._2(G.mem_vertex, g.edges, v)) {
@@ -1132,12 +1130,12 @@ function Make_Abstract(G) {
     if (!Curry._2(G.mem_vertex, g.edges, v)) {
       Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
     }
-    return Curry._2(G.iter_edges_e, (function (e) {
-                  if (Curry._2(PV.equal, v, Curry._1(PE.dst, e))) {
-                    return Curry._1(f, e);
-                  }
-                  
-                }), g.edges);
+    Curry._2(G.iter_edges_e, (function (e) {
+            if (Curry._2(PV.equal, v, Curry._1(PE.dst, e))) {
+              return Curry._1(f, e);
+            }
+            
+          }), g.edges);
   };
   var fold_pred_e = function (f, g, v) {
     if (!Curry._2(G.mem_vertex, g.edges, v)) {
@@ -1201,7 +1199,7 @@ function Make_Abstract(G) {
     return Curry._1(G.find_all_edges, g.edges);
   };
   var iter_vertex = function (f, g) {
-    return Curry._2(G.iter_vertex, f, g.edges);
+    Curry._2(G.iter_vertex, f, g.edges);
   };
   var fold_vertex = function (f, g) {
     return Curry._2(G.fold_vertex, f, g.edges);
@@ -1351,7 +1349,7 @@ function BidirectionalMinimal(S, HM) {
   };
   var iter_vertex = function (f) {
     return Curry._1(HM.iter, (function (v, param) {
-                  return Curry._1(f, v);
+                  Curry._1(f, v);
                 }));
   };
   var fold_vertex = function (f) {
@@ -1471,18 +1469,18 @@ function BidirectionalUnlabeled(V, HM) {
     return remove_edge(g, param[0], param[1]);
   };
   var iter_succ = function (f, g, v) {
-    return Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
+    Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
   };
   var fold_succ = function (f, g, v) {
     return Curry._2(S.fold, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] fold_succ")[1]);
   };
   var iter_succ_e = function (f, g, v) {
-    return iter_succ((function (v2) {
-                  return Curry._1(f, [
-                              v,
-                              v2
-                            ]);
-                }), g, v);
+    iter_succ((function (v2) {
+            Curry._1(f, [
+                  v,
+                  v2
+                ]);
+          }), g, v);
   };
   var fold_succ_e = function (f, g, v) {
     return fold_succ((function (v2) {
@@ -1526,7 +1524,7 @@ function BidirectionalUnlabeled(V, HM) {
   var PE;
   var iter_edges = function (f) {
     return Curry._1(HM.iter, (function (v, param) {
-                  return Curry._2(S.iter, Curry._1(f, v), param[1]);
+                  Curry._2(S.iter, Curry._1(f, v), param[1]);
                 }));
   };
   var fold_edges = function (f) {
@@ -1536,10 +1534,10 @@ function BidirectionalUnlabeled(V, HM) {
   };
   var iter_edges_e = function (f) {
     return iter_edges(function (v1, v2) {
-                return Curry._1(f, [
-                            v1,
-                            v2
-                          ]);
+                Curry._1(f, [
+                      v1,
+                      v2
+                    ]);
               });
   };
   var fold_edges_e = function (f) {
@@ -1559,7 +1557,7 @@ function BidirectionalUnlabeled(V, HM) {
     fold_edges_e: fold_edges_e
   };
   var iter_pred = function (f, g, v) {
-    return Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
+    Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
   };
   var fold_pred = function (f, g, v) {
     return Curry._2(S.fold, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] fold_pred")[0]);
@@ -1583,12 +1581,12 @@ function BidirectionalUnlabeled(V, HM) {
     return Curry._1(S.cardinal, tmp[0]);
   };
   var iter_pred_e = function (f, g, v) {
-    return iter_pred((function (v2) {
-                  return Curry._1(f, [
-                              v2,
-                              v
-                            ]);
-                }), g, v);
+    iter_pred((function (v2) {
+            Curry._1(f, [
+                  v2,
+                  v
+                ]);
+          }), g, v);
   };
   var fold_pred_e = function (f, g, v) {
     return fold_pred((function (v2) {
@@ -1854,9 +1852,9 @@ function BidirectionalLabeled(V, E, HM) {
               ], g$1);
   };
   var iter_succ = function (f, g, v) {
-    return Curry._2(S.iter, (function (param) {
-                  return Curry._1(f, param[0]);
-                }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
+    Curry._2(S.iter, (function (param) {
+            Curry._1(f, param[0]);
+          }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
   };
   var fold_succ = function (f, g, v) {
     return Curry._2(S.fold, (function (param) {
@@ -1864,13 +1862,13 @@ function BidirectionalLabeled(V, E, HM) {
                 }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] fold_succ")[1]);
   };
   var iter_succ_e = function (f, g, v) {
-    return Curry._2(S.iter, (function (param) {
-                  return Curry._1(f, [
-                              v,
-                              param[1],
-                              param[0]
-                            ]);
-                }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ_e")[1]);
+    Curry._2(S.iter, (function (param) {
+            Curry._1(f, [
+                  v,
+                  param[1],
+                  param[0]
+                ]);
+          }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ_e")[1]);
   };
   var fold_succ_e = function (f, g, v) {
     return Curry._2(S.fold, (function (param) {
@@ -1926,9 +1924,9 @@ function BidirectionalLabeled(V, E, HM) {
   var PE;
   var iter_edges = function (f) {
     return Curry._1(HM.iter, (function (v, param) {
-                  return Curry._2(S.iter, (function (param) {
-                                return Curry._2(f, v, param[0]);
-                              }), param[1]);
+                  Curry._2(S.iter, (function (param) {
+                          Curry._2(f, v, param[0]);
+                        }), param[1]);
                 }));
   };
   var fold_edges = function (f) {
@@ -1940,13 +1938,13 @@ function BidirectionalLabeled(V, E, HM) {
   };
   var iter_edges_e = function (f) {
     return Curry._1(HM.iter, (function (v, param) {
-                  return Curry._2(S.iter, (function (param) {
-                                return Curry._1(f, [
-                                            v,
-                                            param[1],
-                                            param[0]
-                                          ]);
-                              }), param[1]);
+                  Curry._2(S.iter, (function (param) {
+                          Curry._1(f, [
+                                v,
+                                param[1],
+                                param[0]
+                              ]);
+                        }), param[1]);
                 }));
   };
   var fold_edges_e = function (f) {
@@ -1969,9 +1967,9 @@ function BidirectionalLabeled(V, E, HM) {
     fold_edges_e: fold_edges_e
   };
   var iter_pred = function (f, g, v) {
-    return Curry._2(S.iter, (function (param) {
-                  return Curry._1(f, param[0]);
-                }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
+    Curry._2(S.iter, (function (param) {
+            Curry._1(f, param[0]);
+          }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
   };
   var fold_pred = function (f, g, v) {
     return Curry._2(S.fold, (function (param) {
@@ -1994,13 +1992,13 @@ function BidirectionalLabeled(V, E, HM) {
     return Curry._1(S.cardinal, tmp[0]);
   };
   var iter_pred_e = function (f, g, v) {
-    return Curry._2(S.iter, (function (param) {
-                  return Curry._1(f, [
-                              param[0],
-                              param[1],
-                              v
-                            ]);
-                }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_pred_e")[0]);
+    Curry._2(S.iter, (function (param) {
+            Curry._1(f, [
+                  param[0],
+                  param[1],
+                  v
+                ]);
+          }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_pred_e")[0]);
   };
   var fold_pred_e = function (f, g, v) {
     return Curry._2(S.fold, (function (param) {
@@ -2169,18 +2167,18 @@ function Make(F) {
       return remove_edge(g, param[0], param[1]);
     };
     var iter_succ = function (f, g, v) {
-      return Curry._2(S.iter, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
+      Curry._2(S.iter, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
     };
     var fold_succ = function (f, g, v) {
       return Curry._2(S.fold, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] fold_succ"));
     };
     var iter_succ_e = function (f, g, v) {
-      return iter_succ((function (v2) {
-                    return Curry._1(f, [
-                                v,
-                                v2
-                              ]);
-                  }), g, v);
+      iter_succ((function (v2) {
+              Curry._1(f, [
+                    v,
+                    v2
+                  ]);
+            }), g, v);
     };
     var fold_succ_e = function (f, g, v) {
       return fold_succ((function (v2) {
@@ -2267,12 +2265,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred");
       }
-      return Curry._1(iter_edges(function (v1, v2) {
-                      if (Curry._2(V$2.equal, v, v2)) {
-                        return Curry._1(f, v1);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges(function (v1, v2) {
+                if (Curry._2(V$2.equal, v, v2)) {
+                  return Curry._1(f, v1);
+                }
+                
+              }), g);
     };
     var fold_pred = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -2306,12 +2304,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
       }
-      return Curry._1(iter_edges_e(function (e) {
-                      if (Curry._2(V$2.equal, v, Curry._1(S_PE.dst, e))) {
-                        return Curry._1(f, e);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges_e(function (e) {
+                if (Curry._2(V$2.equal, v, Curry._1(S_PE.dst, e))) {
+                  return Curry._1(f, e);
+                }
+                
+              }), g);
     };
     var fold_pred_e = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -2380,7 +2378,7 @@ function Make(F) {
     };
     var iter_vertex = function (f) {
       return Curry._1(HM$1.iter, (function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }));
     };
     var fold_vertex = function (f) {
@@ -2589,18 +2587,18 @@ function Make(F) {
       return remove_edge(g, param[0], param[1]);
     };
     var iter_succ = function (f, g, v) {
-      return Curry._2(S.iter, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
+      Curry._2(S.iter, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
     };
     var fold_succ = function (f, g, v) {
       return Curry._2(S.fold, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] fold_succ")[1]);
     };
     var iter_succ_e = function (f, g, v) {
-      return iter_succ((function (v2) {
-                    return Curry._1(f, [
-                                v,
-                                v2
-                              ]);
-                  }), g, v);
+      iter_succ((function (v2) {
+              Curry._1(f, [
+                    v,
+                    v2
+                  ]);
+            }), g, v);
     };
     var fold_succ_e = function (f, g, v) {
       return fold_succ((function (v2) {
@@ -2644,7 +2642,7 @@ function Make(F) {
     var PE;
     var iter_edges = function (f) {
       return Curry._1(HM$1.iter, (function (v, param) {
-                    return Curry._2(S.iter, Curry._1(f, v), param[1]);
+                    Curry._2(S.iter, Curry._1(f, v), param[1]);
                   }));
     };
     var fold_edges = function (f) {
@@ -2654,10 +2652,10 @@ function Make(F) {
     };
     var iter_edges_e = function (f) {
       return iter_edges(function (v1, v2) {
-                  return Curry._1(f, [
-                              v1,
-                              v2
-                            ]);
+                  Curry._1(f, [
+                        v1,
+                        v2
+                      ]);
                 });
     };
     var fold_edges_e = function (f) {
@@ -2677,7 +2675,7 @@ function Make(F) {
       fold_edges_e: fold_edges_e
     };
     var iter_pred = function (f, g, v) {
-      return Curry._2(S.iter, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
+      Curry._2(S.iter, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
     };
     var fold_pred = function (f, g, v) {
       return Curry._2(S.fold, f, Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] fold_pred")[0]);
@@ -2701,12 +2699,12 @@ function Make(F) {
       return Curry._1(S.cardinal, tmp[0]);
     };
     var iter_pred_e = function (f, g, v) {
-      return iter_pred((function (v2) {
-                    return Curry._1(f, [
-                                v2,
-                                v
-                              ]);
-                  }), g, v);
+      iter_pred((function (v2) {
+              Curry._1(f, [
+                    v2,
+                    v
+                  ]);
+            }), g, v);
     };
     var fold_pred_e = function (f, g, v) {
       return fold_pred((function (v2) {
@@ -2771,7 +2769,7 @@ function Make(F) {
     };
     var iter_vertex = function (f) {
       return Curry._1(HM$1.iter, (function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }));
     };
     var fold_vertex = function (f) {
@@ -3077,9 +3075,9 @@ function Make(F) {
                     ], Curry._3(HM$1.find_and_raise, v1, g, "[ocamlgraph] remove_edge_e")), g);
     };
     var iter_succ = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, param[0]);
-                  }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, param[0]);
+            }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
     };
     var fold_succ = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -3087,13 +3085,13 @@ function Make(F) {
                   }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] fold_succ"));
     };
     var iter_succ_e = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, [
-                                v,
-                                param[1],
-                                param[0]
-                              ]);
-                  }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ_e"));
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, [
+                    v,
+                    param[1],
+                    param[0]
+                  ]);
+            }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ_e"));
     };
     var fold_succ_e = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -3142,7 +3140,7 @@ function Make(F) {
     var iter_edges = function (f) {
       return Curry._1(HM$1.iter, (function (v) {
                     return Curry._1(S.iter, (function (param) {
-                                  return Curry._2(f, v, param[0]);
+                                  Curry._2(f, v, param[0]);
                                 }));
                   }));
     };
@@ -3156,11 +3154,11 @@ function Make(F) {
     var iter_edges_e = function (f) {
       return Curry._1(HM$1.iter, (function (v) {
                     return Curry._1(S.iter, (function (param) {
-                                  return Curry._1(f, [
-                                              v,
-                                              param[1],
-                                              param[0]
-                                            ]);
+                                  Curry._1(f, [
+                                        v,
+                                        param[1],
+                                        param[0]
+                                      ]);
                                 }));
                   }));
     };
@@ -3195,12 +3193,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred");
       }
-      return Curry._1(iter_edges(function (v1, v2) {
-                      if (Curry._2(V$2.equal, v, v2)) {
-                        return Curry._1(f, v1);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges(function (v1, v2) {
+                if (Curry._2(V$2.equal, v, v2)) {
+                  return Curry._1(f, v1);
+                }
+                
+              }), g);
     };
     var fold_pred = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -3234,12 +3232,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
       }
-      return Curry._1(iter_edges_e(function (e) {
-                      if (Curry._2(V$2.equal, v, Curry._1(S_PE.dst, e))) {
-                        return Curry._1(f, e);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges_e(function (e) {
+                if (Curry._2(V$2.equal, v, Curry._1(S_PE.dst, e))) {
+                  return Curry._1(f, e);
+                }
+                
+              }), g);
     };
     var fold_pred_e = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -3308,7 +3306,7 @@ function Make(F) {
     };
     var iter_vertex = function (f) {
       return Curry._1(HM$1.iter, (function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }));
     };
     var fold_vertex = function (f) {
@@ -3647,9 +3645,9 @@ function Make(F) {
                 ], g$1);
     };
     var iter_succ = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, param[0]);
-                  }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, param[0]);
+            }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ")[1]);
     };
     var fold_succ = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -3657,13 +3655,13 @@ function Make(F) {
                   }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] fold_succ")[1]);
     };
     var iter_succ_e = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, [
-                                v,
-                                param[1],
-                                param[0]
-                              ]);
-                  }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ_e")[1]);
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, [
+                    v,
+                    param[1],
+                    param[0]
+                  ]);
+            }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_succ_e")[1]);
     };
     var fold_succ_e = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -3719,9 +3717,9 @@ function Make(F) {
     var PE;
     var iter_edges = function (f) {
       return Curry._1(HM$1.iter, (function (v, param) {
-                    return Curry._2(S.iter, (function (param) {
-                                  return Curry._2(f, v, param[0]);
-                                }), param[1]);
+                    Curry._2(S.iter, (function (param) {
+                            Curry._2(f, v, param[0]);
+                          }), param[1]);
                   }));
     };
     var fold_edges = function (f) {
@@ -3733,13 +3731,13 @@ function Make(F) {
     };
     var iter_edges_e = function (f) {
       return Curry._1(HM$1.iter, (function (v, param) {
-                    return Curry._2(S.iter, (function (param) {
-                                  return Curry._1(f, [
-                                              v,
-                                              param[1],
-                                              param[0]
-                                            ]);
-                                }), param[1]);
+                    Curry._2(S.iter, (function (param) {
+                            Curry._1(f, [
+                                  v,
+                                  param[1],
+                                  param[0]
+                                ]);
+                          }), param[1]);
                   }));
     };
     var fold_edges_e = function (f) {
@@ -3762,9 +3760,9 @@ function Make(F) {
       fold_edges_e: fold_edges_e
     };
     var iter_pred = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, param[0]);
-                  }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, param[0]);
+            }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_pred")[0]);
     };
     var fold_pred = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -3787,13 +3785,13 @@ function Make(F) {
       return Curry._1(S.cardinal, tmp[0]);
     };
     var iter_pred_e = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, [
-                                param[0],
-                                param[1],
-                                v
-                              ]);
-                  }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_pred_e")[0]);
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, [
+                    param[0],
+                    param[1],
+                    v
+                  ]);
+            }), Curry._3(HM$1.find_and_raise, v, g, "[ocamlgraph] iter_pred_e")[0]);
     };
     var fold_pred_e = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -3867,7 +3865,7 @@ function Make(F) {
     };
     var iter_vertex = function (f) {
       return Curry._1(HM$1.iter, (function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }));
     };
     var fold_vertex = function (f) {
@@ -4087,18 +4085,18 @@ function Make(F) {
       return remove_edge(g, param[0], param[1]);
     };
     var iter_succ = function (f, g, v) {
-      return Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
+      Curry._2(S.iter, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
     };
     var fold_succ = function (f, g, v) {
       return Curry._2(S.fold, f, Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] fold_succ"));
     };
     var iter_succ_e = function (f, g, v) {
-      return iter_succ((function (v2) {
-                    return Curry._1(f, [
-                                v,
-                                v2
-                              ]);
-                  }), g, v);
+      iter_succ((function (v2) {
+              Curry._1(f, [
+                    v,
+                    v2
+                  ]);
+            }), g, v);
     };
     var fold_succ_e = function (f, g, v) {
       return fold_succ((function (v2) {
@@ -4185,12 +4183,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred");
       }
-      return Curry._1(iter_edges(function (v1, v2) {
-                      if (Curry._2(V.equal, v, v2)) {
-                        return Curry._1(f, v1);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges(function (v1, v2) {
+                if (Curry._2(V.equal, v, v2)) {
+                  return Curry._1(f, v1);
+                }
+                
+              }), g);
     };
     var fold_pred = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -4224,12 +4222,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
       }
-      return Curry._1(iter_edges_e(function (e) {
-                      if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
-                        return Curry._1(f, e);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges_e(function (e) {
+                if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
+                  return Curry._1(f, e);
+                }
+                
+              }), g);
     };
     var fold_pred_e = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -4324,7 +4322,7 @@ function Make(F) {
     };
     var iter_vertex = function (f) {
       return Curry._1(HM.iter, (function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }));
     };
     var fold_vertex = function (f) {
@@ -4431,13 +4429,13 @@ function Make(F) {
     };
     var PE$1 = G_E;
     var iter_edges$2 = function (f, g) {
-      return Curry._2(iter_edges$1, f, g.edges);
+      Curry._2(iter_edges$1, f, g.edges);
     };
     var fold_edges$2 = function (f, g) {
       return Curry._2(fold_edges$1, f, g.edges);
     };
     var iter_edges_e$2 = function (f, g) {
-      return Curry._2(iter_edges_e$1, f, g.edges);
+      Curry._2(iter_edges_e$1, f, g.edges);
     };
     var fold_edges_e$2 = function (f, g) {
       return Curry._2(fold_edges_e$1, f, g.edges);
@@ -4454,7 +4452,6 @@ function Make(F) {
     var clear$1 = function (g) {
       Curry._1(clear, g.edges);
       g.size = 0;
-      
     };
     var I$1 = {
       PV: V,
@@ -4471,12 +4468,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred");
       }
-      return Curry._2(iter_edges$1, (function (v1, v2) {
-                    if (Curry._2(V.equal, v, v2)) {
-                      return Curry._1(f, v1);
-                    }
-                    
-                  }), g.edges);
+      Curry._2(iter_edges$1, (function (v1, v2) {
+              if (Curry._2(V.equal, v, v2)) {
+                return Curry._1(f, v1);
+              }
+              
+            }), g.edges);
     };
     var fold_pred$2 = function (f, g, v) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
@@ -4502,12 +4499,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
       }
-      return Curry._2(iter_edges_e$1, (function (e) {
-                    if (Curry._2(V.equal, v, Curry._1(PE$1.dst, e))) {
-                      return Curry._1(f, e);
-                    }
-                    
-                  }), g.edges);
+      Curry._2(iter_edges_e$1, (function (e) {
+              if (Curry._2(V.equal, v, Curry._1(PE$1.dst, e))) {
+                return Curry._1(f, e);
+              }
+              
+            }), g.edges);
     };
     var fold_pred_e$2 = function (f, g, v) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
@@ -4569,7 +4566,7 @@ function Make(F) {
       return Curry._1(find_all_edges$1, g.edges);
     };
     var iter_vertex$2 = function (f, g) {
-      return Curry._2(iter_vertex$1, f, g.edges);
+      Curry._2(iter_vertex$1, f, g.edges);
     };
     var fold_vertex$2 = function (f, g) {
       return Curry._2(fold_vertex$1, f, g.edges);
@@ -4842,9 +4839,9 @@ function Make(F) {
                     ], Curry._3(HM.find_and_raise, v1, g, "[ocamlgraph] remove_edge_e")), g);
     };
     var iter_succ = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, param[0]);
-                  }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, param[0]);
+            }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ"));
     };
     var fold_succ = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -4852,13 +4849,13 @@ function Make(F) {
                   }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] fold_succ"));
     };
     var iter_succ_e = function (f, g, v) {
-      return Curry._2(S.iter, (function (param) {
-                    return Curry._1(f, [
-                                v,
-                                param[1],
-                                param[0]
-                              ]);
-                  }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ_e"));
+      Curry._2(S.iter, (function (param) {
+              Curry._1(f, [
+                    v,
+                    param[1],
+                    param[0]
+                  ]);
+            }), Curry._3(HM.find_and_raise, v, g, "[ocamlgraph] iter_succ_e"));
     };
     var fold_succ_e = function (f, g, v) {
       return Curry._2(S.fold, (function (param) {
@@ -4907,7 +4904,7 @@ function Make(F) {
     var iter_edges = function (f) {
       return Curry._1(HM.iter, (function (v) {
                     return Curry._1(S.iter, (function (param) {
-                                  return Curry._2(f, v, param[0]);
+                                  Curry._2(f, v, param[0]);
                                 }));
                   }));
     };
@@ -4921,11 +4918,11 @@ function Make(F) {
     var iter_edges_e = function (f) {
       return Curry._1(HM.iter, (function (v) {
                     return Curry._1(S.iter, (function (param) {
-                                  return Curry._1(f, [
-                                              v,
-                                              param[1],
-                                              param[0]
-                                            ]);
+                                  Curry._1(f, [
+                                        v,
+                                        param[1],
+                                        param[0]
+                                      ]);
                                 }));
                   }));
     };
@@ -4960,12 +4957,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred");
       }
-      return Curry._1(iter_edges(function (v1, v2) {
-                      if (Curry._2(V.equal, v, v2)) {
-                        return Curry._1(f, v1);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges(function (v1, v2) {
+                if (Curry._2(V.equal, v, v2)) {
+                  return Curry._1(f, v1);
+                }
+                
+              }), g);
     };
     var fold_pred = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -4999,12 +4996,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex, v, g)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
       }
-      return Curry._1(iter_edges_e(function (e) {
-                      if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
-                        return Curry._1(f, e);
-                      }
-                      
-                    }), g);
+      Curry._1(iter_edges_e(function (e) {
+                if (Curry._2(V.equal, v, Curry._1(S_PE.dst, e))) {
+                  return Curry._1(f, e);
+                }
+                
+              }), g);
     };
     var fold_pred_e = function (f, g, v) {
       if (!Curry._2(mem_vertex, v, g)) {
@@ -5099,7 +5096,7 @@ function Make(F) {
     };
     var iter_vertex = function (f) {
       return Curry._1(HM.iter, (function (v, param) {
-                    return Curry._1(f, v);
+                    Curry._1(f, v);
                   }));
     };
     var fold_vertex = function (f) {
@@ -5210,13 +5207,13 @@ function Make(F) {
     };
     var PE$1 = G_E;
     var iter_edges$2 = function (f, g) {
-      return Curry._2(iter_edges$1, f, g.edges);
+      Curry._2(iter_edges$1, f, g.edges);
     };
     var fold_edges$2 = function (f, g) {
       return Curry._2(fold_edges$1, f, g.edges);
     };
     var iter_edges_e$2 = function (f, g) {
-      return Curry._2(iter_edges_e$1, f, g.edges);
+      Curry._2(iter_edges_e$1, f, g.edges);
     };
     var fold_edges_e$2 = function (f, g) {
       return Curry._2(fold_edges_e$1, f, g.edges);
@@ -5233,7 +5230,6 @@ function Make(F) {
     var clear$1 = function (g) {
       Curry._1(clear, g.edges);
       g.size = 0;
-      
     };
     var I$1 = {
       PV: V,
@@ -5250,12 +5246,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred");
       }
-      return Curry._2(iter_edges$1, (function (v1, v2) {
-                    if (Curry._2(V.equal, v, v2)) {
-                      return Curry._1(f, v1);
-                    }
-                    
-                  }), g.edges);
+      Curry._2(iter_edges$1, (function (v1, v2) {
+              if (Curry._2(V.equal, v, v2)) {
+                return Curry._1(f, v1);
+              }
+              
+            }), g.edges);
     };
     var fold_pred$2 = function (f, g, v) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
@@ -5281,12 +5277,12 @@ function Make(F) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
         Pervasives.invalid_arg("[ocamlgraph] iter_pred_e");
       }
-      return Curry._2(iter_edges_e$1, (function (e) {
-                    if (Curry._2(V.equal, v, Curry._1(PE$1.dst, e))) {
-                      return Curry._1(f, e);
-                    }
-                    
-                  }), g.edges);
+      Curry._2(iter_edges_e$1, (function (e) {
+              if (Curry._2(V.equal, v, Curry._1(PE$1.dst, e))) {
+                return Curry._1(f, e);
+              }
+              
+            }), g.edges);
     };
     var fold_pred_e$2 = function (f, g, v) {
       if (!Curry._2(mem_vertex$2, g.edges, v)) {
@@ -5348,7 +5344,7 @@ function Make(F) {
       return Curry._1(find_all_edges$1, g.edges);
     };
     var iter_vertex$2 = function (f, g) {
-      return Curry._2(iter_vertex$1, f, g.edges);
+      Curry._2(iter_vertex$1, f, g.edges);
     };
     var fold_vertex$2 = function (f, g) {
       return Curry._2(fold_vertex$1, f, g.edges);
@@ -5581,6 +5577,5 @@ export {
   BidirectionalLabeled ,
   Make ,
   Graph ,
-  
 }
 /* No side effect */

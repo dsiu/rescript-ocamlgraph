@@ -211,7 +211,6 @@ function flip(c, d, e, t$p$p, p, n, n$p) {
   d.vert = /* Point */{
     _0: t$p$p
   };
-  
 }
 
 function triangulate(points) {
@@ -577,7 +576,6 @@ function iter(f, t) {
     }
     
   }
-  
 }
 
 function iter_triangles(f, t) {
@@ -604,7 +602,6 @@ function iter_triangles(f, t) {
     }
     
   }
-  
 }
 
 function fold(f, t, a) {
@@ -719,7 +716,6 @@ function flip$1(c, d, e, t$p$p, p, n, n$p) {
   d.vert = /* Point */{
     _0: t$p$p
   };
-  
 }
 
 function triangulate$1(points) {
@@ -1085,7 +1081,6 @@ function iter$1(f, t) {
     }
     
   }
-  
 }
 
 function iter_triangles$1(f, t) {
@@ -1112,7 +1107,6 @@ function iter_triangles$1(f, t) {
     }
     
   }
-  
 }
 
 function fold$1(f, t, a) {
@@ -1191,7 +1185,6 @@ function Make(funarg) {
     d.vert = /* Point */{
       _0: t$p$p
     };
-    
   };
   var triangulate = function (points) {
     var ccw = function (p, q, r) {
@@ -1555,7 +1548,6 @@ function Make(funarg) {
       }
       
     }
-    
   };
   var iter_triangles = function (f, t) {
     var n = t.arcs.length;
@@ -1581,7 +1573,6 @@ function Make(funarg) {
       }
       
     }
-    
   };
   var fold = function (f, t, a) {
     var points = t.points;
@@ -1645,6 +1636,5 @@ export {
   Int ,
   FloatPoints ,
   Float ,
-  
 }
 /* No side effect */

@@ -45,10 +45,10 @@ function Imperative(funarg, funarg$1) {
             Error: new Error()
           };
     }
-    return Pervasives.print_string("\n");
+    Pervasives.print_string("\n");
   };
   var dump_set = Curry._1(S.iter, (function (x) {
-          return Pervasives.print_string(String(Curry._1(V.label, x)) + ", ");
+          Pervasives.print_string(String(Curry._1(V.label, x)) + ", ");
         }));
   var dump = function (param) {
     Pervasives.print_string("====================\nS: ");
@@ -56,21 +56,21 @@ function Imperative(funarg, funarg$1) {
     Pervasives.print_string("\nMap:");
     Curry._2(M.iter, (function (k, v) {
             Pervasives.print_string("\n  " + (String(Curry._1(V.label, k)) + ": "));
-            return Curry._2(M.iter, (function (k, param) {
-                          var origin = param[0];
-                          var tmp;
-                          if (origin !== undefined) {
-                            var e = Caml_option.valFromOption(origin);
-                            var v = Curry._1(funarg.E.src, e);
-                            var v$1 = Curry._1(funarg.E.dst, e);
-                            tmp = String(Curry._1(V.label, v)) + (">" + String(Curry._1(V.label, v$1)));
-                          } else {
-                            tmp = "---";
-                          }
-                          return Pervasives.print_string("(" + (String(Curry._1(V.label, k)) + (">>" + (tmp + (":" + (String(param[1]) + ") "))))));
-                        }), v);
+            Curry._2(M.iter, (function (k, param) {
+                    var origin = param[0];
+                    var tmp;
+                    if (origin !== undefined) {
+                      var e = Caml_option.valFromOption(origin);
+                      var v = Curry._1(funarg.E.src, e);
+                      var v$1 = Curry._1(funarg.E.dst, e);
+                      tmp = String(Curry._1(V.label, v)) + (">" + String(Curry._1(V.label, v$1)));
+                    } else {
+                      tmp = "---";
+                    }
+                    Pervasives.print_string("(" + (String(Curry._1(V.label, k)) + (">>" + (tmp + (":" + (String(param[1]) + ") "))))));
+                  }), v);
           }), param[1].contents);
-    return Pervasives.print_string("\n");
+    Pervasives.print_string("\n");
   };
   var Negative_cycle = /* @__PURE__ */Caml_exceptions.create("Nonnegative-Graph.Imperative(G)(W).Negative_cycle");
   var create = function (size, param) {
@@ -100,7 +100,6 @@ function Imperative(funarg, funarg$1) {
     Curry._1(funarg.clear, param[0]);
     param[1].contents = S.empty;
     param[2].contents = M.empty;
-    
   };
   var add_vertex = function (param, v) {
     var dist = param[2];
@@ -341,10 +340,10 @@ function Imperative(funarg, funarg$1) {
       Curry._2(funarg.remove_edge_e, g, e);
       throw exp;
     }
-    return dump([
-                src,
-                dist
-              ]);
+    dump([
+          src,
+          dist
+        ]);
   };
   var add_edge = function (param, v1, v2) {
     var dist = param[2];
@@ -381,10 +380,10 @@ function Imperative(funarg, funarg$1) {
       Curry._3(funarg.remove_edge, g, v1, v2);
       throw exp;
     }
-    return dump([
-                src,
-                dist
-              ]);
+    dump([
+          src,
+          dist
+        ]);
   };
   var remove_edge_internal = function (param, v2) {
     var src = param[1];
@@ -447,10 +446,10 @@ function Imperative(funarg, funarg$1) {
         ], v2);
     src.contents = match[1];
     dist.contents = match[2];
-    return dump([
-                src,
-                dist
-              ]);
+    dump([
+          src,
+          dist
+        ]);
   };
   var remove_edge = function (param, v1, v2) {
     var dist = param[2];
@@ -466,10 +465,10 @@ function Imperative(funarg, funarg$1) {
         ], v2);
     src.contents = match[1];
     dist.contents = match[2];
-    return dump([
-                src,
-                dist
-              ]);
+    dump([
+          src,
+          dist
+        ]);
   };
   var remove_vertex = function (param, v) {
     var dist = param[2];
@@ -477,18 +476,18 @@ function Imperative(funarg, funarg$1) {
     var g = param[0];
     if (Curry._2(funarg.mem_vertex, g, v)) {
       Curry._3(funarg.iter_succ_e, (function (e) {
-              return remove_edge_e([
-                          g,
-                          src,
-                          dist
-                        ], e);
+              remove_edge_e([
+                    g,
+                    src,
+                    dist
+                  ], e);
             }), g, v);
       Curry._3(funarg.iter_pred_e, (function (e) {
-              return remove_edge_e([
-                          g,
-                          src,
-                          dist
-                        ], e);
+              remove_edge_e([
+                    g,
+                    src,
+                    dist
+                  ], e);
             }), g, v);
       Curry._2(funarg.remove_vertex, g, v);
       src.contents = Curry._2(S.remove, v, src.contents);
@@ -562,19 +561,19 @@ function Imperative(funarg, funarg$1) {
     return Curry._2(funarg.fold_edges_e, f, param[0]);
   };
   var iter_edges_e = function (f, param) {
-    return Curry._2(funarg.iter_edges_e, f, param[0]);
+    Curry._2(funarg.iter_edges_e, f, param[0]);
   };
   var fold_edges = function (f, param) {
     return Curry._2(funarg.fold_edges, f, param[0]);
   };
   var iter_edges = function (f, param) {
-    return Curry._2(funarg.iter_edges, f, param[0]);
+    Curry._2(funarg.iter_edges, f, param[0]);
   };
   var fold_vertex = function (f, param) {
     return Curry._2(funarg.fold_vertex, f, param[0]);
   };
   var iter_vertex = function (f, param) {
-    return Curry._2(funarg.iter_vertex, f, param[0]);
+    Curry._2(funarg.iter_vertex, f, param[0]);
   };
   var pred_e = function (param) {
     return Curry._1(funarg.pred_e, param[0]);
@@ -619,7 +618,7 @@ function Imperative(funarg, funarg$1) {
     return Curry._1(funarg.is_empty, param[0]);
   };
   var clear$1 = function (g) {
-    return Curry._1(funarg.Mark.clear, g[0]);
+    Curry._1(funarg.Mark.clear, g[0]);
   };
   var get = funarg.Mark.get;
   var set = funarg.Mark.set;
@@ -1075,19 +1074,19 @@ function Persistent(funarg, funarg$1) {
     return Curry._2(funarg.fold_edges_e, f, param[0]);
   };
   var iter_edges_e = function (f, param) {
-    return Curry._2(funarg.iter_edges_e, f, param[0]);
+    Curry._2(funarg.iter_edges_e, f, param[0]);
   };
   var fold_edges = function (f, param) {
     return Curry._2(funarg.fold_edges, f, param[0]);
   };
   var iter_edges = function (f, param) {
-    return Curry._2(funarg.iter_edges, f, param[0]);
+    Curry._2(funarg.iter_edges, f, param[0]);
   };
   var fold_vertex = function (f, param) {
     return Curry._2(funarg.fold_vertex, f, param[0]);
   };
   var iter_vertex = function (f, param) {
-    return Curry._2(funarg.iter_vertex, f, param[0]);
+    Curry._2(funarg.iter_vertex, f, param[0]);
   };
   var pred_e = function (param) {
     return Curry._1(funarg.pred_e, param[0]);
@@ -1178,6 +1177,5 @@ function Persistent(funarg, funarg$1) {
 export {
   Imperative ,
   Persistent ,
-  
 }
 /* No side effect */

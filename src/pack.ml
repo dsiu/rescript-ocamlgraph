@@ -115,19 +115,19 @@ struct
     let edge_attributes e = [ `Label (string_of_int (E.label e) ) ]
     let get_subgraph _ = None
   end
-  module Dot_ = Graphviz.Dot(Display)
-  module Neato = Graphviz.Neato(Display)
+(*  module Dot_ = Graphviz.Dot(Display)*)
+(*  module Neato = Graphviz.Neato(Display)*)
 
-  let dot_output g f =
-    let oc = open_out f in
-    if is_directed then Dot_.output_graph oc g else Neato.output_graph oc g;
-    close_out oc
+(*  let dot_output g f =*)
+(*    let oc = open_out f in*)
+(*    if is_directed then Dot_.output_graph oc g else Neato.output_graph oc g;*)
+(*    close_out oc*)
 
-  let display_with_gv g =
-    let tmp = Filename.temp_file "graph" ".dot" in
-    dot_output g tmp;
-    ignore (Sys.command ("dot -Tps " ^ tmp ^ " | gv -"));
-    Sys.remove tmp
+(*  let display_with_gv g =*)
+(*    let tmp = Filename.temp_file "graph" ".dot" in*)
+(*    dot_output g tmp;*)
+(*    ignore (Sys.command ("dot -Tps " ^ tmp ^ " | gv -"));*)
+(*    Sys.remove tmp*)
 
 (* todo: parsers are not supported in ReScript *)
 (*)

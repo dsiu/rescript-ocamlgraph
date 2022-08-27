@@ -37,7 +37,7 @@ function P(funarg) {
           return function (param, v) {
             var g = param[0];
             var tri$p = List.fold_left((function (tri, v$p) {
-                    if (Caml_obj.caml_notequal(v, v$p) && !Curry._3(funarg.mem_edge, g, v, v$p)) {
+                    if (Caml_obj.notequal(v, v$p) && !Curry._3(funarg.mem_edge, g, v, v$p)) {
                       return {
                               hd: [
                                 v,
@@ -50,7 +50,7 @@ function P(funarg) {
                     }
                   }), param[1], ng);
             var g$p = List.fold_left((function (g, v$p) {
-                    if (Caml_obj.caml_notequal(v, v$p)) {
+                    if (Caml_obj.notequal(v, v$p)) {
                       return Curry._3(funarg.add_edge, g, v, v$p);
                     } else {
                       return g;
@@ -140,7 +140,7 @@ function I(funarg) {
       var tri$p = List.fold_left((function(ng){
           return function (tri, v) {
             return List.fold_left((function (tri, v$p) {
-                          var tri$p = Caml_obj.caml_notequal(v, v$p) && !Curry._3(funarg.mem_edge, g, v, v$p) ? ({
+                          var tri$p = Caml_obj.notequal(v, v$p) && !Curry._3(funarg.mem_edge, g, v, v$p) ? ({
                                 hd: [
                                   v,
                                   v$p
@@ -148,7 +148,7 @@ function I(funarg) {
                                 tl: tri
                               }) : tri;
                           List.iter((function (v$p) {
-                                  if (Caml_obj.caml_notequal(v, v$p)) {
+                                  if (Caml_obj.notequal(v, v$p)) {
                                     return Curry._3(funarg.add_edge, gcur, v, v$p);
                                   }
                                   
@@ -162,7 +162,7 @@ function I(funarg) {
         tl: ord
       };
       List.iter((function (param) {
-              return Curry._3(funarg.add_edge, gtri, param[0], param[1]);
+              Curry._3(funarg.add_edge, gtri, param[0], param[1]);
             }), tri$p);
       Curry._2(funarg.remove_vertex, gcur, v);
       tri = Pervasives.$at(tri$p, tri);
@@ -186,6 +186,5 @@ function I(funarg) {
 export {
   P ,
   I ,
-  
 }
 /* Cliquetree-Graph Not a pure module */

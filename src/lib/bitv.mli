@@ -152,7 +152,7 @@ val all_ones  : t -> bool
 
 val to_string : t -> string
 val of_string : string -> t
-val print : Format.formatter -> t -> unit
+val print : Format_noop.formatter -> t -> unit
 
 (*s {\bf Conversions to and from lists of integers.}
     The list gives the indices of bits which are set (ie [true]). *)

@@ -39,7 +39,6 @@ function Imperative(funarg) {
     var d$p = Caml_array.make(n$p, Caml_array.get(d, 0));
     $$Array.blit(d, 0, d$p, 0, n);
     h.data = d$p;
-    
   };
   var add = function (h, x) {
     if (h.size < 0) {
@@ -65,7 +64,6 @@ function Imperative(funarg) {
     };
     moveup(n);
     h.size = n + 1 | 0;
-    
   };
   var maximum = function (h) {
     if (h.size <= 0) {
@@ -114,7 +112,6 @@ function Imperative(funarg) {
     for(var i = 0 ,i_finish = h.size; i < i_finish; ++i){
       Curry._1(f, Caml_array.get(d, i));
     }
-    
   };
   var fold = function (f, h, x0) {
     var n = h.size;
@@ -147,6 +144,5 @@ function Imperative(funarg) {
 export {
   EmptyHeap ,
   Imperative ,
-  
 }
 /* No side effect */

@@ -132,7 +132,7 @@ function I(funarg) {
   var cc = function (g, l) {
     Curry._1(funarg.Mark.clear, g);
     List.iter((function (v) {
-            return Curry._2(funarg.Mark.set, v, 1);
+            Curry._2(funarg.Mark.set, v, 1);
           }), l);
     return Curry._1(CC.scc_list, g);
   };
@@ -234,6 +234,5 @@ function I(funarg) {
 export {
   P ,
   I ,
-  
 }
 /* No side effect */

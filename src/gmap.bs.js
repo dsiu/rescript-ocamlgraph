@@ -93,6 +93,5 @@ function Edge(funarg, funarg$1) {
 export {
   Vertex ,
   Edge ,
-  
 }
 /* No side effect */

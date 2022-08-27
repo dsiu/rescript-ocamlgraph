@@ -17,7 +17,7 @@
 
 (* Ocamlgraph demo program: solving the Sudoku puzzle using graph coloring *)
 
-open Format
+open Format_noop
 open Graph
 
 (* We use undirected graphs with nodes containing a pair of integers
@@ -28,15 +28,15 @@ module G = Imperative.Graph.Abstract(struct type t = int * int end)
 (* The Sudoku grid = a graph with 9x9 nodes *)
 let g = G.create ()
 
-(* We create the 9x9 nodes, add them to the graph and keep them in a matrix 
+(* We create the 9x9 nodes, add them to the graph and keep them in a matrix
    for later access *)
-let nodes = 
+let nodes =
   let new_node i j = let v = G.V.create (i, j) in G.add_vertex g v; v in
   Array.init 9 (fun i -> Array.init 9 (new_node i))
 
 let node i j = nodes.(i).(j) (* shortcut for easier access *)
 
-(* We add the edges: 
+(* We add the edges:
    two nodes are connected whenever they can't have the same value,
    i.e. they belong to the same line, the same column or the same 3x3 group *)
 let () =
@@ -53,12 +53,13 @@ let () =
   done done
 
 (* Displaying the current state of the graph *)
-let display () =
-  for i = 0 to 8 do
-    for j = 0 to 8 do printf "%d" (G.Mark.get (node i j)) done;
-    printf "\n";
-  done;
-  printf "@?"
+(*let display () =*)
+(*  for i = 0 to 8 do*)
+(*    for j = 0 to 8 do printf "%d" (G.Mark.get (node i j)) done;*)
+(*    printf "\n";*)
+(*  done;*)
+(*  printf "@?"*)
+let display () =  ()
 
 (* We read the initial constraints from standard input and we display g *)
 let () =
@@ -70,7 +71,7 @@ let () =
     done
   done;
   display ();
-  printf "---------@."
+(*  printf "---------@."*)
 
 (* We solve the Sudoku by 9-coloring the graph g and we display the solution *)
 module C = Coloring.Mark(G)

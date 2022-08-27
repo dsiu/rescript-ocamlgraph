@@ -806,6 +806,5 @@ export {
   P ,
   I ,
   Planar ,
-  
 }
 /* No side effect */

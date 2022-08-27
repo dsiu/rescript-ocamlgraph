@@ -85,6 +85,5 @@ function Make(G, D) {
 
 export {
   Make ,
-  
 }
 /* No side effect */

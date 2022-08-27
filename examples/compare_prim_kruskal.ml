@@ -46,7 +46,7 @@ let debug = !debug_
 let seed = match !seed_ with
   | None -> Random.self_init (); Random.int (1 lsl 29)
   | Some s -> s
-let () = Format.printf "seed = %d@." seed; Random.init seed
+(*let () = Format.printf "seed = %d@." seed; Random.init seed*)
 
 (* undirected graphs with integer coordinates and integer labels on edges *)
 

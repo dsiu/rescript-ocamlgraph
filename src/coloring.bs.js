@@ -42,15 +42,15 @@ function Mark(funarg) {
     };
     var try_color = function (v, i) {
       Curry._2(funarg.Mark.set, v, i);
-      return Curry._3(funarg.iter_succ, (function (w) {
-                    if (Curry._1(funarg.Mark.get, w) !== i) {
-                      return ;
-                    }
-                    throw {
-                          RE_EXN_ID: NoColoring,
-                          Error: new Error()
-                        };
-                  }), g, v);
+      Curry._3(funarg.iter_succ, (function (w) {
+              if (Curry._1(funarg.Mark.get, w) !== i) {
+                return ;
+              }
+              throw {
+                    RE_EXN_ID: NoColoring,
+                    Error: new Error()
+                  };
+            }), g, v);
     };
     if (nb_to_color > 0) {
       var iterate = function (_iter) {
@@ -93,44 +93,44 @@ function Mark(funarg) {
         
       }
     }
-    return Stack.iter((function (v) {
-                  try {
-                    for(var i = 1; i <= k; ++i){
-                      try {
-                        try_color(v, i);
-                        throw {
-                              RE_EXN_ID: Pervasives.Exit,
-                              Error: new Error()
-                            };
-                      }
-                      catch (raw_exn){
-                        var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-                        if (exn.RE_EXN_ID !== NoColoring) {
-                          throw exn;
-                        }
-                        
-                      }
-                    }
-                    throw {
-                          RE_EXN_ID: NoColoring,
-                          Error: new Error()
-                        };
+    Stack.iter((function (v) {
+            try {
+              for(var i = 1; i <= k; ++i){
+                try {
+                  try_color(v, i);
+                  throw {
+                        RE_EXN_ID: Pervasives.Exit,
+                        Error: new Error()
+                      };
+                }
+                catch (raw_exn){
+                  var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+                  if (exn.RE_EXN_ID !== NoColoring) {
+                    throw exn;
                   }
-                  catch (raw_exn$1){
-                    var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-                    if (exn$1.RE_EXN_ID === Pervasives.Exit) {
-                      return ;
-                    }
-                    throw exn$1;
-                  }
-                }), stack);
+                  
+                }
+              }
+              throw {
+                    RE_EXN_ID: NoColoring,
+                    Error: new Error()
+                  };
+            }
+            catch (raw_exn$1){
+              var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+              if (exn$1.RE_EXN_ID === Pervasives.Exit) {
+                return ;
+              }
+              throw exn$1;
+            }
+          }), stack);
   };
   var two_color = function (g) {
     if (funarg.is_directed) {
       Pervasives.invalid_arg("coloring: directed graph");
     }
     var erase = function (v) {
-      return Curry._2(funarg.Mark.set, v, 0);
+      Curry._2(funarg.Mark.set, v, 0);
     };
     Curry._2(funarg.iter_vertex, erase, g);
     var dfs = function (c, v) {
@@ -146,9 +146,9 @@ function Mark(funarg) {
       }
       Curry._2(funarg.Mark.set, v, c);
       var partial_arg = 1 - c | 0;
-      return Curry._3(funarg.iter_succ, (function (param) {
-                    return dfs(partial_arg, param);
-                  }), g, v);
+      Curry._3(funarg.iter_succ, (function (param) {
+              return dfs(partial_arg, param);
+            }), g, v);
     };
     var start = function (v) {
       var match = Curry._1(funarg.Mark.get, v);
@@ -157,7 +157,7 @@ function Mark(funarg) {
       }
       
     };
-    return Curry._2(funarg.iter_vertex, start, g);
+    Curry._2(funarg.iter_vertex, start, g);
   };
   return {
           coloring: coloring,
@@ -186,7 +186,7 @@ function Make(funarg) {
       }
     };
     var set = function (v, n) {
-      return Curry._3(H.replace, h, v, n);
+      Curry._3(H.replace, h, v, n);
     };
     var Mark = {
       get: get,
@@ -241,15 +241,15 @@ function Make(funarg) {
       };
       var try_color = function (v, i) {
         Curry._2(GM.Mark.set, v, i);
-        return Curry._3(GM.iter_succ, (function (w) {
-                      if (Curry._1(GM.Mark.get, w) !== i) {
-                        return ;
-                      }
-                      throw {
-                            RE_EXN_ID: NoColoring,
-                            Error: new Error()
-                          };
-                    }), g, v);
+        Curry._3(GM.iter_succ, (function (w) {
+                if (Curry._1(GM.Mark.get, w) !== i) {
+                  return ;
+                }
+                throw {
+                      RE_EXN_ID: NoColoring,
+                      Error: new Error()
+                    };
+              }), g, v);
       };
       if (nb_to_color > 0) {
         var iterate = function (_iter) {
@@ -292,37 +292,37 @@ function Make(funarg) {
           
         }
       }
-      return Stack.iter((function (v) {
-                    try {
-                      for(var i = 1; i <= k; ++i){
-                        try {
-                          try_color(v, i);
-                          throw {
-                                RE_EXN_ID: Pervasives.Exit,
-                                Error: new Error()
-                              };
-                        }
-                        catch (raw_exn){
-                          var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-                          if (exn.RE_EXN_ID !== NoColoring) {
-                            throw exn;
-                          }
-                          
-                        }
-                      }
-                      throw {
-                            RE_EXN_ID: NoColoring,
-                            Error: new Error()
-                          };
+      Stack.iter((function (v) {
+              try {
+                for(var i = 1; i <= k; ++i){
+                  try {
+                    try_color(v, i);
+                    throw {
+                          RE_EXN_ID: Pervasives.Exit,
+                          Error: new Error()
+                        };
+                  }
+                  catch (raw_exn){
+                    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+                    if (exn.RE_EXN_ID !== NoColoring) {
+                      throw exn;
                     }
-                    catch (raw_exn$1){
-                      var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-                      if (exn$1.RE_EXN_ID === Pervasives.Exit) {
-                        return ;
-                      }
-                      throw exn$1;
-                    }
-                  }), stack);
+                    
+                  }
+                }
+                throw {
+                      RE_EXN_ID: NoColoring,
+                      Error: new Error()
+                    };
+              }
+              catch (raw_exn$1){
+                var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+                if (exn$1.RE_EXN_ID === Pervasives.Exit) {
+                  return ;
+                }
+                throw exn$1;
+              }
+            }), stack);
     };
     coloring$1(g, k);
     return match[0];
@@ -343,7 +343,7 @@ function Make(funarg) {
         Pervasives.invalid_arg("coloring: directed graph");
       }
       var erase = function (v) {
-        return Curry._2(GM.Mark.set, v, 0);
+        Curry._2(GM.Mark.set, v, 0);
       };
       Curry._2(GM.iter_vertex, erase, g);
       var dfs = function (c, v) {
@@ -359,9 +359,9 @@ function Make(funarg) {
         }
         Curry._2(GM.Mark.set, v, c);
         var partial_arg = 1 - c | 0;
-        return Curry._3(GM.iter_succ, (function (param) {
-                      return dfs(partial_arg, param);
-                    }), g, v);
+        Curry._3(GM.iter_succ, (function (param) {
+                return dfs(partial_arg, param);
+              }), g, v);
       };
       var start = function (v) {
         var match = Curry._1(GM.Mark.get, v);
@@ -370,7 +370,7 @@ function Make(funarg) {
         }
         
       };
-      return Curry._2(GM.iter_vertex, start, g);
+      Curry._2(GM.iter_vertex, start, g);
     };
     two_color$1(g);
     return match[0];
@@ -386,6 +386,5 @@ export {
   NoColoring ,
   Mark ,
   Make ,
-  
 }
 /* No side effect */

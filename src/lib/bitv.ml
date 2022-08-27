@@ -455,7 +455,7 @@ let to_string v =
   done;
   Buffer.contents s
 
-let print fmt v = Format.pp_print_string fmt (to_string v)
+let print fmt v = Format_noop.pp_print_string fmt (to_string v)
 
 let of_string s =
   let n = String.length s in

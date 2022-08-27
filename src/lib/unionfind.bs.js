@@ -13,7 +13,7 @@ function Make(funarg) {
             cell.c = 0;
             cell.data = x;
             cell.father = cell;
-            return Curry._3(H.add, h, x, cell);
+            Curry._3(H.add, h, x, cell);
           }), l);
     return h;
   };
@@ -53,6 +53,5 @@ function Make(funarg) {
 
 export {
   Make ,
-  
 }
 /* No side effect */

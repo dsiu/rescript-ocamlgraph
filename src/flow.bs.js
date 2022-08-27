@@ -50,7 +50,6 @@ function Goldberg_Tarjan(funarg, funarg$1) {
   };
   var add$1 = function (map, edge, value) {
     map.contents = Curry._3(EM.add, edge, value, map.contents);
-    
   };
   var find$1 = function (map, edge) {
     try {
@@ -97,11 +96,11 @@ function Goldberg_Tarjan(funarg, funarg$1) {
   };
   var set_excess = function (ctxt, vertex, value) {
     Curry._2(VH.remove, ctxt.excess, vertex);
-    return Curry._3(VH.add, ctxt.excess, vertex, value);
+    Curry._3(VH.add, ctxt.excess, vertex, value);
   };
   var set_potential = function (ctxt, vertex, pi) {
     Curry._2(VH.remove, ctxt.potential, vertex);
-    return Curry._3(VH.add, ctxt.potential, vertex, pi);
+    Curry._3(VH.add, ctxt.potential, vertex, pi);
   };
   var extract_excessives = function (ctxt) {
     var in_excess = elements(ctxt.excessives);
@@ -117,7 +116,7 @@ function Goldberg_Tarjan(funarg, funarg$1) {
     }
   };
   var set_flow = function (context, arc, value) {
-    return add$1(context.flow, arc, value);
+    add$1(context.flow, arc, value);
   };
   var origin = function (arc) {
     if (arc.TAG === /* Forward */0) {
@@ -229,15 +228,14 @@ function Goldberg_Tarjan(funarg, funarg$1) {
       List.iter(add_arc, Curry._1(incidence, vertex));
       frontier.contents = PersistentQueue$Graph.tail(frontier.contents);
     };
-    
   };
   var initialize_potential = function (context, sink) {
     var update = function (arc) {
       var partial_arg = destination(arc);
-      return set_potential(context, partial_arg, get_potential(context, origin(arc)) + 1 | 0);
+      set_potential(context, partial_arg, get_potential(context, origin(arc)) + 1 | 0);
     };
     set_potential(context, sink, 0);
-    return generic_bfs(context.nb_vertices, Curry._1(context.reverse_incident, context), update, sink);
+    generic_bfs(context.nb_vertices, Curry._1(context.reverse_incident, context), update, sink);
   };
   var Break = /* @__PURE__ */Caml_exceptions.create("Flow-Graph.Goldberg_Tarjan(G)(F).Break");
   var push = function (context, arc) {
@@ -251,7 +249,7 @@ function Goldberg_Tarjan(funarg, funarg$1) {
     set_excess(context, u, Curry._2($neg$neg, exc_u, delta));
     set_excess(context, v, Curry._2($plus$neg, get_excess(context, v), delta));
     augment(context, arc, delta);
-    return add(context.excessives, v);
+    add(context.excessives, v);
   };
   var relabel = function (context, vertex) {
     var partial_arg = get_potential(context, vertex);
@@ -266,12 +264,12 @@ function Goldberg_Tarjan(funarg, funarg$1) {
               return prim1;
             }
           }), partial_arg, param$1);
-    return set_potential(context, vertex, pi + 1 | 0);
+    set_potential(context, vertex, pi + 1 | 0);
   };
   var augmenting_step = function (context, currently_in_excess) {
     context.excessives = Curry._1(VH.create, 16);
     var param = List.filter(function (param) {
-            if (Caml_obj.caml_notequal(param, context.source) && Caml_obj.caml_notequal(param, context.sink)) {
+            if (Caml_obj.notequal(param, context.source) && Caml_obj.notequal(param, context.sink)) {
               return is_positive(get_excess(context, param));
             } else {
               return false;
@@ -280,21 +278,21 @@ function Goldberg_Tarjan(funarg, funarg$1) {
     var param$1 = List.sort((function (param, param$1) {
             return get_potential(context, param$1) - get_potential(context, param) | 0;
           }), param);
-    return List.iter((function (param) {
-                  var param$1 = List.filter(function (param) {
-                          var u = origin(param);
-                          var v = destination(param);
-                          return (get_potential(context, v) - get_potential(context, u) | 0) === -1;
-                        })(Curry._2(context.incident, context, param));
-                  List.iter((function (param) {
-                          return push(context, param);
-                        }), param$1);
-                  if (is_positive(get_excess(context, param))) {
-                    relabel(context, param);
-                    return add(context.excessives, param);
-                  }
-                  
-                }), param$1);
+    List.iter((function (param) {
+            var param$1 = List.filter(function (param) {
+                    var u = origin(param);
+                    var v = destination(param);
+                    return (get_potential(context, v) - get_potential(context, u) | 0) === -1;
+                  })(Curry._2(context.incident, context, param));
+            List.iter((function (param) {
+                    return push(context, param);
+                  }), param$1);
+            if (is_positive(get_excess(context, param))) {
+              relabel(context, param);
+              return add(context.excessives, param);
+            }
+            
+          }), param$1);
   };
   var param_freq_check_preflow = {
     contents: 1000
@@ -340,7 +338,6 @@ function Goldberg_Tarjan(funarg, funarg$1) {
       in_excess.contents = extract_excessives(context);
       nb_steps.contents = nb_steps.contents + 1 | 0;
     };
-    
   };
   var new_context = function (graph, source, sink, reversed, max_capacity, flow) {
     var nb_vertices = Curry._1(funarg.nb_vertex, graph);
@@ -385,7 +382,7 @@ function Goldberg_Tarjan(funarg, funarg$1) {
         contents: EM.empty
       };
       Curry._3(funarg.fold_edges_e, (function (e, param) {
-              return add$1(flow, e, funarg$1.zero);
+              add$1(flow, e, funarg$1.zero);
             }), graph, undefined);
       return flow;
     };
@@ -457,7 +454,7 @@ function Ford_Fulkerson(funarg, funarg$1) {
           e,
           tag
         ]);
-    return Queue.add(s, unvisited);
+    Queue.add(s, unvisited);
   };
   var get = function (s) {
     var match = Curry._2(H.find, marked, s);
@@ -571,44 +568,44 @@ function Ford_Fulkerson(funarg, funarg$1) {
   var maxflow = function (g, s, t) {
     var r = Curry._1(H$1.create, 97);
     var succ = function (s) {
-      return Curry._3(funarg.iter_succ_e, (function (e) {
-                    if (!Curry._2(funarg.V.equal, s, Curry._1(funarg.E.src, e))) {
-                      throw {
-                            RE_EXN_ID: "Assert_failure",
-                            _1: [
-                              "flow.ml",
-                              661,
-                              11
-                            ],
-                            Error: new Error()
-                          };
-                    }
-                    var t = Curry._1(funarg.E.dst, e);
-                    if (!(Curry._1(mem, t) || is_full(r, e))) {
-                      return set(t, Caml_option.some(e), /* Plus */0);
-                    }
-                    
-                  }), g, s);
+      Curry._3(funarg.iter_succ_e, (function (e) {
+              if (!Curry._2(funarg.V.equal, s, Curry._1(funarg.E.src, e))) {
+                throw {
+                      RE_EXN_ID: "Assert_failure",
+                      _1: [
+                        "flow.ml",
+                        661,
+                        11
+                      ],
+                      Error: new Error()
+                    };
+              }
+              var t = Curry._1(funarg.E.dst, e);
+              if (!(Curry._1(mem, t) || is_full(r, e))) {
+                return set(t, Caml_option.some(e), /* Plus */0);
+              }
+              
+            }), g, s);
     };
     var pred = function (s) {
-      return Curry._3(funarg.iter_pred_e, (function (e) {
-                    if (!Curry._2(funarg.V.equal, s, Curry._1(funarg.E.dst, e))) {
-                      throw {
-                            RE_EXN_ID: "Assert_failure",
-                            _1: [
-                              "flow.ml",
-                              670,
-                              11
-                            ],
-                            Error: new Error()
-                          };
-                    }
-                    var t = Curry._1(funarg.E.src, e);
-                    if (!(Curry._1(mem, t) || is_empty(r, e))) {
-                      return set(t, Caml_option.some(e), /* Minus */1);
-                    }
-                    
-                  }), g, s);
+      Curry._3(funarg.iter_pred_e, (function (e) {
+              if (!Curry._2(funarg.V.equal, s, Curry._1(funarg.E.dst, e))) {
+                throw {
+                      RE_EXN_ID: "Assert_failure",
+                      _1: [
+                        "flow.ml",
+                        670,
+                        11
+                      ],
+                      Error: new Error()
+                    };
+              }
+              var t = Curry._1(funarg.E.src, e);
+              if (!(Curry._1(mem, t) || is_empty(r, e))) {
+                return set(t, Caml_option.some(e), /* Minus */1);
+              }
+              
+            }), g, s);
     };
     var internal_loop = function (a) {
       try {
@@ -716,6 +713,5 @@ function Ford_Fulkerson(funarg, funarg$1) {
 export {
   Goldberg_Tarjan ,
   Ford_Fulkerson ,
-  
 }
 /* No side effect */

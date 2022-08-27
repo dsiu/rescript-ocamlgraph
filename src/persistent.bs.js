@@ -98,7 +98,7 @@ function Digraph_Concrete(funarg) {
 
 function Digraph_Abstract(funarg) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -303,7 +303,7 @@ function Digraph_ConcreteLabeled(funarg, funarg$1) {
 
 function Digraph_AbstractLabeled(funarg, funarg$1) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -785,7 +785,7 @@ function Graph_Concrete(funarg) {
 
 function Graph_Abstract(funarg) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -1221,7 +1221,7 @@ function Graph_ConcreteLabeled(funarg, funarg$1) {
 
 function Graph_AbstractLabeled(funarg, funarg$1) {
   var compare = function (x, y) {
-    return Caml.caml_int_compare(x.tag, y.tag);
+    return Caml.int_compare(x.tag, y.tag);
   };
   var hash = function (x) {
     return x.tag;
@@ -1533,6 +1533,5 @@ var Graph = {
 export {
   Digraph ,
   Graph ,
-  
 }
 /* P Not a pure module */
